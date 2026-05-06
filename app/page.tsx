@@ -20,6 +20,7 @@ import {
   Instagram,
   CheckCircle2,
 } from "lucide-react"
+import { DoctoraliaLogo, InstagramLogo, WhatsAppLogo } from "./components/BrandIcons"
 
 const sectionHero =
   "relative overflow-hidden bg-[radial-gradient(880px_420px_at_12%_8%,rgba(164,190,123,0.18)_0%,rgba(164,190,123,0)_58%),radial-gradient(760px_360px_at_88%_16%,rgba(183,166,232,0.08)_0%,rgba(183,166,232,0)_56%),linear-gradient(180deg,#FFFEFA_0%,#F1F5EA_100%)]"
@@ -80,7 +81,7 @@ function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-[linear-gradient(135deg,rgba(27,41,71,0.96)_0%,rgba(38,56,91,0.94)_56%,rgba(47,63,104,0.92)_100%)] shadow-[0_14px_34px_rgba(27,41,71,0.20)] backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        <a href="#" className="flex min-w-0 items-center gap-3">
+        <a href="/" className="flex min-w-0 items-center gap-3">
           <img
             src="/icon.png"
             alt=""
@@ -95,19 +96,38 @@ function Header() {
             </span>
           </span>
         </a>
-        <nav className="hidden items-center gap-6 text-sm font-semibold text-white/72 md:flex">
+        <nav className="hidden items-center gap-5 text-sm font-semibold text-white/72 md:flex">
+          <a href="/quien-soy" className="transition hover:text-white">Quién soy</a>
           <a href="#reserva" className="transition hover:text-white">Precios</a>
           <a href="#faq" className="transition hover:text-white">Dudas</a>
-          <a href="#contacto" className="transition hover:text-white">Contacto</a>
+          <a href="/contacto" className="transition hover:text-white">Contacto</a>
         </nav>
-        <a
-          href="https://wa.me/34614412183?text=Hola%20Daniela%2C%20he%20visto%20tu%20p%C3%A1gina%20y%20quer%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20una%20primera%20sesi%C3%B3n."
-          data-event="click_whatsapp_daniela_header"
-          className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-white/65 bg-white/92 px-4 py-2.5 text-sm font-bold text-[#26385B] shadow-[0_12px_28px_rgba(27,41,71,0.20)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_18px_38px_rgba(27,41,71,0.26)]"
-        >
-          <MessageCircle className="h-4 w-4" />
-          <span className="hidden sm:inline">WhatsApp</span>
-        </a>
+        <div className="flex shrink-0 items-center gap-2">
+          <a
+            href="https://www.instagram.com/psico.danilopez"
+            data-event="click_instagram_daniela_header"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/12 text-white shadow-[0_12px_28px_rgba(27,41,71,0.18)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/20"
+            aria-label="Instagram de Daniela López"
+          >
+            <InstagramLogo className="h-6 w-6" />
+          </a>
+          <a
+            href="https://www.doctoralia.es/daniela-lopez-melendez/psicologo/madrid"
+            data-event="click_doctoralia_daniela_header"
+            className="hidden h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/12 text-white shadow-[0_12px_28px_rgba(27,41,71,0.18)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/20 sm:inline-flex"
+            aria-label="Perfil de Doctoralia de Daniela López"
+          >
+            <DoctoraliaLogo className="h-6 w-6" />
+          </a>
+          <a
+            href="https://wa.me/34614412183?text=Hola%20Daniela%2C%20he%20visto%20tu%20p%C3%A1gina%20y%20quer%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20una%20primera%20sesi%C3%B3n."
+            data-event="click_whatsapp_daniela_header"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-[#25D366] text-white shadow-[0_12px_28px_rgba(37,211,102,0.24)] transition hover:-translate-y-0.5 hover:bg-[#20BF5A]"
+            aria-label="WhatsApp de Daniela López"
+          >
+            <WhatsAppLogo className="h-6 w-6" />
+          </a>
+        </div>
       </div>
     </header>
   )
@@ -336,7 +356,7 @@ function LocationSection() {
             {/* CTA Buttons */}
             <div className="flex flex-col gap-3 sm:flex-row">
               <a
-                href="#como-llegar"
+                href="https://www.google.com/maps/search/?api=1&query=C.%20de%20Marcenado%2C%2014%2C%20Chamart%C3%ADn%2C%2028002%20Madrid"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-[#B8CA82] to-[#7F9256] shadow-[0_16px_34px_rgba(127,146,86,0.24)] px-6 py-3 font-semibold text-white transition-all hover:opacity-90"
               >
                 <MapPin className="h-5 w-5" />
@@ -353,13 +373,15 @@ function LocationSection() {
             </div>
           </div>
 
-          {/* Image Column */}
+          {/* Map Column */}
           <div className={`relative ${imageAura}`}>
-            <div className={imageGlass}>
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image.png-O5XyfjoKGpBQIYoQKYbYVF5wH1vMNT.jpeg"
-                alt="Despacho profesional para terapia presencial en Madrid"
-                className="aspect-[4/3] w-full object-cover"
+            <div id="como-llegar" className={`${imageGlass} bg-white/40`}>
+              <iframe
+                title="Mapa de la consulta de Daniela López en Chamartín"
+                src="https://www.google.com/maps?q=C.%20de%20Marcenado%2C%2014%2C%20Chamart%C3%ADn%2C%2028002%20Madrid&output=embed"
+                className="aspect-[4/3] w-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
               />
             </div>
           </div>
@@ -479,23 +501,41 @@ function SpecialtiesSection() {
 function PricingSection() {
   const prices = [
     {
-      title: "Primera sesión individual presencial",
+      title: "Primera sesión online",
       price: "40 €",
-      description: "Un primer encuentro presencial para valorar tu situación con calma y empezar a orientarte.",
-      footer: "Sesiones sucesivas: 65 €",
+      description: "Un primer encuentro online para valorar tu situación con calma y empezar a orientarte.",
+      footer: "Resto de sesiones: 55 €",
     },
     {
-      title: "Primera sesión individual online",
+      title: "Primera sesión presencial",
       price: "40 €",
-      description: "La misma primera toma de contacto, con la comodidad de hacerlo online desde donde estás.",
-      footer: "Sesiones sucesivas: 60 €",
-      highlighted: true,
+      description: "Un primer encuentro presencial en consulta para valorar tu situación y decidir los siguientes pasos.",
+      footer: "Resto de sesiones: 60 €",
     },
     {
       title: "Terapia de pareja o familia",
       price: "75 €",
       description: "Sesiones online o presenciales para trabajar la dinámica relacional con un enfoque claro y estructurado.",
       footer: "Mismo precio desde la primera sesión",
+    },
+    {
+      title: "Bono individual online",
+      price: "200 €",
+      description: "Pack de 4 sesiones online para sostener el proceso con continuidad y flexibilidad.",
+      footer: "4 sesiones online",
+      highlighted: true,
+    },
+    {
+      title: "Bono individual presencial",
+      price: "220 €",
+      description: "Pack de 4 sesiones presenciales en consulta para trabajar con seguimiento cercano.",
+      footer: "4 sesiones presenciales",
+    },
+    {
+      title: "Supervisión de casos",
+      price: "50 €",
+      description: "Para estudiantes y profesionales de la psicología que necesitan revisar casos, resolver dudas o trabajar bloqueos terapéuticos.",
+      footer: "Precio por hora",
     },
   ]
 
@@ -865,7 +905,7 @@ function Footer() {
                 +34 614 412 183
               </a>
               <a
-                href="#instagram"
+                href="https://www.instagram.com/psico.danilopez"
                 data-event="click_instagram_daniela_landing"
                 className="flex items-center gap-2 text-sm text-white/70 hover:text-white"
               >
@@ -887,11 +927,17 @@ function Footer() {
             <h4 className="mb-4 font-semibold text-white">Enlaces</h4>
             <div className="space-y-2">
               <a
-                href="#doctoralia"
+                href="https://www.doctoralia.es/daniela-lopez-melendez/psicologo/madrid"
                 data-event="click_doctoralia_daniela_landing"
                 className="block text-sm text-white/70 hover:text-white"
               >
                 Perfil en Doctoralia
+              </a>
+              <a href="/quien-soy" className="block text-sm text-white/70 hover:text-white">
+                Quién soy
+              </a>
+              <a href="/contacto" className="block text-sm text-white/70 hover:text-white">
+                Contacto
               </a>
               <a href="#reserva" className="block text-sm text-white/70 hover:text-white">
                 Reservar cita
@@ -918,10 +964,17 @@ function FloatingWhatsApp() {
     <a
       href="https://wa.me/34614412183?text=Hola%20Daniela%2C%20he%20visto%20tu%20p%C3%A1gina%20y%20quer%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20una%20primera%20sesi%C3%B3n."
       data-event="click_whatsapp_daniela_landing"
-      className="fixed bottom-24 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_16px_34px_rgba(37,211,102,0.34)] transition-all hover:scale-110 hover:shadow-[0_20px_44px_rgba(37,211,102,0.42)] sm:bottom-6 sm:right-6 sm:h-16 sm:w-16"
+      className="fixed bottom-24 right-4 z-50 inline-flex items-center gap-3 rounded-full border border-white/70 bg-[#25D366] px-4 py-3 text-white shadow-[0_18px_44px_rgba(37,211,102,0.38)] transition-all hover:-translate-y-1 hover:bg-[#20BF5A] hover:shadow-[0_24px_56px_rgba(37,211,102,0.46)] sm:bottom-6 sm:right-6 sm:px-5"
       aria-label="Contactar por WhatsApp"
     >
-      <MessageCircle className="h-7 w-7 sm:h-8 sm:w-8" />
+      <span className="relative flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#25D366] shadow-[inset_0_0_0_1px_rgba(37,211,102,0.12)]">
+        <WhatsAppLogo className="h-7 w-7" />
+        <span className="absolute -right-0.5 -top-0.5 h-3.5 w-3.5 rounded-full border-2 border-white bg-[#7ED957]" />
+      </span>
+      <span className="hidden text-left leading-tight sm:block">
+        <span className="block text-sm font-bold">WhatsApp</span>
+        <span className="block text-xs font-semibold text-white/88">Responder por mensaje</span>
+      </span>
     </a>
   )
 }
@@ -938,7 +991,7 @@ function MobileStickyBar() {
           data-event="click_whatsapp_daniela_landing"
           className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#25D366] py-3 font-semibold text-white"
         >
-          <MessageCircle className="h-5 w-5" />
+          <WhatsAppLogo className="h-5 w-5" />
           WhatsApp
         </a>
         <a
