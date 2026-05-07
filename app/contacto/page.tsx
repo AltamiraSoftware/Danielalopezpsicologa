@@ -60,8 +60,9 @@ export default function ContactPage() {
             <div className="flex items-center gap-4 rounded-[24px] border border-white/70 bg-white/46 p-5 shadow-[0_18px_44px_rgba(38,56,91,0.10)]">
               <MapPin className="h-6 w-6 text-[#9B8BD3]" />
               <span>
-                <span className="block font-bold">C. de Marcenado, 14</span>
+                <span className="block font-bold">C. de Marcenado, 14, Despacho 2</span>
                 <span className="text-sm text-[#5D6680]">Chamartín, 28002 Madrid</span>
+                <span className="block text-sm font-medium text-[#5D6680]/80">Consulta independiente dentro del centro Psicotep</span>
               </span>
             </div>
           </div>
@@ -118,7 +119,7 @@ export default function ContactPage() {
         <div className="overflow-hidden rounded-[30px] border border-white/70 bg-white/40 shadow-[0_26px_70px_rgba(38,56,91,0.14)]">
           <iframe
             title="Mapa de la consulta en Chamartín"
-            src="https://www.google.com/maps?q=C.%20de%20Marcenado%2C%2014%2C%20Chamart%C3%ADn%2C%2028002%20Madrid&output=embed"
+            src="https://www.google.com/maps?q=C.%20de%20Marcenado%2C%2014%2C%20Despacho%202%2C%20Chamart%C3%ADn%2C%2028002%20Madrid&output=embed"
             className="h-[360px] w-full border-0"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"

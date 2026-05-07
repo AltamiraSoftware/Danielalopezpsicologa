@@ -250,14 +250,14 @@ function EmpathySection() {
         </div>
 
         {/* Problem Cards */}
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {problems.map((problem) => (
             <div
               key={problem.title}
-              className={cardGlass}
+              className={`${cardGlass} flex h-full min-h-[190px] flex-col`}
             >
-              <div className={`mb-4 h-12 w-12 ${iconBox}`}>
-                <problem.icon className={`h-6 w-6 ${accentLavender}`} />
+              <div className={`mb-4 h-12 w-12 shrink-0 items-center justify-center mx-auto ${iconBox}`}>
+                <problem.icon className={`block h-8 w-8 mb-2 ${accentLavender}`} />
               </div>
               <h3 className="mb-2 text-lg font-semibold text-[#26385B]">{problem.title}</h3>
               <p className="text-[#5D6680]">{problem.description}</p>
@@ -308,8 +308,8 @@ function PersonalTrustSection() {
                 "Regulación emocional",
               ].map((feature) => (
                 <div key={feature} className="flex items-center gap-3">
-                  <div className={`inline-flex h-6 w-6 items-center justify-center rounded-full ${iconGradient} shadow-[0_8px_18px_rgba(140,137,184,0.12)]`}>
-                    <CheckCircle2 className="h-4 w-4 text-[#26385B]" />
+                  <div className={`inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${iconGradient} shadow-[0_8px_18px_rgba(140,137,184,0.12)]`}>
+                    <CheckCircle2 className="block h-4 w-4 text-[#26385B]" />
                   </div>
                   <span className="font-medium text-[#26385B]">{feature}</span>
                 </div>
@@ -336,19 +336,20 @@ function LocationSection() {
               Consulta presencial en Chamartín, Madrid
             </h2>
             <p className="mb-8 text-lg leading-relaxed text-[#5D6680] text-pretty">
-              Puedes acudir a consulta presencial en C. de Marcenado, 14, Chamartín, 28002 Madrid, en un espacio profesional, cómodo y tranquilo. También puedes realizar sesiones online si necesitas más flexibilidad.
+              Puedes acudir a consulta presencial en C. de Marcenado, 14, Despacho 2, Chamartín, 28002 Madrid, en un espacio profesional, cómodo y tranquilo. Es una consulta independiente dentro del centro Psicotep. También puedes realizar sesiones online si necesitas más flexibilidad.
             </p>
 
             {/* Address Card */}
             <div className={`mb-6 ${cardGlassStrong} p-6`}>
               <div className="flex items-start gap-4">
                 <div className={`h-12 w-12 flex-shrink-0 ${iconBox}`}>
-                  <MapPin className={`h-6 w-6 ${accentLavender}`} />
+                  <MapPin className={`block h-6 w-6 ${accentLavender}`} />
                 </div>
                 <div>
                   <p className="font-semibold text-[#26385B]">Dirección</p>
-                  <p className="text-[#5D6680]">C. de Marcenado, 14</p>
+                  <p className="text-[#5D6680]">C. de Marcenado, 14, Despacho 2</p>
                   <p className="text-[#5D6680]">Chamartín, 28002 Madrid</p>
+                  <p className="text-sm font-medium text-[#5D6680]/80">Consulta independiente dentro del centro Psicotep</p>
                 </div>
               </div>
             </div>
@@ -356,7 +357,7 @@ function LocationSection() {
             {/* CTA Buttons */}
             <div className="flex flex-col gap-3 sm:flex-row">
               <a
-                href="https://www.google.com/maps/search/?api=1&query=C.%20de%20Marcenado%2C%2014%2C%20Chamart%C3%ADn%2C%2028002%20Madrid"
+                href="https://www.google.com/maps/search/?api=1&query=C.%20de%20Marcenado%2C%2014%2C%20Despacho%202%2C%20Chamart%C3%ADn%2C%2028002%20Madrid"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-[#B8CA82] to-[#7F9256] shadow-[0_16px_34px_rgba(127,146,86,0.24)] px-6 py-3 font-semibold text-white transition-all hover:opacity-90"
               >
                 <MapPin className="h-5 w-5" />
@@ -378,7 +379,7 @@ function LocationSection() {
             <div id="como-llegar" className={`${imageGlass} bg-white/40`}>
               <iframe
                 title="Mapa de la consulta de Daniela López en Chamartín"
-                src="https://www.google.com/maps?q=C.%20de%20Marcenado%2C%2014%2C%20Chamart%C3%ADn%2C%2028002%20Madrid&output=embed"
+                src="https://www.google.com/maps?q=C.%20de%20Marcenado%2C%2014%2C%20Despacho%202%2C%20Chamart%C3%ADn%2C%2028002%20Madrid&output=embed"
                 className="aspect-[4/3] w-full border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -420,14 +421,14 @@ function ModalitiesSection() {
           Elige la modalidad que mejor encaje contigo
         </h2>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {modalities.map((modality) => (
             <div
               key={modality.title}
-              className={`${cardGlass} p-8`}
+              className={`${cardGlass} flex h-full min-h-[245px] flex-col p-8`}
             >
-              <div className={`mb-6 h-14 w-14 ${iconBox}`}>
-                <modality.icon className={`h-7 w-7 ${accentLavender}`} />
+              <div className={`mb-6 h-14 w-14 shrink-0 items-center justify-center mx-auto ${iconBox}`}>
+                <modality.icon className={`block h-8 w-8 ${accentLavender} `} />
               </div>
               <h3 className="mb-3 text-xl font-semibold text-[#26385B]">{modality.title}</h3>
               <p className="leading-relaxed text-[#5D6680]">{modality.description}</p>
@@ -489,6 +490,127 @@ function SpecialtiesSection() {
               <p className="text-[#5D6680]">{specialty.description}</p>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function DetailedSpecialtiesSection() {
+  const [openSpecialty, setOpenSpecialty] = useState<string | null>(null)
+
+  const specialties = [
+    {
+      title: "Ansiedad y regulación emocional",
+      description: "Si sientes que tu mente no para, vives en alerta constante, te cuesta descansar o la ansiedad está afectando tu día a día, este espacio puede ayudarte.",
+      detail: "En la primera sesión entenderemos qué está manteniendo ese malestar y diseñaremos un plan terapéutico adaptado a tus necesidades. Disponible presencialmente en Madrid y online.",
+      helps: [
+        "Sientes preocupación constante, anticipación excesiva o te cuesta desconectar incluso cuando no hay un motivo claro.",
+        "Notas ataques de ansiedad, bloqueo, irritabilidad, insomnio o síntomas físicos que te preocupan y no sabes bien cómo manejar.",
+        "La ansiedad está afectando al descanso, al trabajo, a tus relaciones o a tu capacidad para sostener el día a día con normalidad.",
+      ],
+    },
+    {
+      title: "Duelo",
+      description: "Perder a alguien, atravesar una ruptura o vivir un cambio importante puede remover muchas emociones difíciles de sostener.",
+      detail: "En terapia te acompaño a entender lo que estás sintiendo y a atravesar ese proceso desde un espacio seguro, respetando tus tiempos y sin presiones.",
+      helps: [
+        "Sientes que la pérdida te está desbordando.",
+        "El duelo se mezcla con culpa, enfado o bloqueo.",
+        "Necesitas un espacio donde poder sostenerlo con calma.",
+      ],
+    },
+    {
+      title: "Terapia infanto-juvenil",
+      description: "A veces los niños y adolescentes expresan su malestar a través de cambios de conducta, dificultades emocionales o problemas para gestionar lo que sienten.",
+      detail: "Trabajaremos con ellos desde sus necesidades e incluiremos orientación y acompañamiento a madres, padres o cuidadores para favorecer su bienestar dentro y fuera de consulta.",
+      helps: [
+        "Notas cambios emocionales o de comportamiento que te preocupan.",
+        "Existen dificultades en casa, en el colegio o en sus relaciones.",
+        "Está atravesando una situación difícil y no sabe cómo gestionarla.",
+        "Como familia, necesitáis orientación para acompañarle mejor.",
+      ],
+    },
+    {
+      title: "Trauma",
+      description: "Hay experiencias que dejan una huella profunda y pueden seguir afectando cómo te sientes, reaccionas o te relacionas.",
+      detail: "En terapia abordaremos ese dolor sin revivirlo de forma forzada, creando primero la seguridad necesaria para poder sanar a tu ritmo.",
+      helps: [
+        "Hay experiencias del pasado que siguen afectándote en el presente.",
+        "Sientes bloqueos emocionales, hipervigilancia o respuestas intensas que te cuesta comprender.",
+        "Algunas situaciones o relaciones activan miedo, inseguridad o sensación de desregulación emocional.",
+        "Notas que ciertas heridas siguen influyendo en cómo te relacionas contigo mismo/a y con los demás.",
+      ],
+    },
+    {
+      title: "Autoestima",
+      description: "Si te cuesta poner límites, priorizarte o sueles ser muy crítico/a contigo mismo/a, puede haber heridas en tu autoestima que merecen ser revisadas.",
+      detail: "En terapia trabajaremos para fortalecer tu autoconcepto y construir una relación más sana contigo.",
+      helps: [
+        "Predomina la autoexigencia o la sensación de no ser suficiente.",
+        "Te cuesta poner límites o priorizarte.",
+        "Tu seguridad depende mucho de la aprobación externa.",
+      ],
+    },
+    {
+      title: "Terapia de pareja",
+      description: "La terapia de pareja no solo es útil cuando la relación está al límite. También puede ayudar cuando existe distancia emocional, conflictos repetitivos o dificultades de comunicación.",
+      detail: "En sesión trabajaremos para comprender lo que está ocurriendo, mejorar la comunicación y construir una relación más consciente y saludable.",
+      helps: [
+        "Discutís siempre por lo mismo y no encontráis salida.",
+        "La distancia emocional o el desgaste se ha instalado.",
+        "Queréis entender mejor qué está pasando en la relación.",
+      ],
+    },
+  ]
+
+  return (
+    <section className={`${sectionWarm} py-16 lg:py-24`}>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 className="mb-12 text-center font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl text-balance">
+          Áreas que podemos trabajar en terapia
+        </h2>
+
+        <div className="grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {specialties.map((specialty) => {
+            const isOpen = openSpecialty === specialty.title
+
+            return (
+              <div key={specialty.title} className={`group flex h-full min-h-[250px] flex-col ${cardGlass}`}>
+                <h3 className="mb-2 text-lg font-semibold text-[#26385B] group-hover:text-[#6F6D9E]">
+                  {specialty.title}
+                </h3>
+                <p className="leading-relaxed text-[#5D6680]">{specialty.description}</p>
+
+                {isOpen && (
+                  <div className="mt-5 border-t border-white/55 pt-5">
+                    <p className="mb-4 leading-relaxed text-[#5D6680]">{specialty.detail}</p>
+                    <p className="mb-3 text-sm font-bold uppercase tracking-[0.12em] text-[#6F6D9E]">
+                      Puede ayudarte si
+                    </p>
+                    <ul className="space-y-3">
+                      {specialty.helps.map((item) => (
+                        <li key={item} className="flex gap-3 text-sm leading-relaxed text-[#26385B]">
+                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#7F9256]" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                <button
+                  type="button"
+                  onClick={() => setOpenSpecialty(isOpen ? null : specialty.title)}
+                  className={`mt-auto inline-flex items-center gap-2 pt-5 text-sm font-bold transition hover:text-[#26385B] ${accentLavender}`}
+                  aria-expanded={isOpen}
+                >
+                  {isOpen ? "Ver menos" : "Ver más"}
+                  {isOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                </button>
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>
@@ -782,7 +904,7 @@ function FAQSection() {
     },
     {
       question: "¿Dónde está la consulta presencial?",
-      answer: "En C. de Marcenado, 14, Chamartín, 28002 Madrid.",
+      answer: "En C. de Marcenado, 14, Despacho 2, Chamartín, 28002 Madrid. Es una consulta independiente dentro del centro Psicotep.",
     },
     {
       question: "¿También haces terapia online?",
@@ -918,8 +1040,9 @@ function Footer() {
           {/* Address Column */}
           <div>
             <h4 className="mb-4 font-semibold text-white">Consulta</h4>
-            <p className="text-sm text-white/70">C. de Marcenado, 14</p>
+            <p className="text-sm text-white/70">C. de Marcenado, 14, Despacho 2</p>
             <p className="text-sm text-white/70">Chamartín, 28002 Madrid</p>
+            <p className="mt-2 text-sm text-white/55">Consulta independiente dentro del centro Psicotep</p>
           </div>
 
           {/* Links Column */}
@@ -964,17 +1087,11 @@ function FloatingWhatsApp() {
     <a
       href="https://wa.me/34614412183?text=Hola%20Daniela%2C%20he%20visto%20tu%20p%C3%A1gina%20y%20quer%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20una%20primera%20sesi%C3%B3n."
       data-event="click_whatsapp_daniela_landing"
-      className="fixed bottom-24 right-4 z-50 inline-flex items-center gap-3 rounded-full border border-white/70 bg-[#25D366] px-4 py-3 text-white shadow-[0_18px_44px_rgba(37,211,102,0.38)] transition-all hover:-translate-y-1 hover:bg-[#20BF5A] hover:shadow-[0_24px_56px_rgba(37,211,102,0.46)] sm:bottom-6 sm:right-6 sm:px-5"
+      className="fixed bottom-24 right-4 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_18px_38px_rgba(37,211,102,0.30)] transition-all hover:-translate-y-1 hover:scale-105 hover:bg-[#22C55E] hover:shadow-[0_24px_48px_rgba(37,211,102,0.40)] sm:bottom-6 sm:right-6"
       aria-label="Contactar por WhatsApp"
     >
-      <span className="relative flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#25D366] shadow-[inset_0_0_0_1px_rgba(37,211,102,0.12)]">
-        <WhatsAppLogo className="h-7 w-7" />
-        <span className="absolute -right-0.5 -top-0.5 h-3.5 w-3.5 rounded-full border-2 border-white bg-[#7ED957]" />
-      </span>
-      <span className="hidden text-left leading-tight sm:block">
-        <span className="block text-sm font-bold">WhatsApp</span>
-        <span className="block text-xs font-semibold text-white/88">Responder por mensaje</span>
-      </span>
+      <WhatsAppLogo className="h-10 w-10" />
+   
     </a>
   )
 }
@@ -1019,7 +1136,7 @@ export default function DanielaLandingPage() {
       <PersonalTrustSection />
       <LocationSection />
       <ModalitiesSection />
-      <SpecialtiesSection />
+      <DetailedSpecialtiesSection />
       <PricingSection />
       <ReviewsSection />
       <GallerySection />
