@@ -18,18 +18,32 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
-  title: 'Daniela López Meléndez | Psicóloga en Madrid - Ansiedad, Adolescentes y Bienestar Emocional',
+  title: 'Daniela López Meléndez | Psicóloga sanitaria en Madrid y online',
   description:
-    'Psicóloga General Sanitaria en Madrid, especializada en ansiedad, terapia infanto-juvenil y bienestar emocional. Consulta presencial en Chamartín y online. Primera sesión desde 40 €.',
+    'Psicóloga General Sanitaria colegiada M-41829 en Madrid. Consulta presencial en Chamartín y terapia online para ansiedad, autoestima, duelo, adolescentes, pareja y familia. Primera sesión desde 40 €.',
   keywords:
-    'psicóloga Madrid, psicóloga Chamartín, ansiedad, terapia adolescentes, psicología infanto-juvenil, terapia online Madrid',
+    'psicóloga sanitaria Madrid, psicóloga Chamartín, psicóloga ansiedad Madrid, psicóloga adolescentes Madrid, psicología infanto-juvenil Madrid, terapia online Madrid, terapia autoestima Madrid',
   openGraph: {
-    images: ['/opengraph-image.png'],
-    title: 'Daniela López Meléndez | Psicóloga en Madrid',
+    title: 'Daniela López | Psicóloga en Madrid',
     description:
-      'Psicóloga General Sanitaria especializada en ansiedad, terapia infanto-juvenil y bienestar emocional. Consulta en Chamartín.',
+      'Terapia presencial en Chamartín y online para ansiedad, duelo y terapia infantojuvenil. Primera sesión desde 40 €.',
+    images: [
+      {
+        url: '/opengraph-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Daniela López, psicóloga sanitaria en Madrid',
+      },
+    ],
     locale: 'es_ES',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Daniela López | Psicóloga en Madrid',
+    description:
+      'Terapia presencial en Chamartín y online. Primera sesión desde 40 €.',
+    images: ['/opengraph-image.png'],
   },
 }
 
@@ -37,8 +51,6 @@ export const viewport: Viewport = {
   themeColor: '#26385B',
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
 }
 
 export default function RootLayout({

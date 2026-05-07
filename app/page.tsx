@@ -1,92 +1,60 @@
-"use client"
-
-import { useState } from "react"
+import Image from "next/image"
 import {
-  MessageCircle,
+  Brain,
   Calendar,
+  CheckCircle2,
+  ExternalLink,
+  Heart,
+  Home,
   MapPin,
   Phone,
-  Star,
-  ChevronDown,
-  ChevronUp,
-  Users,
-  Heart,
-  Brain,
   Sparkles,
-  Home,
-  Video,
   UserCheck,
-  ExternalLink,
-  Instagram,
-  CheckCircle2,
+  Users,
+  Video,
 } from "lucide-react"
+import { ContactRequestForm } from "./components/ContactRequestForm"
 import { DoctoraliaLogo, InstagramLogo, WhatsAppLogo } from "./components/BrandIcons"
+import { FAQAccordion } from "./components/FAQAccordion"
+import { HashLink } from "./components/HashLink"
+import { SpecialtyCards } from "./components/SpecialtyCards"
+import { faqs } from "./data/faq"
+
+const whatsappMessage =
+  "Hola Daniela, he visto tu página y me gustaría pedir información sobre una primera sesión."
+const whatsappUrl = `https://wa.me/34614412183?text=${encodeURIComponent(whatsappMessage)}`
+const doctoraliaUrl = "https://www.doctoralia.es/daniela-lopez-melendez/psicologo/madrid"
+const instagramUrl = "https://www.instagram.com/psico.danilopez/"
+const address = "C. de Marcenado, 14, Despacho 2, Chamartín, 28002 Madrid"
+const mapQuery = encodeURIComponent("C. de Marcenado, 14, Despacho 2, Chamartín, 28002 Madrid")
 
 const sectionHero =
   "relative overflow-hidden bg-[radial-gradient(880px_420px_at_12%_8%,rgba(164,190,123,0.18)_0%,rgba(164,190,123,0)_58%),radial-gradient(760px_360px_at_88%_16%,rgba(183,166,232,0.08)_0%,rgba(183,166,232,0)_56%),linear-gradient(180deg,#FFFEFA_0%,#F1F5EA_100%)]"
-
 const sectionWarm =
   "relative overflow-hidden bg-[radial-gradient(820px_380px_at_8%_12%,rgba(183,166,232,0.055)_0%,rgba(183,166,232,0)_56%),radial-gradient(780px_360px_at_94%_88%,rgba(164,190,123,0.10)_0%,rgba(164,190,123,0)_58%),linear-gradient(180deg,#FFFEFA_0%,#FCFAF4_100%)]"
-
 const sectionSage =
   "relative overflow-hidden bg-[radial-gradient(900px_420px_at_14%_12%,rgba(255,254,250,0.76)_0%,rgba(255,254,250,0)_56%),radial-gradient(820px_380px_at_88%_86%,rgba(164,190,123,0.28)_0%,rgba(164,190,123,0)_58%),linear-gradient(180deg,#F5F8EF_0%,#EAF1DE_100%)]"
-
 const sectionCta =
   "relative overflow-hidden bg-[radial-gradient(760px_360px_at_14%_12%,rgba(164,190,123,0.20)_0%,rgba(164,190,123,0)_58%),radial-gradient(700px_340px_at_88%_18%,rgba(255,254,250,0.12)_0%,rgba(255,254,250,0)_56%),linear-gradient(135deg,#1E2D4A_0%,#26385B_62%,#536341_100%)]"
-
-const accentLavender = "text-[#9B8BD3]"
-const borderLavender = "border-[#B7A6E8]/25"
-const bgLavenderSoft = "bg-[#B7A6E8]/8"
-
-const footerDeep =
-  "relative overflow-hidden bg-[linear-gradient(135deg,#1B2947_0%,#26385B_56%,#2F3F68_100%)]"
-
 const cardGlass =
   "rounded-[30px] border border-white/65 bg-white/18 p-6 shadow-[0_24px_60px_rgba(38,56,91,0.12)] backdrop-blur-xl transition-all hover:-translate-y-1 hover:border-white/80 hover:bg-white/24 hover:shadow-[0_30px_76px_rgba(140,137,184,0.20)]"
-
-const cardGlassStrong =
-  "rounded-[30px] border border-white/70 bg-white/24 p-8 shadow-[0_26px_70px_rgba(38,56,91,0.14)] backdrop-blur-2xl transition-all hover:-translate-y-1 hover:border-white/85 hover:bg-white/30 hover:shadow-[0_34px_84px_rgba(140,137,184,0.22)]"
-
 const cardSoft =
   "rounded-[30px] border border-white/65 bg-white/30 p-6 shadow-[0_18px_46px_rgba(38,56,91,0.10)] backdrop-blur-xl transition-all hover:-translate-y-1 hover:border-white/80 hover:bg-white/34 hover:shadow-[0_28px_68px_rgba(140,137,184,0.18)]"
-
-const cardDeepGlass =
-  "rounded-[30px] border border-white/22 bg-white/10 p-8 text-white shadow-[0_30px_80px_rgba(27,41,71,0.34)] backdrop-blur-xl transition-all hover:-translate-y-1 hover:border-white/34 hover:bg-white/14"
-
-const miniGlass =
-  "rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur-md"
-
+const cardDeep =
+  "rounded-[30px] border border-white/22 bg-[radial-gradient(circle_at_18%_12%,rgba(183,166,232,0.18),transparent_28%),linear-gradient(160deg,#1E2D4A_0%,#26385B_58%,#536341_100%)] p-6 text-white shadow-[0_30px_80px_rgba(27,41,71,0.40)]"
 const badgeGlass =
   "rounded-full border border-white/65 bg-white/44 px-3 py-2 text-sm font-semibold text-[#26385B] shadow-[0_8px_22px_rgba(38,56,91,0.10)] backdrop-blur-xl"
-
-const imageGlass =
-  "overflow-hidden rounded-[30px] border border-white/70 bg-white/18 shadow-[0_26px_72px_rgba(38,56,91,0.16)] backdrop-blur-xl"
-
 const ctaGradient =
   "bg-[linear-gradient(135deg,#1E2D4A_0%,#26385B_58%,#536341_100%)] text-white shadow-[0_18px_42px_rgba(38,56,91,0.24)]"
-
-const iconGradient =
-  "bg-[linear-gradient(135deg,rgba(255,254,250,0.78)_0%,rgba(216,230,163,0.34)_72%,rgba(183,166,232,0.10)_100%)]"
-
 const iconBox =
   "inline-flex items-center justify-center rounded-2xl bg-[linear-gradient(135deg,rgba(255,254,250,0.78)_0%,rgba(216,230,163,0.34)_72%,rgba(183,166,232,0.10)_100%)] shadow-[0_12px_24px_rgba(38,56,91,0.10)]"
 
-const imageAura =
-  "isolate before:absolute before:-inset-5 before:-z-10 before:rounded-[36px] before:bg-[radial-gradient(circle_at_28%_20%,rgba(183,166,232,0.10),transparent_34%),radial-gradient(circle_at_78%_72%,rgba(164,190,123,0.30),transparent_38%),radial-gradient(circle_at_52%_52%,rgba(38,56,91,0.08),transparent_46%)] before:blur-2xl"
-
-/* ===========================================
-   HEADER
-=========================================== */
 function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-[linear-gradient(135deg,rgba(27,41,71,0.96)_0%,rgba(38,56,91,0.94)_56%,rgba(47,63,104,0.92)_100%)] shadow-[0_14px_34px_rgba(27,41,71,0.20)] backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <a href="/" className="flex min-w-0 items-center gap-3">
-          <img
-            src="/icon.png"
-            alt=""
-            className="h-10 w-10 shrink-0 rounded-full object-contain sm:h-11 sm:w-11"
-          />
+          <Image src="/icon.png" alt="" width={44} height={44} className="shrink-0 rounded-full object-contain" />
           <span className="min-w-0">
             <span className="block font-serif text-xl font-semibold leading-none text-white sm:text-2xl">
               Daniela López
@@ -98,33 +66,18 @@ function Header() {
         </a>
         <nav className="hidden items-center gap-5 text-sm font-semibold text-white/72 md:flex">
           <a href="/quien-soy" className="transition hover:text-white">Quién soy</a>
-          <a href="#reserva" className="transition hover:text-white">Precios</a>
-          <a href="#faq" className="transition hover:text-white">Dudas</a>
+          <HashLink targetId="reserva" className="transition hover:text-white">Precios</HashLink>
+          <HashLink targetId="faq" className="transition hover:text-white">Dudas</HashLink>
           <a href="/contacto" className="transition hover:text-white">Contacto</a>
         </nav>
         <div className="flex shrink-0 items-center gap-2">
-          <a
-            href="https://www.instagram.com/psico.danilopez"
-            data-event="click_instagram_daniela_header"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/12 text-white shadow-[0_12px_28px_rgba(27,41,71,0.18)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/20"
-            aria-label="Instagram de Daniela López"
-          >
+          <a href={instagramUrl} target="_blank" rel="noopener noreferrer" data-event="click_instagram" data-location="header" data-page="landing" data-channel="instagram" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/12 text-white shadow-[0_12px_28px_rgba(27,41,71,0.18)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/20" aria-label="Instagram de Daniela López">
             <InstagramLogo className="h-6 w-6" />
           </a>
-          <a
-            href="https://www.doctoralia.es/daniela-lopez-melendez/psicologo/madrid"
-            data-event="click_doctoralia_daniela_header"
-            className="hidden h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/12 text-white shadow-[0_12px_28px_rgba(27,41,71,0.18)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/20 sm:inline-flex"
-            aria-label="Perfil de Doctoralia de Daniela López"
-          >
+          <a href={doctoraliaUrl} target="_blank" rel="noopener noreferrer" data-event="click_doctoralia" data-location="header" data-page="landing" data-channel="doctoralia" className="hidden h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/12 text-white shadow-[0_12px_28px_rgba(27,41,71,0.18)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/20 sm:inline-flex" aria-label="Perfil de Doctoralia de Daniela López">
             <DoctoraliaLogo className="h-6 w-6" />
           </a>
-          <a
-            href="https://wa.me/34614412183?text=Hola%20Daniela%2C%20he%20visto%20tu%20p%C3%A1gina%20y%20quer%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20una%20primera%20sesi%C3%B3n."
-            data-event="click_whatsapp_daniela_header"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-[#25D366] text-white shadow-[0_12px_28px_rgba(37,211,102,0.24)] transition hover:-translate-y-0.5 hover:bg-[#20BF5A]"
-            aria-label="WhatsApp de Daniela López"
-          >
+          <a href={whatsappUrl} data-event="click_whatsapp" data-location="header" data-page="landing" data-channel="whatsapp" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-[#25D366] text-white shadow-[0_12px_28px_rgba(37,211,102,0.24)] transition hover:-translate-y-0.5 hover:bg-[#20BF5A]" aria-label="WhatsApp de Daniela López">
             <WhatsAppLogo className="h-6 w-6" />
           </a>
         </div>
@@ -133,88 +86,49 @@ function Header() {
   )
 }
 
-/* ===========================================
-   HERO SECTION
-=========================================== */
 function HeroSection() {
   return (
     <section className={`${sectionHero} text-[#26385B]`}>
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#26385B]/12 to-transparent" />
       <div className="mx-auto max-w-7xl px-4 pb-14 pt-8 sm:px-6 lg:px-8 lg:pb-24 lg:pt-16">
         <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
-          {/* Content Column */}
           <div className="order-2 lg:order-1">
-            {/* Trust Badge */}
             <div className={`mb-5 inline-flex items-center gap-2 ${badgeGlass}`}>
               <CheckCircle2 className="h-4 w-4" />
-              Psicóloga General Sanitaria en Madrid · Colegiada M-41829
+              Psicóloga General Sanitaria colegiada M-41829
             </div>
-
-            {/* Headline */}
             <h1 className="mb-5 max-w-3xl font-serif text-4xl font-semibold leading-[1.04] text-[#26385B] sm:text-5xl lg:text-6xl text-balance">
-              Daniela López | Psicóloga en Madrid especializada en ansiedad e infancia
+              Psicóloga sanitaria en Madrid para ansiedad, autoestima y terapia infanto-juvenil
             </h1>
-
-            {/* Subheadline */}
             <p className="mb-7 max-w-2xl text-lg leading-relaxed text-[#5D6680] sm:text-xl text-pretty">
-              Te acompaño a entender lo que te ocurre y a sentirte mejor, con un enfoque cercano, profesional y adaptado a tu momento.
+              Soy Daniela López Meléndez, Psicóloga General Sanitaria colegiada M-41829. Atiendo en consulta presencial en Chamartín y online, con una primera sesión desde 40 € para valorar tu caso y orientarte con calma.
             </p>
-
-            {/* CTA Buttons */}
             <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
-              <a
-                href="https://wa.me/34614412183?text=Hola%20Daniela%2C%20he%20visto%20tu%20p%C3%A1gina%20y%20quer%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20una%20primera%20sesi%C3%B3n."
-                data-event="click_whatsapp_daniela_landing"
-                className={`inline-flex items-center justify-center gap-2 rounded-xl px-6 py-4 text-base font-bold transition-all hover:-translate-y-0.5 hover:shadow-[0_24px_52px_rgba(140,137,184,0.30)] active:scale-[0.98] ${ctaGradient}`}
-              >
-                <MessageCircle className="h-5 w-5" />
-                Hablar por WhatsApp
+              <a href={whatsappUrl} data-event="click_whatsapp" data-location="hero" data-page="landing" data-channel="whatsapp" className={`inline-flex items-center justify-center gap-2 rounded-xl px-6 py-4 text-base font-bold transition-all hover:-translate-y-0.5 ${ctaGradient}`}>
+                <WhatsAppLogo className="h-5 w-5" />
+                Pedir primera sesión por WhatsApp
               </a>
-              <a
-                href="#reserva"
-                data-event="click_reserva_daniela_landing"
-                className={`inline-flex items-center justify-center gap-2 rounded-xl border bg-white/48 px-6 py-4 text-base font-semibold text-[#26385B] shadow-[0_14px_34px_rgba(38,56,91,0.10)] backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:bg-white/64 active:scale-[0.98] ${borderLavender}`}
-              >
+              <HashLink targetId="reserva" className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#B7A6E8]/25 bg-white/48 px-6 py-4 text-base font-semibold text-[#26385B] shadow-[0_14px_34px_rgba(38,56,91,0.10)] backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:bg-white/64">
                 <Calendar className="h-5 w-5" />
-                Reservar primera sesión
-              </a>
+                Ver precios
+              </HashLink>
             </div>
-
-            {/* Trust Badges Row */}
             <div className="flex flex-wrap gap-3">
-              {[
-                "Consulta en Chamartín",
-                "Online y presencial",
-                "Adultos, adolescentes y familias",
-              ].map((badge) => (
-                <span
-                  key={badge}
-                  className={badgeGlass}
-                >
-                  {badge}
-                </span>
+              {["Primera sesión desde 40 €", "Consulta presencial en Chamartín y online", "Consulta independiente dentro del centro Psicotep"].map((badge) => (
+                <span key={badge} className={badgeGlass}>{badge}</span>
               ))}
             </div>
           </div>
-
-          {/* Image Column */}
           <div className="order-1 lg:order-2">
-            <div className={`relative ${imageAura}`}>
-              {/* Main Image */}
-              <div className={`relative ${imageGlass}`}>
-                <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-3GFlcl862ZrMZVDNkE5Dstf3AjlC4A.png"
-                  alt="Daniela López Meléndez, psicóloga en Madrid"
-                  className="aspect-[4/5] w-full object-cover object-top"
-                />
-              </div>
-
-              {/* Floating Price Card */}
-              <div className={`absolute -bottom-4 -left-4 ${cardGlassStrong} p-4 sm:-bottom-6 sm:-left-6 sm:p-5`}>
-                <p className="text-sm font-medium text-[#5D6680]">Primera sesión desde</p>
-                <p className="text-2xl font-bold text-[#6F6D9E] sm:text-3xl">40 €</p>
-                <p className="text-xs text-[#5D6680]">Presencial u online</p>
-              </div>
+            <div className="relative overflow-hidden rounded-[30px] border border-white/70 bg-white/18 shadow-[0_26px_72px_rgba(38,56,91,0.16)]">
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-3GFlcl862ZrMZVDNkE5Dstf3AjlC4A.png"
+                alt="Daniela López Meléndez, psicóloga sanitaria en Madrid"
+                width={900}
+                height={1125}
+                priority
+                sizes="(min-width: 1024px) 48vw, 100vw"
+                className="aspect-[4/5] w-full object-cover object-top"
+              />
             </div>
           </div>
         </div>
@@ -223,9 +137,6 @@ function HeroSection() {
   )
 }
 
-/* ===========================================
-   EMPATHY / PROBLEM SECTION
-=========================================== */
 function EmpathySection() {
   const problems = [
     { icon: Brain, title: "Ansiedad y preocupación constante", description: "Cuando los pensamientos no paran y cuesta desconectar" },
@@ -239,28 +150,56 @@ function EmpathySection() {
   return (
     <section className={`${sectionWarm} py-16 lg:py-24`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <div className="mx-auto mb-12 max-w-3xl text-center">
           <h2 className="mb-4 font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl text-balance">
-            Quizá no necesitas tenerlo todo claro para pedir ayuda
+            Puede ayudarte si estás viviendo...
           </h2>
           <p className="text-lg leading-relaxed text-[#5D6680] text-pretty">
-            A veces cuesta explicar lo que ocurre: ansiedad, bloqueo, desbordamiento emocional, tristeza, problemas familiares o preocupación por un hijo o hija. La primera sesión también sirve para ordenar lo que estás viviendo y valorar cómo puedo ayudarte.
+            La primera sesión también sirve para ordenar lo que estás viviendo y valorar cómo puedo ayudarte.
           </p>
         </div>
-
-        {/* Problem Cards */}
         <div className="grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {problems.map((problem) => (
-            <div
-              key={problem.title}
-              className={`${cardGlass} flex h-full min-h-[190px] flex-col`}
-            >
-              <div className={`mb-4 h-12 w-12 shrink-0 items-center justify-center mx-auto ${iconBox}`}>
-                <problem.icon className={`block h-8 w-8 mb-2 ${accentLavender}`} />
+            <article key={problem.title} className={`${cardGlass} flex h-full min-h-[190px] flex-col`}>
+              <div className={`mb-4 h-12 w-12 shrink-0 ${iconBox}`}>
+                <problem.icon className="block h-6 w-6 text-[#9B8BD3]" />
               </div>
               <h3 className="mb-2 text-lg font-semibold text-[#26385B]">{problem.title}</h3>
               <p className="text-[#5D6680]">{problem.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function ProfessionalTrustSection() {
+  const points = [
+    "Psicóloga General Sanitaria",
+    "Colegiada M-41829",
+    "Especializada en población infanto-juvenil",
+    "Atención a adultos, adolescentes, parejas y familias",
+    "Consulta presencial en Chamartín y online",
+    "Consulta independiente dentro del centro Psicotep",
+  ]
+
+  return (
+    <section className={`${sectionWarm} py-16 lg:py-24`}>
+      <div className="mx-auto grid max-w-7xl items-center gap-8 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+        <div>
+          <h2 className="mb-5 font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl">
+            Un primer paso claro, cercano y sin presión
+          </h2>
+          <p className="text-lg leading-relaxed text-[#5D6680]">
+            Daniela trabaja desde un enfoque integrador, adaptando cada proceso a la persona y al momento en el que se encuentra. La primera sesión sirve para entender qué está pasando, resolver dudas y valorar cómo empezar.
+          </p>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {points.map((point) => (
+            <div key={point} className="flex items-center gap-3 rounded-2xl border border-white/65 bg-white/30 p-4 shadow-[0_14px_34px_rgba(38,56,91,0.08)]">
+              <CheckCircle2 className="h-5 w-5 shrink-0 text-[#7F9256]" />
+              <span className="font-semibold text-[#26385B]">{point}</span>
             </div>
           ))}
         </div>
@@ -269,170 +208,71 @@ function EmpathySection() {
   )
 }
 
-/* ===========================================
-   PERSONAL TRUST SECTION
-=========================================== */
-function PersonalTrustSection() {
-  return (
-    <section className={`${sectionSage} py-16 lg:py-24`}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* Image Column */}
-          <div className={`relative ${imageAura}`}>
-            <div className={imageGlass}>
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image.png-l04WYjzKlSlAEyW5zrUmhCGZyFb9UR.jpeg"
-                alt="Consulta de psicología en Chamartín, Madrid"
-                className="aspect-[4/3] w-full object-cover"
-              />
-            </div>
-          </div>
-
-          {/* Content Column */}
-          <div>
-            <h2 className="mb-6 font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl text-balance">
-              Un espacio de terapia cercano, seguro y adaptado a ti
-            </h2>
-            <p className="mb-6 text-lg leading-relaxed text-[#5D6680] text-pretty">
-              Soy Daniela López Meléndez, Psicóloga General Sanitaria. Trabajo desde un enfoque integrador, adaptando el proceso terapéutico a la historia, las necesidades y el ritmo de cada persona.
-            </p>
-
-            {/* Features List */}
-            <div className="grid gap-3 sm:grid-cols-2">
-              {[
-                "Adultos",
-                "Adolescentes",
-                "Niños y niñas",
-                "Parejas y familias",
-                "Intervención en crisis",
-                "Regulación emocional",
-              ].map((feature) => (
-                <div key={feature} className="flex items-center gap-3">
-                  <div className={`inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${iconGradient} shadow-[0_8px_18px_rgba(140,137,184,0.12)]`}>
-                    <CheckCircle2 className="block h-4 w-4 text-[#26385B]" />
-                  </div>
-                  <span className="font-medium text-[#26385B]">{feature}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ===========================================
-   LOCATION SECTION
-=========================================== */
 function LocationSection() {
   return (
-    <section className={`${sectionWarm} py-16 lg:py-24`}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* Content Column */}
-          <div>
-            <h2 className="mb-6 font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl text-balance">
-              Consulta presencial en Chamartín, Madrid
-            </h2>
-            <p className="mb-8 text-lg leading-relaxed text-[#5D6680] text-pretty">
-              Puedes acudir a consulta presencial en C. de Marcenado, 14, Despacho 2, Chamartín, 28002 Madrid, en un espacio profesional, cómodo y tranquilo. Es una consulta independiente dentro del centro Psicotep. También puedes realizar sesiones online si necesitas más flexibilidad.
-            </p>
-
-            {/* Address Card */}
-            <div className={`mb-6 ${cardGlassStrong} p-6`}>
-              <div className="flex items-start gap-4">
-                <div className={`h-12 w-12 flex-shrink-0 ${iconBox}`}>
-                  <MapPin className={`block h-6 w-6 ${accentLavender}`} />
-                </div>
-                <div>
-                  <p className="font-semibold text-[#26385B]">Dirección</p>
-                  <p className="text-[#5D6680]">C. de Marcenado, 14, Despacho 2</p>
-                  <p className="text-[#5D6680]">Chamartín, 28002 Madrid</p>
-                  <p className="text-sm font-medium text-[#5D6680]/80">Consulta independiente dentro del centro Psicotep</p>
-                </div>
+    <section className={`${sectionSage} py-16 lg:py-24`}>
+      <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+        <div>
+          <h2 className="mb-6 font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl text-balance">
+            Consulta presencial en Chamartín y terapia online
+          </h2>
+          <p className="mb-8 text-lg leading-relaxed text-[#5D6680] text-pretty">
+            Puedes acudir a consulta presencial en {address}. Es una consulta independiente dentro del centro Psicotep. También puedes realizar sesiones online si necesitas más flexibilidad.
+          </p>
+          <div className={`${cardGlass} mb-6`}>
+            <div className="flex items-start gap-4">
+              <div className={`h-12 w-12 shrink-0 ${iconBox}`}>
+                <MapPin className="block h-6 w-6 text-[#9B8BD3]" />
+              </div>
+              <div>
+                <p className="font-semibold text-[#26385B]">Dirección</p>
+                <p className="text-[#5D6680]">C. de Marcenado, 14, Despacho 2</p>
+                <p className="text-[#5D6680]">Chamartín, 28002 Madrid</p>
+                <p className="text-sm font-medium text-[#5D6680]/80">Consulta independiente dentro del centro Psicotep</p>
               </div>
             </div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <a
-                href="https://www.google.com/maps/search/?api=1&query=C.%20de%20Marcenado%2C%2014%2C%20Despacho%202%2C%20Chamart%C3%ADn%2C%2028002%20Madrid"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-[#B8CA82] to-[#7F9256] shadow-[0_16px_34px_rgba(127,146,86,0.24)] px-6 py-3 font-semibold text-white transition-all hover:opacity-90"
-              >
-                <MapPin className="h-5 w-5" />
-                Cómo llegar
-              </a>
-              <a
-                href="https://wa.me/34614412183?text=Hola%20Daniela%2C%20he%20visto%20tu%20p%C3%A1gina%20y%20quer%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20una%20primera%20sesi%C3%B3n."
-                data-event="click_whatsapp_daniela_landing"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-[#7F9256] px-6 py-3 font-semibold text-[#7F9256] transition-all hover:bg-[#B8CA82]/18"
-              >
-                <MessageCircle className="h-5 w-5" />
-                Preguntar por WhatsApp
-              </a>
-            </div>
           </div>
-
-          {/* Map Column */}
-          <div className={`relative ${imageAura}`}>
-            <div id="como-llegar" className={`${imageGlass} bg-white/40`}>
-              <iframe
-                title="Mapa de la consulta de Daniela López en Chamartín"
-                src="https://www.google.com/maps?q=C.%20de%20Marcenado%2C%2014%2C%20Despacho%202%2C%20Chamart%C3%ADn%2C%2028002%20Madrid&output=embed"
-                className="aspect-[4/3] w-full border-0"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <a href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-[#B8CA82] to-[#7F9256] px-6 py-3 font-semibold text-white shadow-[0_16px_34px_rgba(127,146,86,0.24)] transition-all hover:opacity-90">
+              <MapPin className="h-5 w-5" />
+              Cómo llegar
+            </a>
+            <a href={whatsappUrl} data-event="click_whatsapp" data-location="location" data-page="landing" data-channel="whatsapp" className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-[#7F9256] px-6 py-3 font-semibold text-[#7F9256] transition-all hover:bg-[#B8CA82]/18">
+              <WhatsAppLogo className="h-5 w-5" />
+              Hablar por WhatsApp
+            </a>
           </div>
+        </div>
+        <div className="overflow-hidden rounded-[30px] border border-white/70 bg-white/40 shadow-[0_26px_70px_rgba(38,56,91,0.14)]">
+          <iframe title="Mapa de la consulta de Daniela López en Chamartín" src={`https://www.google.com/maps?q=${mapQuery}&output=embed`} className="aspect-[4/3] w-full border-0" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
         </div>
       </div>
     </section>
   )
 }
 
-/* ===========================================
-   MODALITIES SECTION
-=========================================== */
 function ModalitiesSection() {
   const modalities = [
-    {
-      icon: Home,
-      title: "Terapia presencial en Madrid",
-      description: "Sesiones en consulta presencial en Chamartín, en un entorno tranquilo y profesional.",
-    },
-    {
-      icon: Video,
-      title: "Terapia online",
-      description: "Sesiones por videollamada para que puedas empezar el proceso desde donde estás.",
-    },
-    {
-      icon: UserCheck,
-      title: "Primera sesión de orientación",
-      description: "Un primer encuentro para valorar tu situación, resolver dudas y decidir los siguientes pasos.",
-    },
+    { icon: Home, title: "Terapia presencial en Madrid", description: "Sesiones en consulta presencial en Chamartín, en un entorno tranquilo y profesional." },
+    { icon: Video, title: "Terapia online", description: "Sesiones por videollamada para empezar el proceso desde donde estés." },
+    { icon: UserCheck, title: "Primera sesión de orientación", description: "Un primer encuentro para valorar tu situación, resolver dudas y decidir siguientes pasos." },
   ]
 
   return (
-    <section className={`${sectionSage} py-16 lg:py-24`}>
+    <section className={`${sectionWarm} py-16 lg:py-24`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 className="mb-12 text-center font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl text-balance">
           Elige la modalidad que mejor encaje contigo
         </h2>
-
         <div className="grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {modalities.map((modality) => (
-            <div
-              key={modality.title}
-              className={`${cardGlass} flex h-full min-h-[245px] flex-col p-8`}
-            >
-              <div className={`mb-6 h-14 w-14 shrink-0 items-center justify-center mx-auto ${iconBox}`}>
-                <modality.icon className={`block h-8 w-8 ${accentLavender} `} />
+            <article key={modality.title} className={`${cardGlass} flex h-full min-h-[245px] flex-col p-8`}>
+              <div className={`mb-6 h-14 w-14 shrink-0 ${iconBox}`}>
+                <modality.icon className="block h-7 w-7 text-[#9B8BD3]" />
               </div>
               <h3 className="mb-3 text-xl font-semibold text-[#26385B]">{modality.title}</h3>
               <p className="leading-relaxed text-[#5D6680]">{modality.description}</p>
-            </div>
+            </article>
           ))}
         </div>
       </div>
@@ -440,225 +280,14 @@ function ModalitiesSection() {
   )
 }
 
-/* ===========================================
-   SPECIALTIES SECTION
-=========================================== */
-function SpecialtiesSection() {
-  const specialties = [
-    {
-      title: "Ansiedad",
-      description: "Cuando la preocupación, la tensión o el miedo empiezan a ocupar demasiado espacio.",
-    },
-    {
-      title: "Psicología infanto-juvenil",
-      description: "Acompañamiento psicológico para niños, adolescentes y familias.",
-    },
-    {
-      title: "Autoestima",
-      description: "Para trabajar la autoexigencia, la inseguridad o la forma en la que te relacionas contigo.",
-    },
-    {
-      title: "Duelo",
-      description: "Acompañamiento en pérdidas, despedidas y cambios vitales significativos.",
-    },
-    {
-      title: "Crisis emocional",
-      description: "Cuando sientes que algo te desborda y necesitas ordenar lo que está pasando.",
-    },
-    {
-      title: "Pareja y familia",
-      description: "Para trabajar dinámicas relacionales, comunicación y conflictos.",
-    },
-  ]
-
-  return (
-    <section className={`${sectionWarm} py-16 lg:py-24`}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="mb-12 text-center font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl text-balance">
-          Áreas que podemos trabajar en terapia
-        </h2>
-
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {specialties.map((specialty) => (
-            <div
-              key={specialty.title}
-              className={`group ${cardGlass}`}
-            >
-              <h3 className="mb-2 text-lg font-semibold text-[#26385B] group-hover:text-[#6F6D9E]">
-                {specialty.title}
-              </h3>
-              <p className="text-[#5D6680]">{specialty.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function DetailedSpecialtiesSection() {
-  const [openSpecialty, setOpenSpecialty] = useState<string | null>(null)
-
-  const specialties = [
-    {
-      title: "Ansiedad y regulación emocional",
-      description: "Si sientes que tu mente no para, vives en alerta constante, te cuesta descansar o la ansiedad está afectando tu día a día, este espacio puede ayudarte.",
-      detail: "En la primera sesión entenderemos qué está manteniendo ese malestar y diseñaremos un plan terapéutico adaptado a tus necesidades. Disponible presencialmente en Madrid y online.",
-      helps: [
-        "Sientes preocupación constante, anticipación excesiva o te cuesta desconectar incluso cuando no hay un motivo claro.",
-        "Notas ataques de ansiedad, bloqueo, irritabilidad, insomnio o síntomas físicos que te preocupan y no sabes bien cómo manejar.",
-        "La ansiedad está afectando al descanso, al trabajo, a tus relaciones o a tu capacidad para sostener el día a día con normalidad.",
-      ],
-    },
-    {
-      title: "Duelo",
-      description: "Perder a alguien, atravesar una ruptura o vivir un cambio importante puede remover muchas emociones difíciles de sostener.",
-      detail: "En terapia te acompaño a entender lo que estás sintiendo y a atravesar ese proceso desde un espacio seguro, respetando tus tiempos y sin presiones.",
-      helps: [
-        "Sientes que la pérdida te está desbordando.",
-        "El duelo se mezcla con culpa, enfado o bloqueo.",
-        "Necesitas un espacio donde poder sostenerlo con calma.",
-      ],
-    },
-    {
-      title: "Terapia infanto-juvenil",
-      description: "A veces los niños y adolescentes expresan su malestar a través de cambios de conducta, dificultades emocionales o problemas para gestionar lo que sienten.",
-      detail: "Trabajaremos con ellos desde sus necesidades e incluiremos orientación y acompañamiento a madres, padres o cuidadores para favorecer su bienestar dentro y fuera de consulta.",
-      helps: [
-        "Notas cambios emocionales o de comportamiento que te preocupan.",
-        "Existen dificultades en casa, en el colegio o en sus relaciones.",
-        "Está atravesando una situación difícil y no sabe cómo gestionarla.",
-        "Como familia, necesitáis orientación para acompañarle mejor.",
-      ],
-    },
-    {
-      title: "Trauma",
-      description: "Hay experiencias que dejan una huella profunda y pueden seguir afectando cómo te sientes, reaccionas o te relacionas.",
-      detail: "En terapia abordaremos ese dolor sin revivirlo de forma forzada, creando primero la seguridad necesaria para poder sanar a tu ritmo.",
-      helps: [
-        "Hay experiencias del pasado que siguen afectándote en el presente.",
-        "Sientes bloqueos emocionales, hipervigilancia o respuestas intensas que te cuesta comprender.",
-        "Algunas situaciones o relaciones activan miedo, inseguridad o sensación de desregulación emocional.",
-        "Notas que ciertas heridas siguen influyendo en cómo te relacionas contigo mismo/a y con los demás.",
-      ],
-    },
-    {
-      title: "Autoestima",
-      description: "Si te cuesta poner límites, priorizarte o sueles ser muy crítico/a contigo mismo/a, puede haber heridas en tu autoestima que merecen ser revisadas.",
-      detail: "En terapia trabajaremos para fortalecer tu autoconcepto y construir una relación más sana contigo.",
-      helps: [
-        "Predomina la autoexigencia o la sensación de no ser suficiente.",
-        "Te cuesta poner límites o priorizarte.",
-        "Tu seguridad depende mucho de la aprobación externa.",
-      ],
-    },
-    {
-      title: "Terapia de pareja",
-      description: "La terapia de pareja no solo es útil cuando la relación está al límite. También puede ayudar cuando existe distancia emocional, conflictos repetitivos o dificultades de comunicación.",
-      detail: "En sesión trabajaremos para comprender lo que está ocurriendo, mejorar la comunicación y construir una relación más consciente y saludable.",
-      helps: [
-        "Discutís siempre por lo mismo y no encontráis salida.",
-        "La distancia emocional o el desgaste se ha instalado.",
-        "Queréis entender mejor qué está pasando en la relación.",
-      ],
-    },
-  ]
-
-  return (
-    <section className={`${sectionWarm} py-16 lg:py-24`}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="mb-12 text-center font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl text-balance">
-          Áreas que podemos trabajar en terapia
-        </h2>
-
-        <div className="grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {specialties.map((specialty) => {
-            const isOpen = openSpecialty === specialty.title
-
-            return (
-              <div key={specialty.title} className={`group flex h-full min-h-[250px] flex-col ${cardGlass}`}>
-                <h3 className="mb-2 text-lg font-semibold text-[#26385B] group-hover:text-[#6F6D9E]">
-                  {specialty.title}
-                </h3>
-                <p className="leading-relaxed text-[#5D6680]">{specialty.description}</p>
-
-                {isOpen && (
-                  <div className="mt-5 border-t border-white/55 pt-5">
-                    <p className="mb-4 leading-relaxed text-[#5D6680]">{specialty.detail}</p>
-                    <p className="mb-3 text-sm font-bold uppercase tracking-[0.12em] text-[#6F6D9E]">
-                      Puede ayudarte si
-                    </p>
-                    <ul className="space-y-3">
-                      {specialty.helps.map((item) => (
-                        <li key={item} className="flex gap-3 text-sm leading-relaxed text-[#26385B]">
-                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#7F9256]" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                <button
-                  type="button"
-                  onClick={() => setOpenSpecialty(isOpen ? null : specialty.title)}
-                  className={`mt-auto inline-flex items-center gap-2 pt-5 text-sm font-bold transition hover:text-[#26385B] ${accentLavender}`}
-                  aria-expanded={isOpen}
-                >
-                  {isOpen ? "Ver menos" : "Ver más"}
-                  {isOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-                </button>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ===========================================
-   PRICING SECTION
-=========================================== */
 function PricingSection() {
   const prices = [
-    {
-      title: "Primera sesión online",
-      price: "40 €",
-      description: "Un primer encuentro online para valorar tu situación con calma y empezar a orientarte.",
-      footer: "Resto de sesiones: 55 €",
-    },
-    {
-      title: "Primera sesión presencial",
-      price: "40 €",
-      description: "Un primer encuentro presencial en consulta para valorar tu situación y decidir los siguientes pasos.",
-      footer: "Resto de sesiones: 60 €",
-    },
-    {
-      title: "Terapia de pareja o familia",
-      price: "75 €",
-      description: "Sesiones online o presenciales para trabajar la dinámica relacional con un enfoque claro y estructurado.",
-      footer: "Mismo precio desde la primera sesión",
-    },
-    {
-      title: "Bono individual online",
-      price: "200 €",
-      description: "Pack de 4 sesiones online para sostener el proceso con continuidad y flexibilidad.",
-      footer: "4 sesiones online",
-      highlighted: true,
-    },
-    {
-      title: "Bono individual presencial",
-      price: "220 €",
-      description: "Pack de 4 sesiones presenciales en consulta para trabajar con seguimiento cercano.",
-      footer: "4 sesiones presenciales",
-    },
-    {
-      title: "Supervisión de casos",
-      price: "50 €",
-      description: "Para estudiantes y profesionales de la psicología que necesitan revisar casos, resolver dudas o trabajar bloqueos terapéuticos.",
-      footer: "Precio por hora",
-    },
+    { title: "Primera sesión individual", price: "40 €", description: "Online o presencial para valorar tu caso y orientarte con calma.", footer: "Presencial u online" },
+    { title: "Sesión sucesiva online", price: "60 €", description: "Continuidad del proceso terapéutico por videollamada.", footer: "Sesiones individuales online" },
+    { title: "Sesión sucesiva presencial", price: "65 €", description: "Sesiones individuales en consulta presencial en Chamartín.", footer: "Consulta en Despacho 2" },
+    { title: "Terapia de pareja o familia", price: "75 €", description: "Sesiones online o presenciales para trabajar dinámicas relacionales.", footer: "Mismo precio desde la primera sesión" },
+    { title: "Bono online", price: "200 €", description: "Pack de 4 sesiones online para dar continuidad al proceso terapéutico.", footer: "4 sesiones online" },
+    { title: "Bono presencial", price: "220 €", description: "Pack de 4 sesiones presenciales en consulta de Chamartín.", footer: "4 sesiones presenciales" },
   ]
 
   return (
@@ -668,292 +297,136 @@ function PricingSection() {
           <h2 className="mb-4 font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl">
             Precios claros desde el primer momento
           </h2>
-          <p className="text-lg text-[#5D6680]">
-            Antes de empezar, sabrás cuánto cuesta cada tipo de sesión.
-          </p>
+          <p className="text-lg text-[#5D6680]">Primera sesión desde 40 €. Antes de empezar, sabrás cuánto cuesta cada tipo de sesión.</p>
         </div>
-
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {prices.map((price) => (
-            <div
-              key={price.title}
-              className={`relative overflow-hidden ${
-                price.highlighted
-                  ? `${cardDeepGlass} bg-[radial-gradient(circle_at_18%_12%,rgba(183,166,232,0.18),transparent_28%),linear-gradient(160deg,#1E2D4A_0%,#26385B_58%,#536341_100%)] shadow-[0_30px_80px_rgba(27,41,71,0.40)]`
-                  : `${cardSoft} backdrop-blur-xl`
-              }`}
-            >
-              {price.highlighted && (
-                <div className={`absolute right-4 top-4 ${miniGlass} px-3 py-1 text-xs font-semibold`}>
-                  Popular
-                </div>
-              )}
-              {price.highlighted && (
-                <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[#D8E6A3]/20 blur-3xl" />
-              )}
-              <h3 className={`mb-4 text-lg font-semibold ${price.highlighted ? "text-white" : "text-[#26385B]"}`}>
-                {price.title}
-              </h3>
-              <p className={`mb-4 text-4xl font-bold ${price.highlighted ? "text-white" : accentLavender}`}>
-                {price.price}
-              </p>
-              <p className={`mb-6 leading-relaxed ${price.highlighted ? "text-white/90" : "text-[#5D6680]"}`}>
-                {price.description}
-              </p>
-              <p className={`text-sm font-medium ${price.highlighted ? "text-white/80" : "text-[#5D6680]/80"}`}>
-                {price.footer}
-              </p>
-            </div>
+        <div className="grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {prices.map((price, index) => (
+            <article key={price.title} className={`relative flex h-full min-h-[260px] flex-col overflow-hidden ${index === 0 ? cardDeep : cardSoft}`}>
+              {index === 0 && <div className="absolute right-4 top-4 rounded-2xl border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold">Primera sesión</div>}
+              <h3 className={`mb-4 pr-20 text-lg font-semibold ${index === 0 ? "text-white" : "text-[#26385B]"}`}>{price.title}</h3>
+              <p className={`mb-4 text-4xl font-bold ${index === 0 ? "text-white" : "text-[#9B8BD3]"}`}>{price.price}</p>
+              <p className={`mb-6 leading-relaxed ${index === 0 ? "text-white/90" : "text-[#5D6680]"}`}>{price.description}</p>
+              <p className={`mt-auto text-sm font-medium ${index === 0 ? "text-white/80" : "text-[#5D6680]/80"}`}>{price.footer}</p>
+            </article>
           ))}
         </div>
-
-        {/* CTA */}
-        <div className="mt-12 text-center">
-          <a
-            href="https://wa.me/34614412183?text=Hola%20Daniela%2C%20he%20visto%20tu%20p%C3%A1gina%20y%20quer%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20una%20primera%20sesi%C3%B3n."
-            data-event="click_whatsapp_daniela_landing"
-            className={`inline-flex items-center justify-center gap-2 rounded-xl px-8 py-4 text-lg font-bold transition-all hover:-translate-y-0.5 hover:shadow-[0_24px_52px_rgba(216,230,163,0.26)] ${ctaGradient}`}
-          >
-            <MessageCircle className="h-6 w-6" />
-            Reservar primera sesión
-          </a>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ===========================================
-   REVIEWS SECTION
-=========================================== */
-function ReviewsSection() {
-  const reviews = [
-    {
-      initials: "M.G.",
-      text: "Me hizo sentir escuchada, tranquila y acompañada desde el primer día. Muy agradecida por el trato cercano y profesional.",
-      source: "Reseña verificada en Doctoralia",
-    },
-    {
-      initials: "L.R.",
-      text: "Creó un ambiente seguro donde resulta fácil abrirse y hablar. Después de varias sesiones noto una mejora real.",
-      source: "Reseña verificada en Doctoralia",
-    },
-    {
-      initials: "C.P.",
-      text: "Muy empática con los niños; la experiencia con mi hijo fue muy positiva. Nos ayudó a toda la familia.",
-      source: "Reseña verificada en Doctoralia",
-    },
-  ]
-
-  return (
-    <section className={`${sectionWarm} py-16 lg:py-24`}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto mb-12 max-w-3xl text-center">
-          <h2 className="mb-4 font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl">
-            Opiniones de pacientes
-          </h2>
-          <div className="flex items-center justify-center gap-2">
-            <div className="flex">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-6 w-6 fill-[#B8CA82] text-[#7F9256]" />
-              ))}
-            </div>
-            <span className="text-lg font-semibold text-[#26385B]">5/5</span>
-            <span className="text-[#5D6680]">en Doctoralia</span>
-          </div>
-        </div>
-
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {reviews.map((review, index) => (
-            <div key={index} className={cardGlass}>
-              <div className="mb-4 flex">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-[#B8CA82] text-[#7F9256]" />
-                ))}
-              </div>
-              <p className="mb-4 leading-relaxed text-[#26385B]">&ldquo;{review.text}&rdquo;</p>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className={`flex h-10 w-10 items-center justify-center rounded-full font-semibold text-[#5D6680] ${bgLavenderSoft}`}>
-                    {review.initials}
-                  </div>
-                  <span className="text-sm text-[#5D6680]">{review.source}</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Doctoralia Link */}
-        <div className="mt-8 text-center">
-          <a
-            href="https://www.doctoralia.es/daniela-lopez-melendez/psicologo/madrid"
-            data-event="click_doctoralia_daniela_landing"
-            className={`inline-flex items-center gap-2 font-medium hover:underline ${accentLavender}`}
-          >
-            Ver perfil en Doctoralia
-            <ExternalLink className="h-4 w-4" />
-          </a>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ===========================================
-   GALLERY SECTION
-=========================================== */
-function GallerySection() {
-  return (
-    <section className={`${sectionSage} py-16 lg:py-24`}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto mb-12 max-w-3xl text-center">
-          <h2 className="mb-4 font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl">
-            Un espacio tranquilo para hablar con calma
-          </h2>
-          <p className="text-lg text-[#5D6680]">
-            La consulta está pensada para que puedas sentirte en un entorno cómodo, discreto y profesional.
+        <div className="mt-8 rounded-[30px] border border-white/65 bg-white/28 p-6 shadow-[0_18px_46px_rgba(38,56,91,0.10)] backdrop-blur-xl">
+          <h3 className="mb-3 font-serif text-2xl font-semibold text-[#26385B]">Supervisión de casos</h3>
+          <p className="mb-4 leading-relaxed text-[#5D6680]">
+            Espacio seguro, respetuoso y colaborativo para estudiantes y profesionales de la psicología que se sienten estancados con un caso y necesitan una mirada externa.
           </p>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <div className={`${imageGlass} sm:col-span-2 lg:col-span-1 lg:row-span-2`}>
-            <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-3GFlcl862ZrMZVDNkE5Dstf3AjlC4A.png"
-              alt="Daniela López Meléndez, psicóloga en Madrid"
-              className="h-full w-full object-cover object-top"
-            />
-          </div>
-          <div className={imageGlass}>
-            <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image.png-l04WYjzKlSlAEyW5zrUmhCGZyFb9UR.jpeg"
-              alt="Consulta de psicología en Chamartín, Madrid"
-              className="aspect-[4/3] h-full w-full object-cover"
-            />
-          </div>
-          <div className={imageGlass}>
-            <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image.png-O5XyfjoKGpBQIYoQKYbYVF5wH1vMNT.jpeg"
-              alt="Espacio de terapia cercano y tranquilo en Madrid"
-              className="aspect-[4/3] h-full w-full object-cover"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ===========================================
-   PROCESS SECTION
-=========================================== */
-function ProcessSection() {
-  const steps = [
-    {
-      number: "1",
-      title: "Escribes por WhatsApp o solicitas una primera sesión",
-    },
-    {
-      number: "2",
-      title: "Daniela valora contigo qué necesitas",
-    },
-    {
-      number: "3",
-      title: "Elegís modalidad presencial u online",
-    },
-    {
-      number: "4",
-      title: "Empezáis un proceso adaptado a tu situación",
-    },
-  ]
-
-  return (
-    <section className={`${sectionWarm} py-16 lg:py-24`}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="mb-12 text-center font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl">
-          Cómo empezar
-        </h2>
-
-        <div className="mx-auto max-w-3xl">
-          <div className="grid gap-6 sm:grid-cols-2">
-            {steps.map((step) => (
-              <div key={step.number} className={`${cardGlass} flex items-start gap-4 p-5`}>
-                <div className={`inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl font-bold text-[#26385B] ${iconGradient} shadow-[0_12px_24px_rgba(140,137,184,0.12)]`}>
-                  {step.number}
-                </div>
-                <p className="pt-2 font-medium text-[#26385B]">{step.title}</p>
+          <div className="grid gap-3 text-sm font-medium text-[#26385B] sm:grid-cols-2 lg:grid-cols-5">
+            {[
+              "Reflexionar sobre casos clínicos",
+              "Resolver dudas teóricas y prácticas",
+              "Trabajar bloqueos terapéuticos",
+              "Revisar formulación y objetivos",
+              "Cuidar el rol profesional",
+            ].map((item) => (
+              <div key={item} className="flex gap-2 rounded-2xl bg-white/40 p-3">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#7F9256]" />
+                <span>{item}</span>
               </div>
             ))}
           </div>
         </div>
+        <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <a href={whatsappUrl} data-event="click_whatsapp" data-location="pricing" data-page="landing" data-channel="whatsapp" className={`inline-flex items-center justify-center gap-2 rounded-xl px-8 py-4 text-lg font-bold transition-all hover:-translate-y-0.5 ${ctaGradient}`}>
+            <WhatsAppLogo className="h-6 w-6" />
+            Pedir primera sesión por WhatsApp
+          </a>
+          <a href={doctoraliaUrl} target="_blank" rel="noopener noreferrer" data-event="click_doctoralia" data-location="pricing" data-page="landing" data-channel="doctoralia" className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#B7A6E8]/25 bg-white/48 px-8 py-4 text-lg font-semibold text-[#26385B] shadow-[0_14px_34px_rgba(38,56,91,0.10)] backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:bg-white/64">
+            <DoctoraliaLogo className="h-6 w-6" />
+            Ver perfil en Doctoralia
+          </a>
+        </div>
       </div>
     </section>
   )
 }
 
-/* ===========================================
-   FAQ SECTION
-=========================================== */
-function FAQSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
-
-  const faqs = [
+function TrustSection() {
+  const reviews = [
     {
-      question: "¿Puedo escribir aunque no sepa explicar bien lo que me pasa?",
-      answer: "Sí. No necesitas tenerlo todo ordenado antes de pedir ayuda. La primera sesión también sirve para entender qué está ocurriendo.",
+      initials: "P.L",
+      date: "14 de abril de 2026",
+      verification: "Número de teléfono verificado",
+      text: "Daniela es maravillosa, me he sentido muy escuchada y vista. Siento que he mejorado mucho desde que la veo y no puedo estar más contenta",
     },
     {
-      question: "¿Dónde está la consulta presencial?",
-      answer: "En C. de Marcenado, 14, Despacho 2, Chamartín, 28002 Madrid. Es una consulta independiente dentro del centro Psicotep.",
+      initials: "R M",
+      date: "9 de abril de 2026",
+      verification: "Cita verificada",
+      text: "Me ha encantado excelente profesional tiene mucha empatía y llegas a conectar muy fácilmente de verdad que la recomiendo 100% Es un 10 de 10",
     },
     {
-      question: "¿También haces terapia online?",
-      answer: "Sí. Puedes realizar sesiones online si te resulta más cómodo o no puedes acudir presencialmente.",
-    },
-    {
-      question: "¿Trabajas con adolescentes?",
-      answer: "Sí. Daniela trabaja con población infanto-juvenil, adolescentes y familias.",
-    },
-    {
-      question: "¿Cuánto cuesta la primera sesión?",
-      answer: "La primera sesión individual presencial u online cuesta 40 €.",
-    },
-    {
-      question: "¿Aceptas aseguradoras?",
-      answer: "Actualmente la atención es privada.",
-    },
-    {
-      question: "¿Cómo puedo reservar?",
-      answer: "Puedes escribir por WhatsApp o solicitar una primera sesión desde esta página.",
+      initials: "R.S.",
+      date: "8 de abril de 2026",
+      verification: "Número de teléfono verificado",
+      text: "Me ayudó a parar y a entender mis emociones. Gracias a Daniela he conseguido comprender qué me pasaba y aprender a aceptar mis emociones, en lugar de intentar controlarlas. Me he sentido muy acompañada en el proceso, así que la recomiendo al 100% si estáis buscando una psicóloga cercana, empática y profesional.",
     },
   ]
 
   return (
-    <section id="faq" className={`${sectionSage} py-16 lg:py-24`}>
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <h2 className="mb-12 text-center font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl">
-          Preguntas frecuentes
-        </h2>
-
-        <div className="space-y-3">
-          {faqs.map((faq, index) => (
-            <div key={index} className={`overflow-hidden ${cardGlass} p-0`}>
-              <button
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="flex w-full items-center justify-between p-5 text-left"
-              >
-                <span className="pr-4 font-semibold text-[#26385B]">{faq.question}</span>
-                {openIndex === index ? (
-                  <ChevronUp className="h-5 w-5 flex-shrink-0 text-[#6F6D9E]" />
-                ) : (
-                  <ChevronDown className="h-5 w-5 flex-shrink-0 text-[#5D6680]" />
-                )}
-              </button>
-              {openIndex === index && (
-                <div className="border-t border-[#E6E1D3]/70 px-5 pb-5 pt-3">
-                  <p className="text-[#5D6680]">{faq.answer}</p>
+    <section className={`${sectionWarm} py-16 lg:py-24`}>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto mb-10 max-w-4xl text-center">
+          <h2 className="mb-4 font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl">Puedes consultar su perfil profesional antes de contactar</h2>
+          <p className="text-lg leading-relaxed text-[#5D6680]">
+          En Doctoralia puedes ver información profesional y opiniones de pacientes antes de pedir una primera sesión.
+          </p>
+        </div>
+        <div className="grid items-stretch gap-5 lg:grid-cols-3">
+          {reviews.map((review) => (
+            <article key={review.initials} className={`${cardGlass} flex h-full flex-col bg-white/26`}>
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#B7A6E8]/18 font-bold text-[#6F6D9E]">
+                  {review.initials}
                 </div>
-              )}
+                <div>
+                  <p className="font-bold text-[#26385B]">{review.initials}</p>
+                  <p className="text-xs font-semibold text-[#5D6680]">{review.verification}</p>
+                </div>
+              </div>
+              <p className="mb-5 grow leading-relaxed text-[#26385B]">“{review.text}”</p>
+              <p className="text-sm font-semibold text-[#5D6680]">{review.date}</p>
+              <p className="mt-1 text-xs text-[#5D6680]/80">Consulta online · Consulta de Psicología Sanitaria</p>
+            </article>
+          ))}
+        </div>
+        <div className="mt-8 text-center">
+          <a href={doctoraliaUrl} target="_blank" rel="noopener noreferrer" data-event="click_doctoralia" data-location="social_proof" data-page="landing" data-channel="doctoralia" className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#B7A6E8]/25 bg-white/48 px-6 py-4 font-bold text-[#26385B] shadow-[0_14px_34px_rgba(38,56,91,0.10)] backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:bg-white/64">
+          <DoctoraliaLogo className="h-6 w-6" />
+          Ver perfil en Doctoralia
+          <ExternalLink className="h-4 w-4" />
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function HowToStartSection() {
+  const steps = [
+    "Escribes por WhatsApp con un mensaje breve.",
+    "Daniela valora contigo qué necesitas y resuelve tus dudas.",
+    "Elegís modalidad presencial en Chamartín u online.",
+    "Si encaja, acordáis la primera sesión desde 40 €.",
+  ]
+
+  return (
+    <section className={`${sectionSage} py-16 lg:py-24`}>
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 className="mb-10 text-center font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl">
+          Cómo empezar
+        </h2>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {steps.map((step, index) => (
+            <div key={step} className={`${cardGlass} flex items-start gap-4 p-5`}>
+              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white/70 font-bold text-[#26385B] shadow-[0_12px_24px_rgba(38,56,91,0.10)]">
+                {index + 1}
+              </span>
+              <p className="pt-2 font-semibold text-[#26385B]">{step}</p>
             </div>
           ))}
         </div>
@@ -962,13 +435,50 @@ function FAQSection() {
   )
 }
 
-/* ===========================================
-   FINAL CTA SECTION
-=========================================== */
+function ObjectionsSection() {
+  const objections = [
+    {
+      title: "No sé si mi problema es suficientemente importante",
+      text: "No necesitas tenerlo claro. La primera sesión también sirve para ordenar lo que está pasando y valorar si la terapia puede ayudarte.",
+    },
+    {
+      title: "Me cuesta explicar lo que me pasa por mensaje",
+      text: "Puedes escribir solo un mensaje breve. No hace falta contar todo por WhatsApp.",
+    },
+    {
+      title: "No sé si elegir presencial u online",
+      text: "Puedes comentarlo en el primer contacto y decidir según disponibilidad, comodidad y necesidades.",
+    },
+  ]
+
+  return (
+    <section className={`${sectionWarm} py-16 lg:py-24`}>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 className="mb-12 text-center font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl">
+          Antes de escribir, puede que te preguntes...
+        </h2>
+        <div className="grid gap-4 sm:grid-cols-3">
+          {objections.map((item) => (
+            <article key={item.title} className={`${cardGlass} h-full`}>
+              <h3 className="mb-3 text-lg font-semibold text-[#26385B]">{item.title}</h3>
+              <p className="leading-relaxed text-[#5D6680]">{item.text}</p>
+            </article>
+          ))}
+        </div>
+        <div className="mt-10 text-center">
+          <a href={whatsappUrl} data-event="click_whatsapp" data-location="objections" data-page="landing" data-channel="whatsapp" className={`inline-flex items-center justify-center gap-2 rounded-xl px-6 py-4 font-bold transition-all hover:-translate-y-0.5 ${ctaGradient}`}>
+            <WhatsAppLogo className="h-5 w-5" />
+            Pedir primera sesión por WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function FinalCTASection() {
   return (
     <section className={`${sectionCta} py-16 lg:py-24`}>
-      <div className="pointer-events-none absolute left-1/2 top-0 h-px w-full -translate-x-1/2 bg-gradient-to-r from-transparent via-white/45 to-transparent" />
       <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
         <h2 className="mb-4 font-serif text-2xl font-semibold text-white sm:text-3xl lg:text-4xl text-balance">
           Dar el primer paso no significa tenerlo todo claro
@@ -976,176 +486,212 @@ function FinalCTASection() {
         <p className="mb-8 text-lg leading-relaxed text-white/90 text-pretty">
           Puedes escribirme y contarme brevemente qué está pasando. A partir de ahí valoramos cuál puede ser el siguiente paso.
         </p>
-
         <div className="flex flex-col justify-center gap-4 sm:flex-row">
-          <a
-            href="https://wa.me/34614412183?text=Hola%20Daniela%2C%20he%20visto%20tu%20p%C3%A1gina%20y%20quer%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20una%20primera%20sesi%C3%B3n."
-            data-event="click_whatsapp_daniela_landing"
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-8 py-4 text-lg font-semibold text-[#26385B] shadow-[0_18px_42px_rgba(0,0,0,0.20)] transition-all hover:-translate-y-0.5 hover:bg-white/90 hover:shadow-[0_24px_54px_rgba(0,0,0,0.24)]"
-          >
-            <MessageCircle className="h-6 w-6" />
-            Hablar por WhatsApp
+          <a href={whatsappUrl} data-event="click_whatsapp" data-location="final_cta" data-page="landing" data-channel="whatsapp" className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-8 py-4 text-lg font-semibold text-[#26385B] shadow-[0_18px_42px_rgba(0,0,0,0.20)] transition-all hover:-translate-y-0.5 hover:bg-white/90">
+            <WhatsAppLogo className="h-6 w-6" />
+            Pedir primera sesión por WhatsApp
           </a>
-          <a
-            href="#reserva"
-            data-event="click_reserva_daniela_landing"
-            className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white px-8 py-4 text-lg font-semibold text-white transition-all hover:bg-white/10"
-          >
-            <Calendar className="h-6 w-6" />
-            Reservar primera sesión
-          </a>
+          <HashLink targetId="reserva" className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white px-8 py-4 text-lg font-semibold text-white transition-all hover:bg-white/10">
+            Ver precios
+          </HashLink>
         </div>
       </div>
     </section>
   )
 }
 
-/* ===========================================
-   FOOTER
-=========================================== */
 function Footer() {
   return (
-    <footer id="contacto" className={`${footerDeep} py-12`}>
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Brand Column */}
-          <div className="sm:col-span-2 lg:col-span-1">
-            <h3 className="mb-4 text-lg font-semibold text-white">Daniela López Meléndez</h3>
-            <p className="mb-2 text-sm text-white/70">Psicóloga General Sanitaria</p>
-            <p className="text-sm text-white/70">Colegiada M-41829</p>
-          </div>
-
-          {/* Contact Column */}
-          <div>
-            <h4 className="mb-4 font-semibold text-white">Contacto</h4>
-            <div className="space-y-3">
-              <a
-                href="https://wa.me/34614412183"
-                className="flex items-center gap-2 text-sm text-white/70 hover:text-white"
-              >
-                <Phone className="h-4 w-4" />
-                +34 614 412 183
-              </a>
-              <a
-                href="https://www.instagram.com/psico.danilopez"
-                data-event="click_instagram_daniela_landing"
-                className="flex items-center gap-2 text-sm text-white/70 hover:text-white"
-              >
-                <Instagram className="h-4 w-4" />
-                @psico.danilopez
-              </a>
-            </div>
-          </div>
-
-          {/* Address Column */}
-          <div>
-            <h4 className="mb-4 font-semibold text-white">Consulta</h4>
-            <p className="text-sm text-white/70">C. de Marcenado, 14, Despacho 2</p>
-            <p className="text-sm text-white/70">Chamartín, 28002 Madrid</p>
-            <p className="mt-2 text-sm text-white/55">Consulta independiente dentro del centro Psicotep</p>
-          </div>
-
-          {/* Links Column */}
-          <div>
-            <h4 className="mb-4 font-semibold text-white">Enlaces</h4>
-            <div className="space-y-2">
-              <a
-                href="https://www.doctoralia.es/daniela-lopez-melendez/psicologo/madrid"
-                data-event="click_doctoralia_daniela_landing"
-                className="block text-sm text-white/70 hover:text-white"
-              >
-                Perfil en Doctoralia
-              </a>
-              <a href="/quien-soy" className="block text-sm text-white/70 hover:text-white">
-                Quién soy
-              </a>
-              <a href="/contacto" className="block text-sm text-white/70 hover:text-white">
-                Contacto
-              </a>
-              <a href="#reserva" className="block text-sm text-white/70 hover:text-white">
-                Reservar cita
-              </a>
-            </div>
-          </div>
+    <footer className="relative overflow-hidden bg-[linear-gradient(135deg,#1B2947_0%,#26385B_56%,#2F3F68_100%)] py-12">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 text-sm text-white/70 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
+        <div>
+          <h2 className="mb-4 text-lg font-semibold text-white">Daniela López Meléndez</h2>
+          <p>Psicóloga General Sanitaria</p>
+          <p>Colegiada M-41829</p>
         </div>
-
-        <div className="mt-12 border-t border-white/10 pt-8 text-center">
-          <p className="text-sm text-white/50">
-            © {new Date().getFullYear()} Daniela López Meléndez. Todos los derechos reservados.
-          </p>
+        <div>
+          <h2 className="mb-4 font-semibold text-white">Contacto</h2>
+          <a href="tel:+34614412183" className="mb-3 flex items-center gap-2 hover:text-white"><Phone className="h-4 w-4" />+34 614 412 183</a>
+          <a href={instagramUrl} target="_blank" rel="noopener noreferrer" data-event="click_instagram" data-location="footer" data-page="landing" data-channel="instagram" className="flex items-center gap-2 hover:text-white"><InstagramLogo className="h-4 w-4" />@psico.danilopez</a>
+        </div>
+        <div>
+          <h2 className="mb-4 font-semibold text-white">Consulta</h2>
+          <p>C. de Marcenado, 14, Despacho 2</p>
+          <p>Chamartín, 28002 Madrid</p>
+          <p className="mt-2 text-white/55">Consulta independiente dentro del centro Psicotep</p>
+        </div>
+        <div>
+          <h2 className="mb-4 font-semibold text-white">Enlaces</h2>
+          <a href={doctoraliaUrl} target="_blank" rel="noopener noreferrer" data-event="click_doctoralia" data-location="footer" data-page="landing" data-channel="doctoralia" className="mb-2 block hover:text-white">Doctoralia</a>
+          <a href="/quien-soy" className="mb-2 block hover:text-white">Quién soy</a>
+          <a href="/contacto" className="mb-2 block hover:text-white">Contacto</a>
+          <HashLink targetId="reserva" className="block text-left hover:text-white">Precios</HashLink>
         </div>
       </div>
     </footer>
   )
 }
 
-/* ===========================================
-   FLOATING WHATSAPP BUTTON
-=========================================== */
 function FloatingWhatsApp() {
   return (
-    <a
-      href="https://wa.me/34614412183?text=Hola%20Daniela%2C%20he%20visto%20tu%20p%C3%A1gina%20y%20quer%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20una%20primera%20sesi%C3%B3n."
-      data-event="click_whatsapp_daniela_landing"
-      className="fixed bottom-24 right-4 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_18px_38px_rgba(37,211,102,0.30)] transition-all hover:-translate-y-1 hover:scale-105 hover:bg-[#22C55E] hover:shadow-[0_24px_48px_rgba(37,211,102,0.40)] sm:bottom-6 sm:right-6"
-      aria-label="Contactar por WhatsApp"
-    >
+    <a href={whatsappUrl} data-event="click_whatsapp" data-location="floating" data-page="landing" data-channel="whatsapp" className="fixed bottom-24 right-4 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_18px_38px_rgba(37,211,102,0.30)] transition-all hover:-translate-y-1 hover:scale-105 hover:bg-[#22C55E] sm:bottom-6 sm:right-6" aria-label="Contactar por WhatsApp">
       <WhatsAppLogo className="h-10 w-10" />
-   
     </a>
   )
 }
 
-/* ===========================================
-   MOBILE STICKY CTA
-=========================================== */
 function MobileStickyBar() {
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-[#E2E4D8] bg-white/95 p-3 shadow-[0_-10px_30px_rgba(10,77,104,0.16)] backdrop-blur sm:hidden">
+    <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-[#E2E4D8] bg-white/95 p-3 shadow-[0_-10px_30px_rgba(38,56,91,0.16)] backdrop-blur sm:hidden">
       <div className="flex gap-2">
         <a
-          href="https://wa.me/34614412183?text=Hola%20Daniela%2C%20he%20visto%20tu%20p%C3%A1gina%20y%20quer%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20una%20primera%20sesi%C3%B3n."
-          data-event="click_whatsapp_daniela_landing"
+          href={whatsappUrl}
+          data-event="click_whatsapp"
+          data-location="sticky_mobile"
+          data-page="landing"
+          data-channel="whatsapp"
           className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#25D366] py-3 font-semibold text-white"
         >
           <WhatsAppLogo className="h-5 w-5" />
           WhatsApp
         </a>
-        <a
-          href="#reserva"
-          data-event="click_reserva_daniela_landing"
-          className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-[#1E2D4A] via-[#26385B] to-[#536341] shadow-[0_16px_34px_rgba(38,56,91,0.20)] py-3 font-semibold text-white"
+        <HashLink
+          targetId="reserva"
+          className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-[#1E2D4A] via-[#26385B] to-[#536341] py-3 font-semibold text-white shadow-[0_16px_34px_rgba(38,56,91,0.20)]"
         >
-          <Calendar className="h-5 w-5" />
-          Reservar
-        </a>
+          Ver precios
+        </HashLink>
       </div>
     </div>
   )
 }
 
-/* ===========================================
-   MAIN PAGE COMPONENT
-=========================================== */
+function JsonLd() {
+  const person = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Daniela López Meléndez",
+    jobTitle: "Psicóloga General Sanitaria",
+    identifier: "Colegiada M-41829",
+    telephone: "+34614412183",
+    url: "https://danielalopezpsicologia.es",
+    sameAs: [instagramUrl, doctoraliaUrl],
+  }
+  const business = {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    name: "Daniela López Meléndez Psicología",
+    medicalSpecialty: "Psychology",
+    priceRange: "40€-75€",
+    telephone: "+34614412183",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "C. de Marcenado, 14, Despacho 2",
+      addressLocality: "Madrid",
+      postalCode: "28002",
+      addressCountry: "ES",
+    },
+    areaServed: "Madrid",
+    sameAs: [instagramUrl, doctoraliaUrl],
+  }
+  const service = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Terapia psicológica presencial en Madrid y online",
+    provider: { "@type": "Person", name: "Daniela López Meléndez" },
+    areaServed: "Madrid",
+    serviceType: ["Ansiedad", "Autoestima", "Terapia infanto-juvenil", "Duelo", "Terapia de pareja", "Trauma"],
+  }
+  const faqPage = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  }
+  const breadcrumbs = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Inicio",
+        item: "https://danielalopezpsicologia.es/",
+      },
+    ],
+  }
+
+  return (
+    <>
+      {[person, business, service, faqPage, breadcrumbs].map((schema, index) => (
+        <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      ))}
+    </>
+  )
+}
+
 export default function DanielaLandingPage() {
   return (
-    <main className="min-h-screen pb-20 sm:pb-0">
+    <>
+      <JsonLd />
       <Header />
-      <HeroSection />
-      <EmpathySection />
-      <PersonalTrustSection />
-      <LocationSection />
-      <ModalitiesSection />
-      <DetailedSpecialtiesSection />
-      <PricingSection />
-      <ReviewsSection />
-      <GallerySection />
-      <ProcessSection />
-      <FAQSection />
-      <FinalCTASection />
+      <main className="min-h-screen pb-20 sm:pb-0">
+        <HeroSection />
+        <EmpathySection />
+        <ProfessionalTrustSection />
+        <LocationSection />
+        <ModalitiesSection />
+        <section className={`${sectionWarm} py-16 lg:py-24`}>
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <h2 className="mb-12 text-center font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl text-balance">
+              Áreas que podemos trabajar en terapia
+            </h2>
+            <SpecialtyCards />
+          </div>
+        </section>
+        <PricingSection />
+        <TrustSection />
+        <HowToStartSection />
+        <ObjectionsSection />
+        <section id="contacto" className={`${sectionSage} py-16 lg:py-24`}>
+          <div className="mx-auto grid max-w-7xl items-start gap-8 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+            <div className="flex flex-col items-center justify-center">
+              <h2 className="mb-4 font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl">WhatsApp es la vía más directa</h2>
+              <p className="mb-6 text-lg leading-relaxed text-[#5D6680]">
+                Si quieres pedir información sobre una primera sesión, el canal principal es WhatsApp. El formulario queda como alternativa secundaria.
+              </p>
+              <div className="mt-8 overflow-hidden rounded-[30px] border border-white/70 bg-white/30 shadow-[0_24px_60px_rgba(38,56,91,0.14)]">
+                <Image
+                  src="/despacho-daniela.jpeg"
+                  alt="Daniela López Meléndez en su despacho de psicología en Chamartín"
+                  width={1600}
+                  height={2000}
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  className="aspect-[4/3] w-full object-cover object-center"
+                />
+              </div>
+              <a href={whatsappUrl} data-event="click_whatsapp" data-location="contact_block" data-page="landing" data-channel="whatsapp" className={`mt-6 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-4 font-bold transition-all hover:-translate-y-0.5 ${ctaGradient}`}>
+                <WhatsAppLogo className="h-5 w-5" />
+                Hablar por WhatsApp
+              </a>
+            </div>
+            <ContactRequestForm compact />
+          </div>
+        </section>
+        <section id="faq" className={`${sectionSage} py-16 lg:py-24`}>
+          <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+            <h2 className="mb-12 text-center font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl">Preguntas frecuentes</h2>
+            <FAQAccordion />
+          </div>
+        </section>
+        <FinalCTASection />
+      </main>
       <Footer />
       <FloatingWhatsApp />
       <MobileStickyBar />
-    </main>
+    </>
   )
 }
