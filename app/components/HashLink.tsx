@@ -16,7 +16,6 @@ export function HashLink({
     if (!element) return
 
     element.scrollIntoView({ behavior: "smooth", block: "start" })
-    window.history.replaceState(null, "", `#${targetId}`)
   }
 
   return (

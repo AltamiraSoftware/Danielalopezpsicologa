@@ -22,11 +22,12 @@ export function ContactRequestForm({ compact = false, page = "landing" }: { comp
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    const formElement = event.currentTarget
     pushDataLayer("form_submit", page)
     setError("")
     setStatus("loading")
 
-    const form = new FormData(event.currentTarget)
+    const form = new FormData(formElement)
     const name = String(form.get("name") ?? "").trim()
     const contact = String(form.get("contact") ?? "").trim()
     const contactPreference = String(form.get("contactPreference") ?? "whatsapp")
@@ -62,7 +63,7 @@ export function ContactRequestForm({ compact = false, page = "landing" }: { comp
 
       setStatus("success")
       pushDataLayer("form_success", page)
-      event.currentTarget.reset()
+      formElement.reset()
     } catch {
       setStatus("error")
       setError("No se ha podido enviar la solicitud. Puedes escribir directamente por WhatsApp.")

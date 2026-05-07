@@ -36,12 +36,18 @@ export async function POST(request: Request) {
   // CONTACT_TO_EMAIL: destination inbox for contact requests.
   // CONTACT_FROM_EMAIL: verified sender/domain in Resend. Required in production.
   if (!apiKey || !to || (process.env.NODE_ENV === "production" && !from)) {
+    console.error("Contact form email configuration is incomplete", {
+      hasApiKey: Boolean(apiKey),
+      hasTo: Boolean(to),
+      hasFrom: Boolean(from),
+      nodeEnv: process.env.NODE_ENV,
+    })
     return NextResponse.json({ ok: false }, { status: 500 })
   }
 
   try {
     const resend = new Resend(apiKey)
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: from ?? "Daniela López Psicología <onboarding@resend.dev>",
       to,
       subject: `Nueva solicitud de información - ${name}`,
@@ -57,8 +63,20 @@ export async function POST(request: Request) {
       ].join("\n"),
     })
 
+    if (result.error) {
+      console.error("Resend contact form error", {
+        name: result.error.name,
+        message: result.error.message,
+        statusCode: result.error.statusCode,
+      })
+      return NextResponse.json({ ok: false }, { status: 500 })
+    }
+
     return NextResponse.json({ ok: true })
-  } catch {
+  } catch (error) {
+    console.error("Unexpected contact form error", {
+      message: error instanceof Error ? error.message : "Unknown error",
+    })
     return NextResponse.json({ ok: false }, { status: 500 })
   }
 }
