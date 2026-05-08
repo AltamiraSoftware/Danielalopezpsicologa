@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import Script from 'next/script'
 import { Inter, Cormorant_Garamond } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
@@ -23,6 +24,14 @@ export const metadata: Metadata = {
     'Psicóloga General Sanitaria colegiada M-41829 en Madrid. Consulta presencial en Chamartín y terapia online para ansiedad, autoestima, duelo, adolescentes, pareja y familia. Primera sesión desde 40 €.',
   keywords:
     'psicóloga sanitaria Madrid, psicóloga Chamartín, psicóloga ansiedad Madrid, psicóloga adolescentes Madrid, psicología infanto-juvenil Madrid, terapia online Madrid, terapia autoestima Madrid',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.png', type: 'image/png', sizes: '512x512' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: [{ url: '/apple-touch-icon.png', type: 'image/png', sizes: '180x180' }],
+  },
   openGraph: {
     title: 'Daniela López | Psicóloga en Madrid',
     description:
@@ -60,7 +69,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="bg-[#fffefa] scroll-smooth">
+      <Script id="google-tag-manager" strategy="afterInteractive">
+        {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KXRQXQ7D');`}
+      </Script>
       <body className={`${inter.variable} ${cormorant.variable} font-sans antialiased`}>
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-KXRQXQ7D"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

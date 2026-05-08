@@ -23,7 +23,7 @@ export function Header({ whatsappUrl, doctoraliaUrl, instagramUrl }: HeaderProps
     <header className="sticky top-0 z-40 border-b border-white/10 bg-[linear-gradient(135deg,rgba(27,41,71,0.96)_0%,rgba(38,56,91,0.94)_56%,rgba(47,63,104,0.92)_100%)] shadow-[0_14px_34px_rgba(27,41,71,0.20)] backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
         <a href="/" className="flex min-w-0 items-center gap-3" onClick={closeMenu}>
-          <Image src="/icon.png" alt="" width={44} height={44} className="shrink-0 rounded-full object-contain" />
+          <Image src="/brand-icon.png" alt="" width={44} height={44} className="shrink-0 object-contain" />
           <span className="min-w-0">
             <span className="block truncate font-serif text-lg font-semibold leading-none text-white sm:text-2xl">
               Daniela López
