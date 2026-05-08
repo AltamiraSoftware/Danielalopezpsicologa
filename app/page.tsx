@@ -17,6 +17,7 @@ import { ContactRequestForm } from "./components/ContactRequestForm"
 import { DoctoraliaLogo, InstagramLogo, WhatsAppLogo } from "./components/BrandIcons"
 import { FAQAccordion } from "./components/FAQAccordion"
 import { HashLink } from "./components/HashLink"
+import { Header as SiteHeader } from "./components/Header"
 import { SpecialtyCards } from "./components/SpecialtyCards"
 import { faqs } from "./data/faq"
 
@@ -29,7 +30,7 @@ const address = "C. de Marcenado, 14, Despacho 2, Chamartín, 28002 Madrid"
 const mapQuery = encodeURIComponent("C. de Marcenado, 14, Despacho 2, Chamartín, 28002 Madrid")
 
 const sectionHero =
-  "relative overflow-hidden bg-[radial-gradient(880px_420px_at_12%_8%,rgba(164,190,123,0.18)_0%,rgba(164,190,123,0)_58%),radial-gradient(760px_360px_at_88%_16%,rgba(183,166,232,0.08)_0%,rgba(183,166,232,0)_56%),linear-gradient(180deg,#FFFEFA_0%,#F1F5EA_100%)]"
+  "relative overflow-hidden bg-[radial-gradient(880px_420px_at_12%_8%,rgba(164,190,123,0.14)_0%,rgba(164,190,123,0)_58%),radial-gradient(780px_380px_at_88%_14%,rgba(183,166,232,0.20)_0%,rgba(183,166,232,0)_58%),linear-gradient(180deg,#FBF8FF_0%,#F4F0FB_46%,#F1F5EA_100%)]"
 const sectionWarm =
   "relative overflow-hidden bg-[radial-gradient(820px_380px_at_8%_12%,rgba(183,166,232,0.055)_0%,rgba(183,166,232,0)_56%),radial-gradient(780px_360px_at_94%_88%,rgba(164,190,123,0.10)_0%,rgba(164,190,123,0)_58%),linear-gradient(180deg,#FFFEFA_0%,#FCFAF4_100%)]"
 const sectionSage =
@@ -283,8 +284,8 @@ function ModalitiesSection() {
 function PricingSection() {
   const prices = [
     { title: "Primera sesión individual", price: "40 €", description: "Online o presencial para valorar tu caso y orientarte con calma.", footer: "Presencial u online" },
-    { title: "Sesión sucesiva online", price: "60 €", description: "Continuidad del proceso terapéutico por videollamada.", footer: "Sesiones individuales online" },
-    { title: "Sesión sucesiva presencial", price: "65 €", description: "Sesiones individuales en consulta presencial en Chamartín.", footer: "Consulta en Despacho 2" },
+    { title: "Sesión online", price: "55 €", description: "Continuidad del proceso terapéutico por videollamada.", footer: "Sesiones individuales online" },
+    { title: "Sesión presencial", price: "60 €", description: "Sesiones individuales en consulta presencial en Chamartín.", footer: "Consulta en Despacho 2" },
     { title: "Terapia de pareja o familia", price: "75 €", description: "Sesiones online o presenciales para trabajar dinámicas relacionales.", footer: "Mismo precio desde la primera sesión" },
     { title: "Bono online", price: "200 €", description: "Pack de 4 sesiones online para dar continuidad al proceso terapéutico.", footer: "4 sesiones online" },
     { title: "Bono presencial", price: "220 €", description: "Pack de 4 sesiones presenciales en consulta de Chamartín.", footer: "4 sesiones presenciales" },
@@ -534,7 +535,7 @@ function Footer() {
 
 function FloatingWhatsApp() {
   return (
-    <a href={whatsappUrl} data-event="click_whatsapp" data-location="floating" data-page="landing" data-channel="whatsapp" className="fixed bottom-24 right-4 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_18px_38px_rgba(37,211,102,0.30)] transition-all hover:-translate-y-1 hover:scale-105 hover:bg-[#22C55E] sm:bottom-6 sm:right-6" aria-label="Contactar por WhatsApp">
+    <a href={whatsappUrl} data-event="click_whatsapp" data-location="floating" data-page="landing" data-channel="whatsapp" className="fixed bottom-6 right-6 z-50 hidden h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_18px_38px_rgba(37,211,102,0.30)] transition-all hover:-translate-y-1 hover:scale-105 hover:bg-[#22C55E] sm:flex" aria-label="Contactar por WhatsApp">
       <WhatsAppLogo className="h-10 w-10" />
     </a>
   )
@@ -637,7 +638,7 @@ export default function DanielaLandingPage() {
   return (
     <>
       <JsonLd />
-      <Header />
+      <SiteHeader whatsappUrl={whatsappUrl} doctoraliaUrl={doctoraliaUrl} instagramUrl={instagramUrl} />
       <main className="min-h-screen pb-20 sm:pb-0">
         <HeroSection />
         <EmpathySection />

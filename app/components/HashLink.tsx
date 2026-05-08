@@ -5,13 +5,16 @@ import { ReactNode } from "react"
 export function HashLink({
   targetId,
   className,
+  onClick,
   children,
 }: {
   targetId: string
   className?: string
+  onClick?: () => void
   children: ReactNode
 }) {
   function handleClick() {
+    onClick?.()
     const element = document.getElementById(targetId)
     if (!element) return
 
