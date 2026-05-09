@@ -19,6 +19,7 @@ import { FAQAccordion } from "./components/FAQAccordion"
 import { HashLink } from "./components/HashLink"
 import { Header as SiteHeader } from "./components/Header"
 import { SpecialtyCards } from "./components/SpecialtyCards"
+import { CookieSettingsButton } from "./components/CookieSettingsButton"
 import { faqs } from "./data/faq"
 
 const whatsappMessage =
@@ -526,7 +527,11 @@ function Footer() {
           <a href={doctoraliaUrl} target="_blank" rel="noopener noreferrer" data-event="click_doctoralia" data-location="footer" data-page="landing" data-channel="doctoralia" className="mb-2 block hover:text-white">Doctoralia</a>
           <a href="/quien-soy" className="mb-2 block hover:text-white">Quién soy</a>
           <a href="/contacto" className="mb-2 block hover:text-white">Contacto</a>
-          <HashLink targetId="reserva" className="block text-left hover:text-white">Precios</HashLink>
+          <HashLink targetId="reserva" className="mb-2 block text-left hover:text-white">Precios</HashLink>
+          <a href="/politica-privacidad" className="mb-2 block hover:text-white">Política de privacidad</a>
+          <a href="/politica-cookies" className="mb-2 block hover:text-white">Política de cookies</a>
+          <a href="/aviso-legal" className="mb-2 block hover:text-white">Aviso legal</a>
+          <CookieSettingsButton className="block text-left hover:text-white" />
         </div>
       </div>
     </footer>
