@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { CheckCircle2, ChevronDown, ChevronUp } from "lucide-react"
+import { CheckCircle2, ChevronDown, X } from "lucide-react"
 
 const cardGlass =
   "rounded-[30px] border border-white/65 bg-white/18 p-6 shadow-[0_24px_60px_rgba(38,56,91,0.12)] backdrop-blur-xl transition-all hover:-translate-y-1 hover:border-white/80 hover:bg-white/24 hover:shadow-[0_30px_76px_rgba(140,137,184,0.20)]"
@@ -17,18 +17,6 @@ const specialties = [
       "Sientes preocupación constante, anticipación excesiva o te cuesta desconectar incluso cuando no hay un motivo claro.",
       "Notas ataques de ansiedad, bloqueo, irritabilidad, insomnio o síntomas físicos que te preocupan y no sabes bien cómo manejar.",
       "La ansiedad está afectando al descanso, al trabajo, a tus relaciones o a tu capacidad para sostener el día a día con normalidad.",
-    ],
-  },
-  {
-    title: "Estado de ánimo",
-    description:
-      "Si últimamente sientes apatía, vacío, cansancio emocional o desconexión contigo mismo/a, en terapia encontrarás un espacio seguro para entender lo que te está pasando.",
-    detail:
-      "El malestar emocional no siempre se manifiesta solo como tristeza. A veces aparece como apatía, cansancio constante, desconexión emocional o sensación de vacío. Trabajaremos para comprender qué hay detrás de ese malestar, darte herramientas para gestionarlo y ayudarte a recuperar bienestar a tu ritmo.",
-    helps: [
-      "Sientes apatía, desmotivación o vacío persistente.",
-      "Te cuesta conectar con lo que antes te sostenía.",
-      "El día a día se vuelve pesado o difícil de sostener.",
     ],
   },
   {
@@ -99,46 +87,63 @@ export function SpecialtyCards() {
   const [openSpecialty, setOpenSpecialty] = useState<string | null>(null)
 
   return (
-    <div className="grid items-start justify-center gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid items-start justify-center gap-4 overflow-visible sm:grid-cols-2 lg:grid-cols-3">
       {specialties.map((specialty, index) => {
         const isOpen = openSpecialty === specialty.title
 
         return (
           <article
             key={specialty.title}
-            className={`group flex h-full w-full min-h-[270px] max-w-[430px] flex-col ${cardGlass}`}
+            className={`group relative flex h-[245px] w-full max-w-[430px] flex-col ${isOpen ? "z-50" : "z-0"} ${cardGlass}`}
           >
-            <div className="flex min-h-[190px] flex-col">
+            <div className="flex flex-1 flex-col">
               <h3 className="mb-3 text-center text-lg font-semibold text-[#26385B] group-hover:text-[#6F6D9E]">
                 {specialty.title}
               </h3>
-              <p className="text-center leading-relaxed text-[#5D6680]">{specialty.description}</p>
+              <p className="line-clamp-5 text-center text-sm leading-relaxed text-[#5D6680] sm:text-base">
+                {specialty.description}
+              </p>
             </div>
 
             {isOpen && (
-              <div id={`specialty-detail-${index}`} className="mt-5 border-t border-white/55 pt-5">
-                <p className="mb-4 leading-relaxed text-[#5D6680]">{specialty.detail}</p>
-                <p className="mb-3 text-sm font-bold uppercase text-[#6F6D9E]">Puede ayudarte si</p>
-                <ul className="space-y-3">
-                  {specialty.helps.map((item) => (
-                    <li key={item} className="flex gap-3 text-sm leading-relaxed text-[#26385B]">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#7F9256]" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div
+                id={`specialty-detail-${index}`}
+                role="dialog"
+                aria-label={`Detalle de ${specialty.title}`}
+                className="absolute left-1/2 top-[calc(100%-0.5rem)] z-[100] w-[min(92vw,430px)] -translate-x-1/2 rounded-[24px] border border-white/80 bg-white/95 p-5 text-left shadow-[0_28px_80px_rgba(38,56,91,0.26)] backdrop-blur-xl"
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpenSpecialty(null)}
+                  className="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#F1F5EA] text-[#26385B] transition hover:bg-[#E3EAD8]"
+                  aria-label="Cerrar detalle"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+                <div className="pr-8">
+                  <p className="mb-4 text-sm leading-relaxed text-[#5D6680]">{specialty.detail}</p>
+                  <p className="mb-3 text-xs font-bold uppercase text-[#6F6D9E]">Puede ayudarte si</p>
+                  <ul className="space-y-3">
+                    {specialty.helps.map((item) => (
+                      <li key={item} className="flex gap-3 text-sm leading-relaxed text-[#26385B]">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#7F9256]" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             )}
 
             <button
               type="button"
               onClick={() => setOpenSpecialty(isOpen ? null : specialty.title)}
-              className="mt-auto inline-flex items-center justify-center gap-2 pt-5 text-sm font-bold text-[#9B8BD3] transition hover:text-[#26385B]"
+              className="mt-auto inline-flex items-center justify-center gap-2 pt-4 text-sm font-bold text-[#9B8BD3] transition hover:text-[#26385B]"
               aria-expanded={isOpen}
               aria-controls={`specialty-detail-${index}`}
             >
-              {isOpen ? "Ver menos" : "Ver más"}
-              {isOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+              {isOpen ? "Cerrar" : "Ver más"}
+              <ChevronDown className={`h-4 w-4 transition ${isOpen ? "rotate-180" : ""}`} />
             </button>
           </article>
         )

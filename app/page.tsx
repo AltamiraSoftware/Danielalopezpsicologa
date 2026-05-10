@@ -163,8 +163,8 @@ function EmpathySection() {
         </div>
         <div className="grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {problems.map((problem) => (
-            <article key={problem.title} className={`${cardGlass} flex h-full min-h-[190px] flex-col`}>
-              <div className={`mb-4 h-12 w-12 shrink-0 ${iconBox}`}>
+            <article key={problem.title} className={`${cardGlass} flex h-full min-h-[190px] flex-col border-[#B7A6E8]/45 text-center`}>
+              <div className={`mx-auto mb-4 h-12 w-12 shrink-0 ${iconBox}`}>
                 <problem.icon className="block h-6 w-6 text-[#9B8BD3]" />
               </div>
               <h3 className="mb-2 text-lg font-semibold text-[#26385B]">{problem.title}</h3>
@@ -267,12 +267,12 @@ function ModalitiesSection() {
         </h2>
         <div className="grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {modalities.map((modality) => (
-            <article key={modality.title} className={`${cardGlass} flex h-full min-h-[245px] flex-col p-8`}>
-              <div className={`mb-6 h-14 w-14 shrink-0 ${iconBox}`}>
+            <article key={modality.title} className={`${cardGlass} flex h-full min-h-[245px] flex-col items-center p-8 text-center`} style={{ borderColor: "rgba(183, 166, 232, 0.45)" }}>
+              <div className={`mx-auto mb-6 h-14 w-14 shrink-0 ${iconBox}`}>
                 <modality.icon className="block h-7 w-7 text-[#9B8BD3]" />
               </div>
-              <h3 className="mb-3 text-xl font-semibold text-[#26385B]">{modality.title}</h3>
-              <p className="leading-relaxed text-[#5D6680]">{modality.description}</p>
+              <h3 className="mb-3 text-center text-xl font-semibold text-[#26385B]">{modality.title}</h3>
+              <p className="text-center leading-relaxed text-[#5D6680]">{modality.description}</p>
             </article>
           ))}
         </div>
@@ -649,7 +649,7 @@ export default function DanielaLandingPage() {
         <ProfessionalTrustSection />
         <LocationSection />
         <ModalitiesSection />
-        <section className={`${sectionWarm} py-16 lg:py-24`}>
+        <section className={`${sectionWarm} py-16 lg:py-24`} style={{ overflow: "visible" }}>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <h2 className="mb-12 text-center font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl text-balance">
               Áreas que podemos trabajar en terapia

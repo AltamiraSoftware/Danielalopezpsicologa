@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import { Inter, Cormorant_Garamond } from 'next/font/google'
 import { CookieConsent } from './components/CookieConsent'
+import { ScrollReveal } from './components/ScrollReveal'
 import './globals.css'
 
 const GTM_ID = 'GTM-KXRQXQ7D'
@@ -103,6 +104,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           />
         </noscript>
         {children}
+        <ScrollReveal />
         <CookieConsent />
       </body>
     </html>
