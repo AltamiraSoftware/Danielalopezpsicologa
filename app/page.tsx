@@ -124,7 +124,7 @@ function HeroSection() {
           <div className="order-1 lg:order-2">
             <div className="relative overflow-hidden rounded-[30px] border border-white/70 bg-white/18 shadow-[0_26px_72px_rgba(38,56,91,0.16)]">
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-3GFlcl862ZrMZVDNkE5Dstf3AjlC4A.png"
+                src="/daniela-lopez-psicologa-sanitaria-madrid.webp"
                 alt="Daniela López Meléndez, psicóloga sanitaria en Madrid"
                 width={900}
                 height={1125}
@@ -670,7 +670,7 @@ export default function DanielaLandingPage() {
               </p>
               <div className="mt-8 overflow-hidden rounded-[30px] border border-white/70 bg-white/30 shadow-[0_24px_60px_rgba(38,56,91,0.14)]">
                 <Image
-                  src="/despacho-daniela.jpeg"
+                  src="/consulta-psicologia-chamartin-daniela-lopez.webp"
                   alt="Daniela López Meléndez en su despacho de psicología en Chamartín"
                   width={1600}
                   height={2000}

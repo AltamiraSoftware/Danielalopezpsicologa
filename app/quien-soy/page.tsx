@@ -38,7 +38,7 @@ export default function AboutPage() {
       <section className="mx-auto grid max-w-7xl items-center gap-8 px-4 py-14 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8 lg:py-20">
         <div className="overflow-hidden rounded-[30px] border border-white/70 bg-white/30 shadow-[0_26px_72px_rgba(38,56,91,0.16)]">
           <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-3GFlcl862ZrMZVDNkE5Dstf3AjlC4A.png"
+            src="/daniela-lopez-psicologa-sanitaria-madrid.webp"
             alt="Daniela López Meléndez, psicóloga sanitaria en Madrid"
             width={900}
             height={1125}
