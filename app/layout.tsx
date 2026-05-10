@@ -71,8 +71,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="bg-[#fffefa] scroll-smooth">
-      <Script id="google-consent-mode-default" strategy="beforeInteractive">
-        {`window.dataLayer = window.dataLayer || [];
+      <head>
+        <Script id="google-consent-mode-default" strategy="beforeInteractive">
+          {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('consent', 'default', {
   ad_storage: 'denied',
@@ -83,14 +84,15 @@ gtag('consent', 'default', {
   security_storage: 'granted',
   wait_for_update: 500
 });`}
-      </Script>
-      <Script id="google-tag-manager" strategy="afterInteractive">
-        {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        </Script>
+        <Script id="google-tag-manager" strategy="afterInteractive">
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','${GTM_ID}');`}
-      </Script>
+        </Script>
+      </head>
       <body className={`${inter.variable} ${cormorant.variable} font-sans antialiased`}>
         <noscript>
           <iframe

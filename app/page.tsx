@@ -20,6 +20,7 @@ import { HashLink } from "./components/HashLink"
 import { Header as SiteHeader } from "./components/Header"
 import { SpecialtyCards } from "./components/SpecialtyCards"
 import { CookieSettingsButton } from "./components/CookieSettingsButton"
+import { GoogleMapPreview } from "./components/GoogleMapPreview"
 import { faqs } from "./data/faq"
 
 const whatsappMessage =
@@ -245,9 +246,7 @@ function LocationSection() {
             </a>
           </div>
         </div>
-        <div className="overflow-hidden rounded-[30px] border border-white/70 bg-white/40 shadow-[0_26px_70px_rgba(38,56,91,0.14)]">
-          <iframe title="Mapa de la consulta de Daniela López en Chamartín" src={`https://www.google.com/maps?q=${mapQuery}&output=embed`} className="aspect-[4/3] w-full border-0" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
-        </div>
+        <GoogleMapPreview mapQuery={mapQuery} />
       </div>
     </section>
   )
