@@ -43,7 +43,7 @@ export function Header({ whatsappUrl, doctoraliaUrl, instagramUrl }: HeaderProps
 
         <div className="hidden shrink-0 items-center gap-2 sm:flex">
           <a href={instagramUrl} target="_blank" rel="noopener noreferrer" data-event="click_instagram" data-location="header" data-page="landing" data-channel="instagram" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/12 text-white shadow-[0_12px_28px_rgba(27,41,71,0.18)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/20" aria-label="Instagram de Daniela López">
-            <InstagramLogo className="h-6 w-6" />
+            <InstagramLogo className="h-6 w-6" gradientId="instagram-gradient-header" />
           </a>
           <a href={doctoraliaUrl} target="_blank" rel="noopener noreferrer" data-event="click_doctoralia" data-location="header" data-page="landing" data-channel="doctoralia" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/12 text-white shadow-[0_12px_28px_rgba(27,41,71,0.18)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/20" aria-label="Perfil de Doctoralia de Daniela López">
             <DoctoraliaLogo className="h-6 w-6" />
@@ -83,8 +83,8 @@ export function Header({ whatsappUrl, doctoraliaUrl, instagramUrl }: HeaderProps
           <a href={doctoraliaUrl} target="_blank" rel="noopener noreferrer" data-event="click_doctoralia" data-location="header_mobile" data-page="landing" data-channel="doctoralia" onClick={closeMenu} className="inline-flex items-center justify-center rounded-2xl border border-white/24 bg-white/12 px-3 py-3 text-white" aria-label="Perfil de Doctoralia de Daniela López">
             <DoctoraliaLogo className="h-6 w-6" />
           </a>
-          <a href={instagramUrl} target="_blank" rel="noopener noreferrer" data-event="click_instagram" data-location="header_mobile" data-page="landing" data-channel="instagram" onClick={closeMenu} className="inline-flex items-center justify-center rounded-2xl border border-white/24 bg-white/12 px-3 py-3 text-white" aria-label="Instagram de Daniela López">
-            <InstagramLogo className="h-6 w-6" />
+          <a href={instagramUrl} target="_blank" rel="noopener noreferrer" data-event="click_instagram" data-location="header_mobile" data-page="landing" data-channel="instagram" onClick={closeMenu} className="inline-flex h-10 w-10 items-center justify-center justify-self-center rounded-full border border-white/30 bg-white/12 text-white shadow-[0_12px_28px_rgba(27,41,71,0.18)] backdrop-blur-sm transition hover:bg-white/20" aria-label="Instagram de Daniela López">
+            <InstagramLogo className="h-6 w-6" gradientId="instagram-gradient-header-mobile" />
           </a>
         </div>
       </div>

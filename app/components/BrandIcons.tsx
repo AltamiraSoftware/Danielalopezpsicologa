@@ -6,18 +6,18 @@ export function WhatsAppLogo({ className = "h-5 w-5" }: { className?: string }) 
   )
 }
 
-export function InstagramLogo({ className = "h-5 w-5" }: { className?: string }) {
+export function InstagramLogo({ className = "h-5 w-5", gradientId = "instagram-gradient" }: { className?: string; gradientId?: string }) {
   return (
     <svg viewBox="0 0 32 32" aria-hidden="true" className={`${className} block`} preserveAspectRatio="xMidYMid meet">
       <defs>
-        <linearGradient id="instagram-gradient" x1="5" x2="27" y1="27" y2="5">
+        <linearGradient id={gradientId} x1="5" x2="27" y1="27" y2="5">
           <stop offset="0" stopColor="#FEDA75" />
           <stop offset="0.35" stopColor="#FA7E1E" />
           <stop offset="0.62" stopColor="#D62976" />
           <stop offset="1" stopColor="#4F5BD5" />
         </linearGradient>
       </defs>
-      <rect width="25" height="25" x="3.5" y="3.5" rx="7" fill="url(#instagram-gradient)" />
+      <rect width="25" height="25" x="3.5" y="3.5" rx="7" fill={`url(#${gradientId})`} />
       <circle cx="16" cy="16" r="5.2" fill="none" stroke="white" strokeWidth="2.2" />
       <circle cx="22.4" cy="9.8" r="1.6" fill="white" />
     </svg>
