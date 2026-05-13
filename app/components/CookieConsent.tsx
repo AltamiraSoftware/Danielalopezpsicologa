@@ -5,12 +5,14 @@ import { Analytics } from "@vercel/analytics/react"
 import { startTransition, useEffect, useState } from "react"
 
 const STORAGE_KEY = "daniela_cookie_consent"
-const CONSENT_VERSION = 1
+const CONSENT_VERSION = 2
+const CONSENT_UPDATED_EVENT = "daniela:cookie-consent-updated"
 
 type ConsentPreferences = {
   necessary: true
   analytics: boolean
   marketing: boolean
+  externalContent: boolean
 }
 
 type StoredConsent = {
@@ -30,6 +32,7 @@ const defaultConsent: ConsentPreferences = {
   necessary: true,
   analytics: false,
   marketing: false,
+  externalContent: false,
 }
 
 function getGoogleConsent(consent: ConsentPreferences) {
@@ -55,6 +58,10 @@ function ensureGtag() {
 function updateGoogleConsent(consent: ConsentPreferences) {
   ensureGtag()
   window.gtag?.("consent", "update", getGoogleConsent(consent))
+}
+
+function notifyConsentUpdated(consent: ConsentPreferences) {
+  window.dispatchEvent(new CustomEvent(CONSENT_UPDATED_EVENT, { detail: consent }))
 }
 
 function saveConsent(consent: ConsentPreferences) {
@@ -148,6 +155,7 @@ export function CookieConsent() {
     setPreferences(normalizedConsent)
     saveConsent(normalizedConsent)
     updateGoogleConsent(normalizedConsent)
+    notifyConsentUpdated(normalizedConsent)
 
     if (!normalizedConsent.analytics && !normalizedConsent.marketing) {
       clearGoogleCookies()
@@ -172,7 +180,7 @@ export function CookieConsent() {
                   Medición solo con tu permiso
                 </h2>
                 <p className="mt-3 text-sm leading-7 text-[#5D6680]">
-                  Usamos cookies técnicas necesarias para que la web funcione. Con tu consentimiento, también podemos usar analítica y medición publicitaria mediante Google Tag Manager para mejorar la web y las campañas.
+                  Usamos cookies técnicas necesarias para que la web funcione. Con tu consentimiento, también podemos usar analítica, medición publicitaria y contenido externo como Google Maps.
                 </p>
                 <p className="mt-3 text-sm leading-7 text-[#5D6680]">
                   Puedes aceptar, rechazar o configurar tus preferencias. Podrás cambiarlas más adelante desde el pie de página.
@@ -198,6 +206,12 @@ export function CookieConsent() {
                       description="Medición de conversiones, campañas y personalización publicitaria con Google Ads."
                       onChange={(checked) => setPreferences((current) => ({ ...current, marketing: checked }))}
                     />
+                    <CookieToggle
+                      checked={preferences.externalContent}
+                      title="Mapas y contenido externo"
+                      description="Carga de Google Maps dentro de la web para mostrar la ubicación de la consulta."
+                      onChange={(checked) => setPreferences((current) => ({ ...current, externalContent: checked }))}
+                    />
 
                     <div className="grid gap-3 pt-2">
                       <button type="button" className="rounded-xl bg-[linear-gradient(135deg,#1E2D4A_0%,#26385B_58%,#536341_100%)] px-5 py-3 text-sm font-bold text-white" onClick={() => applyConsent(preferences)}>
@@ -210,7 +224,7 @@ export function CookieConsent() {
                   </div>
                 ) : (
                   <div className="flex h-full flex-col justify-center gap-3">
-                    <button type="button" className="rounded-xl bg-[linear-gradient(135deg,#1E2D4A_0%,#26385B_58%,#536341_100%)] px-5 py-3 text-sm font-bold text-white" onClick={() => applyConsent({ necessary: true, analytics: true, marketing: true })}>
+                    <button type="button" className="rounded-xl bg-[linear-gradient(135deg,#1E2D4A_0%,#26385B_58%,#536341_100%)] px-5 py-3 text-sm font-bold text-white" onClick={() => applyConsent({ necessary: true, analytics: true, marketing: true, externalContent: true })}>
                       Aceptar todas
                     </button>
                     <button type="button" className="rounded-xl border border-[#DADFD2] bg-white px-5 py-3 text-sm font-bold text-[#26385B]" onClick={() => applyConsent(defaultConsent)}>

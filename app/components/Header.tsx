@@ -36,7 +36,7 @@ export function Header({ whatsappUrl, doctoraliaUrl, instagramUrl }: HeaderProps
 
         <nav className="hidden items-center gap-5 text-sm font-semibold text-white/72 md:flex">
           <a href="/quien-soy" className="transition hover:text-white">Quién soy</a>
-          <HashLink targetId="reserva" className="transition hover:text-white">Precios</HashLink>
+          <HashLink targetId="reserva" data-event="click_prices" data-location="header_nav" data-page="landing" data-channel="internal_cta" className="transition hover:text-white">Precios</HashLink>
           <HashLink targetId="faq" className="transition hover:text-white">Dudas</HashLink>
           <a href="/contacto" className="transition hover:text-white">Contacto</a>
         </nav>
@@ -71,16 +71,16 @@ export function Header({ whatsappUrl, doctoraliaUrl, instagramUrl }: HeaderProps
       >
         <nav className="grid gap-2 text-base font-semibold">
           <a href="/quien-soy" onClick={closeMenu} className="rounded-2xl px-4 py-3 text-white/84 transition hover:bg-white/10 hover:text-white">Quién soy</a>
-          <HashLink targetId="reserva" onClick={closeMenu} className="rounded-2xl px-4 py-3 text-left text-white/84 transition hover:bg-white/10 hover:text-white">Precios</HashLink>
+          <HashLink targetId="reserva" data-event="click_prices" data-location="header_mobile_nav" data-page="landing" data-channel="internal_cta" onClick={closeMenu} className="rounded-2xl px-4 py-3 text-left text-white/84 transition hover:bg-white/10 hover:text-white">Precios</HashLink>
           <HashLink targetId="faq" onClick={closeMenu} className="rounded-2xl px-4 py-3 text-left text-white/84 transition hover:bg-white/10 hover:text-white">Dudas</HashLink>
           <a href="/contacto" onClick={closeMenu} className="rounded-2xl px-4 py-3 text-white/84 transition hover:bg-white/10 hover:text-white">Contacto</a>
         </nav>
 
         <div className="mt-3 grid grid-cols-3 gap-2">
-          <a href={whatsappUrl} data-event="click_whatsapp" data-location="header_mobile" data-page="landing" data-channel="whatsapp" onClick={closeMenu} className="inline-flex items-center justify-center rounded-2xl bg-[#25D366] px-3 py-3 text-white shadow-[0_14px_32px_rgba(37,211,102,0.24)]" aria-label="WhatsApp de Daniela López">
+          <a href={whatsappUrl} data-event="click_whatsapp" data-location="header_mobile" data-page="landing" data-channel="whatsapp" onClick={closeMenu} className="inline-flex h-10 w-10 items-center justify-center justify-self-center rounded-full border border-white/30 bg-[#25D366] text-white shadow-[0_12px_28px_rgba(37,211,102,0.24)] transition hover:bg-[#20BF5A]" aria-label="WhatsApp de Daniela López">
             <WhatsAppLogo className="h-6 w-6" />
           </a>
-          <a href={doctoraliaUrl} target="_blank" rel="noopener noreferrer" data-event="click_doctoralia" data-location="header_mobile" data-page="landing" data-channel="doctoralia" onClick={closeMenu} className="inline-flex items-center justify-center rounded-2xl border border-white/24 bg-white/12 px-3 py-3 text-white" aria-label="Perfil de Doctoralia de Daniela López">
+          <a href={doctoraliaUrl} target="_blank" rel="noopener noreferrer" data-event="click_doctoralia" data-location="header_mobile" data-page="landing" data-channel="doctoralia" onClick={closeMenu} className="inline-flex h-10 w-10 items-center justify-center justify-self-center rounded-full border border-white/30 bg-white/12 text-white shadow-[0_12px_28px_rgba(27,41,71,0.18)] backdrop-blur-sm transition hover:bg-white/20" aria-label="Perfil de Doctoralia de Daniela López">
             <DoctoraliaLogo className="h-6 w-6" />
           </a>
           <a href={instagramUrl} target="_blank" rel="noopener noreferrer" data-event="click_instagram" data-location="header_mobile" data-page="landing" data-channel="instagram" onClick={closeMenu} className="inline-flex h-10 w-10 items-center justify-center justify-self-center rounded-full border border-white/30 bg-white/12 text-white shadow-[0_12px_28px_rgba(27,41,71,0.18)] backdrop-blur-sm transition hover:bg-white/20" aria-label="Instagram de Daniela López">

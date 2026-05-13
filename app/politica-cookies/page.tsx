@@ -50,6 +50,7 @@ const sections = [
     paragraphs: [
       "Google Tag Manager: permite gestionar etiquetas de medición y marketing respetando la configuración de consentimiento del usuario.",
       "Vercel Analytics: permite medir rendimiento y uso general de la web cuando el usuario acepta cookies analíticas.",
+      "Google Maps: permite mostrar el mapa interactivo de la consulta dentro de la web cuando el usuario acepta mapas y contenido externo o solicita expresamente cargar el mapa.",
       "Resend: servicio de envío de correos electrónicos transaccionales. No se utiliza para instalar cookies de navegación ordinaria.",
       "Doctoralia, Instagram y WhatsApp: enlaces externos que pueden aplicar sus propias políticas de privacidad y cookies al abrir sus páginas o aplicaciones.",
     ],
@@ -60,6 +61,7 @@ const sections = [
       "Al acceder a la web, el usuario puede aceptar, rechazar o configurar las cookies opcionales desde el banner de consentimiento.",
       "El usuario puede modificar su decisión en cualquier momento desde el enlace Configurar cookies disponible en el pie de página.",
       "Por defecto, Google Consent Mode v2 se configura con ad_storage, analytics_storage, ad_user_data y ad_personalization en denied hasta que el usuario acepte las categorías correspondientes.",
+      "La carga de Google Maps se gestiona de forma independiente desde la categoría Mapas y contenido externo.",
     ],
   },
   {

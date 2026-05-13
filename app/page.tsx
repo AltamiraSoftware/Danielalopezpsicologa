@@ -69,7 +69,7 @@ function Header() {
         </a>
         <nav className="hidden items-center gap-5 text-sm font-semibold text-white/72 md:flex">
           <a href="/quien-soy" className="transition hover:text-white">Quién soy</a>
-          <HashLink targetId="reserva" className="transition hover:text-white">Precios</HashLink>
+          <HashLink targetId="reserva" data-event="click_prices" data-location="header_nav" data-page="landing" data-channel="internal_cta" className="transition hover:text-white">Precios</HashLink>
           <HashLink targetId="faq" className="transition hover:text-white">Dudas</HashLink>
           <a href="/contacto" className="transition hover:text-white">Contacto</a>
         </nav>
@@ -110,7 +110,7 @@ function HeroSection() {
                 <WhatsAppLogo className="h-5 w-5" />
                 Pedir primera sesión por WhatsApp
               </a>
-              <HashLink targetId="reserva" className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#B7A6E8]/25 bg-white/48 px-6 py-4 text-base font-semibold text-[#26385B] shadow-[0_14px_34px_rgba(38,56,91,0.10)] backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:bg-white/64">
+              <HashLink targetId="reserva" data-event="click_prices" data-location="hero" data-page="landing" data-channel="internal_cta" className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#B7A6E8]/25 bg-white/48 px-6 py-4 text-base font-semibold text-[#26385B] shadow-[0_14px_34px_rgba(38,56,91,0.10)] backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:bg-white/64">
                 <Calendar className="h-5 w-5" />
                 Ver precios
               </HashLink>
@@ -236,7 +236,7 @@ function LocationSection() {
             </div>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <a href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-[#B8CA82] to-[#7F9256] px-6 py-3 font-semibold text-white shadow-[0_16px_34px_rgba(127,146,86,0.24)] transition-all hover:opacity-90">
+            <a href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`} target="_blank" rel="noopener noreferrer" data-event="click_google_maps" data-location="location" data-page="landing" data-channel="maps" className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-[#B8CA82] to-[#7F9256] px-6 py-3 font-semibold text-white shadow-[0_16px_34px_rgba(127,146,86,0.24)] transition-all hover:opacity-90">
               <MapPin className="h-5 w-5" />
               Cómo llegar
             </a>
@@ -492,7 +492,7 @@ function FinalCTASection() {
             <WhatsAppLogo className="h-6 w-6" />
             Pedir primera sesión por WhatsApp
           </a>
-          <HashLink targetId="reserva" className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white px-8 py-4 text-lg font-semibold text-white transition-all hover:bg-white/10">
+          <HashLink targetId="reserva" data-event="click_prices" data-location="final_cta" data-page="landing" data-channel="internal_cta" className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white px-8 py-4 text-lg font-semibold text-white transition-all hover:bg-white/10">
             Ver precios
           </HashLink>
         </div>
@@ -526,7 +526,7 @@ function Footer() {
           <a href={doctoraliaUrl} target="_blank" rel="noopener noreferrer" data-event="click_doctoralia" data-location="footer" data-page="landing" data-channel="doctoralia" className="mb-2 block hover:text-white">Doctoralia</a>
           <a href="/quien-soy" className="mb-2 block hover:text-white">Quién soy</a>
           <a href="/contacto" className="mb-2 block hover:text-white">Contacto</a>
-          <HashLink targetId="reserva" className="mb-2 block text-left hover:text-white">Precios</HashLink>
+          <HashLink targetId="reserva" data-event="click_prices" data-location="footer" data-page="landing" data-channel="internal_cta" className="mb-2 block text-left hover:text-white">Precios</HashLink>
           <a href="/politica-privacidad" className="mb-2 block hover:text-white">Política de privacidad</a>
           <a href="/politica-cookies" className="mb-2 block hover:text-white">Política de cookies</a>
           <a href="/aviso-legal" className="mb-2 block hover:text-white">Aviso legal</a>
@@ -562,6 +562,10 @@ function MobileStickyBar() {
         </a>
         <HashLink
           targetId="reserva"
+          data-event="click_prices"
+          data-location="sticky_mobile"
+          data-page="landing"
+          data-channel="internal_cta"
           className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-[#1E2D4A] via-[#26385B] to-[#536341] py-3 font-semibold text-white shadow-[0_16px_34px_rgba(38,56,91,0.20)]"
         >
           Ver precios

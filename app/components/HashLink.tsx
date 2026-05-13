@@ -1,18 +1,19 @@
 "use client"
 
-import { ReactNode } from "react"
+import { ButtonHTMLAttributes, ReactNode } from "react"
 
 export function HashLink({
   targetId,
   className,
   onClick,
   children,
+  ...buttonProps
 }: {
   targetId: string
   className?: string
   onClick?: () => void
   children: ReactNode
-}) {
+} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onClick" | "type">) {
   function handleClick() {
     onClick?.()
     const element = document.getElementById(targetId)
@@ -22,7 +23,7 @@ export function HashLink({
   }
 
   return (
-    <button type="button" onClick={handleClick} className={className}>
+    <button type="button" onClick={handleClick} className={className} {...buttonProps}>
       {children}
     </button>
   )
