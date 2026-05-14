@@ -6,6 +6,7 @@ import { ScrollReveal } from './components/ScrollReveal'
 import './globals.css'
 
 const GTM_ID = 'GTM-KXRQXQ7D'
+const siteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.danielalopezpsicologa.es')
 
 const inter = Inter({
   subsets: ['latin'],
@@ -21,7 +22,7 @@ const cormorant = Cormorant_Garamond({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
+  metadataBase: siteUrl,
   title: 'Daniela López Meléndez | Psicóloga sanitaria en Madrid y online',
   description:
     'Psicóloga General Sanitaria colegiada M-41829 en Madrid. Consulta presencial en Chamartín y terapia online para ansiedad, autoestima, duelo, adolescentes, pareja y familia. Primera sesión desde 40 €.',
@@ -34,6 +35,9 @@ export const metadata: Metadata = {
     ],
     shortcut: '/favicon.ico',
     apple: [{ url: '/apple-touch-icon.png', type: 'image/png', sizes: '180x180' }],
+  },
+  alternates: {
+    canonical: '/',
   },
   openGraph: {
     title: 'Daniela López | Psicóloga en Madrid',
@@ -49,6 +53,7 @@ export const metadata: Metadata = {
     ],
     locale: 'es_ES',
     type: 'website',
+    url: '/',
   },
   twitter: {
     card: 'summary_large_image',
