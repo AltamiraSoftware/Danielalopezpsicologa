@@ -1,13 +1,13 @@
 import Image from "next/image"
 import {
   Brain,
-  Calendar,
   CheckCircle2,
   ExternalLink,
   Heart,
   Home,
   MapPin,
   Phone,
+  Send,
   Sparkles,
   UserCheck,
   Users,
@@ -110,9 +110,9 @@ function HeroSection() {
                 <WhatsAppLogo className="h-5 w-5" />
                 Pedir primera sesión por WhatsApp
               </a>
-              <HashLink targetId="reserva" data-event="click_prices" data-location="hero" data-page="landing" data-channel="internal_cta" className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#B7A6E8]/25 bg-white/48 px-6 py-4 text-base font-semibold text-[#26385B] shadow-[0_14px_34px_rgba(38,56,91,0.10)] backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:bg-white/64">
-                <Calendar className="h-5 w-5" />
-                Ver precios
+              <HashLink targetId="contacto" data-event="click_contact_form" data-location="hero" data-page="landing" data-channel="internal_cta" className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#B7A6E8]/25 bg-white/48 px-6 py-4 text-base font-semibold text-[#26385B] shadow-[0_14px_34px_rgba(38,56,91,0.10)] backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:bg-white/64">
+                <Send className="h-5 w-5" />
+                Dejar mis datos
               </HashLink>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -649,23 +649,15 @@ export default function DanielaLandingPage() {
       <SiteHeader whatsappUrl={whatsappUrl} doctoraliaUrl={doctoraliaUrl} instagramUrl={instagramUrl} />
       <main className="min-h-screen pb-20 sm:pb-0">
         <HeroSection />
-        <EmpathySection />
-        <ProfessionalTrustSection />
-        <LocationSection />
-        <ModalitiesSection />
-        <section className={`${sectionWarm} py-16 lg:py-24`} style={{ overflow: "visible" }}>
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <section className={`${sectionWarm} relative z-20 overflow-visible py-16 pb-32 lg:py-24 lg:pb-40`}>
+          <div className="mx-auto max-w-7xl overflow-visible px-4 sm:px-6 lg:px-8">
             <h2 className="mb-12 text-center font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl text-balance">
               Áreas que podemos trabajar en terapia
             </h2>
             <SpecialtyCards />
           </div>
         </section>
-        <PricingSection />
-        <TrustSection />
-        <HowToStartSection />
-        <ObjectionsSection />
-        <section id="contacto" className={`${sectionSage} py-16 lg:py-24`}>
+        <section id="contacto" className={`${sectionSage} scroll-mt-24 py-16 lg:py-24`}>
           <div className="mx-auto grid max-w-7xl items-start gap-8 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
             <div className="flex flex-col items-center justify-center">
               <h2 className="mb-4 font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl">WhatsApp es la vía más directa</h2>
@@ -690,6 +682,14 @@ export default function DanielaLandingPage() {
             <ContactRequestForm compact />
           </div>
         </section>
+        <LocationSection />
+        <EmpathySection />
+        <ProfessionalTrustSection />
+        <ModalitiesSection />
+        <PricingSection />
+        <TrustSection />
+        <HowToStartSection />
+        <ObjectionsSection />
         <section id="faq" className={`${sectionSage} py-16 lg:py-24`}>
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
             <h2 className="mb-12 text-center font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl">Preguntas frecuentes</h2>
