@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Contacto | Daniela López Meléndez, psicóloga sanitaria en Madrid",
   description:
     "Contacta con Daniela López Meléndez, Psicóloga General Sanitaria en Madrid. Primera sesión por WhatsApp, consulta presencial en Chamartín y terapia online.",
+  alternates: {
+    canonical: "/contacto",
+  },
 }
 
 const whatsappMessage = "Hola Daniela, he visto tu página y me gustaría pedir información sobre una primera sesión."
@@ -37,7 +40,7 @@ export default function ContactPage() {
             Pide información sobre una primera sesión
           </h1>
           <p className="mb-8 text-lg leading-relaxed text-[#5D6680]">
-            WhatsApp es el canal principal para contactar con Daniela. El formulario queda como alternativa secundaria si prefieres dejar tus datos.
+            Puedes escribir por WhatsApp o dejar tus datos en el formulario. Daniela te contactará para resolver dudas, revisar disponibilidad y valorar el mejor formato para empezar.
           </p>
 
           <div className="grid gap-4">

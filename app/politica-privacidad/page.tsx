@@ -3,6 +3,9 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Política de privacidad | Daniela López Psicóloga",
   description: "Información sobre el tratamiento de datos personales en la web de Daniela López Psicóloga.",
+  alternates: {
+    canonical: "/politica-privacidad",
+  },
 }
 
 const sections = [

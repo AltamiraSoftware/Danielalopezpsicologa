@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import { Inter, Cormorant_Garamond } from 'next/font/google'
+import { AnalyticsEvents } from './components/AnalyticsEvents'
 import { CookieConsent } from './components/CookieConsent'
 import { ScrollReveal } from './components/ScrollReveal'
 import './globals.css'
@@ -35,9 +36,6 @@ export const metadata: Metadata = {
     ],
     shortcut: '/favicon.ico',
     apple: [{ url: '/apple-touch-icon.png', type: 'image/png', sizes: '180x180' }],
-  },
-  alternates: {
-    canonical: '/',
   },
   openGraph: {
     title: 'Daniela López | Psicóloga en Madrid',
@@ -108,6 +106,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
+        <AnalyticsEvents />
         {children}
         <ScrollReveal />
         <CookieConsent />

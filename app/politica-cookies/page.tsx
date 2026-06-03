@@ -3,6 +3,9 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Política de cookies | Daniela López Psicóloga",
   description: "Información sobre el uso de cookies y tecnologías similares en la web de Daniela López Psicóloga.",
+  alternates: {
+    canonical: "/politica-cookies",
+  },
 }
 
 const sections = [

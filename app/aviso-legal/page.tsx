@@ -3,6 +3,9 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Aviso legal | Daniela López Psicóloga",
   description: "Información legal de la web de Daniela López Psicóloga.",
+  alternates: {
+    canonical: "/aviso-legal",
+  },
 }
 
 const sections = [

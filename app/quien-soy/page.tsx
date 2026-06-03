@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Quién soy | Daniela López Meléndez, psicóloga sanitaria en Madrid",
   description:
     "Conoce a Daniela López Meléndez, Psicóloga General Sanitaria en Madrid. Consulta presencial en Chamartín y terapia online para adultos, adolescentes, infancia y parejas.",
+  alternates: {
+    canonical: "/quien-soy",
+  },
 }
 
 const card = "rounded-[30px] border border-white/70 bg-white/42 p-6 shadow-[0_22px_60px_rgba(38,56,91,0.12)] backdrop-blur-xl"

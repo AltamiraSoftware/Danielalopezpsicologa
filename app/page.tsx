@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import Image from "next/image"
 import {
   Brain,
@@ -30,6 +31,12 @@ const doctoraliaUrl = "https://www.doctoralia.es/daniela-lopez-melendez/psicolog
 const instagramUrl = "https://www.instagram.com/psico.danilopez/"
 const address = "C. de Marcenado, 14, Despacho 2, Chamartín, 28002 Madrid"
 const mapQuery = encodeURIComponent("C. de Marcenado, 14, Despacho 2, Chamartín, 28002 Madrid")
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+}
 
 const sectionHero =
   "relative overflow-hidden bg-[radial-gradient(880px_420px_at_12%_8%,rgba(164,190,123,0.14)_0%,rgba(164,190,123,0)_58%),radial-gradient(780px_380px_at_88%_14%,rgba(183,166,232,0.20)_0%,rgba(183,166,232,0)_58%),linear-gradient(180deg,#FBF8FF_0%,#F4F0FB_46%,#F1F5EA_100%)]"
@@ -100,15 +107,15 @@ function HeroSection() {
               Psicóloga General Sanitaria colegiada M-41829
             </div>
             <h1 className="mb-5 max-w-3xl font-serif text-4xl font-semibold leading-[1.04] text-[#26385B] sm:text-5xl lg:text-6xl text-balance">
-              Psicóloga sanitaria en Madrid para ansiedad, autoestima y terapia infanto-juvenil
+              Psicóloga sanitaria en Chamartín y online para empezar terapia con calma
             </h1>
             <p className="mb-7 max-w-2xl text-lg leading-relaxed text-[#5D6680] sm:text-xl text-pretty">
-              Soy Daniela López Meléndez, Psicóloga General Sanitaria colegiada M-41829. Atiendo en consulta presencial en Chamartín y online, con una primera sesión desde 40 € para valorar tu caso y orientarte con calma.
+              Soy Daniela López Meléndez, Psicóloga General Sanitaria colegiada M-41829. Te ayudo a ordenar lo que estás viviendo y valorar el mejor punto de partida, con una primera sesión desde 40 € en consulta presencial u online.
             </p>
             <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
               <a href={whatsappUrl} data-event="click_whatsapp" data-location="hero" data-page="landing" data-channel="whatsapp" className={`inline-flex items-center justify-center gap-2 rounded-xl px-6 py-4 text-base font-bold transition-all hover:-translate-y-0.5 ${ctaGradient}`}>
                 <WhatsAppLogo className="h-5 w-5" />
-                Pedir primera sesión por WhatsApp
+                Consultar disponibilidad
               </a>
               <HashLink targetId="contacto" data-event="click_contact_form" data-location="hero" data-page="landing" data-channel="internal_cta" className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#B7A6E8]/25 bg-white/48 px-6 py-4 text-base font-semibold text-[#26385B] shadow-[0_14px_34px_rgba(38,56,91,0.10)] backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:bg-white/64">
                 <Send className="h-5 w-5" />
@@ -116,7 +123,7 @@ function HeroSection() {
               </HashLink>
             </div>
             <div className="flex flex-wrap gap-3">
-              {["Primera sesión desde 40 €", "Consulta presencial en Chamartín y online", "Consulta independiente dentro del centro Psicotep"].map((badge) => (
+              {["Primera sesión desde 40 €", "Consulta presencial en Chamartín y online", "Consulta independiente"].map((badge) => (
                 <span key={badge} className={badgeGlass}>{badge}</span>
               ))}
             </div>
@@ -135,6 +142,36 @@ function HeroSection() {
             </div>
           </div>
         </div>
+      </div>
+    </section>
+  )
+}
+
+function ContactSection() {
+  return (
+    <section id="contacto" className={`${sectionSage} scroll-mt-24 py-16 lg:py-24`}>
+      <div className="mx-auto grid max-w-7xl items-start gap-8 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+        <div className="flex flex-col items-center justify-center">
+          <h2 className="mb-4 font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl">Cuéntame qué necesitas y te contacto</h2>
+          <p className="mb-6 text-lg leading-relaxed text-[#5D6680]">
+            Puedes escribir por WhatsApp o dejar tus datos en el formulario. Te responderé para resolver dudas, revisar disponibilidad y valorar si una primera sesión encaja contigo.
+          </p>
+          <div className="mt-8 overflow-hidden rounded-[30px] border border-white/70 bg-white/30 shadow-[0_24px_60px_rgba(38,56,91,0.14)]">
+            <Image
+              src="/consulta-psicologia-chamartin-daniela-lopez.webp"
+              alt="Daniela López Meléndez en su despacho de psicología en Chamartín"
+              width={1600}
+              height={2000}
+              sizes="(min-width: 1024px) 40vw, 100vw"
+              className="aspect-[4/3] w-full object-cover object-center"
+            />
+          </div>
+          <a href={whatsappUrl} data-event="click_whatsapp" data-location="contact_block" data-page="landing" data-channel="whatsapp" className={`mt-6 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-4 font-bold transition-all hover:-translate-y-0.5 ${ctaGradient}`}>
+            <WhatsAppLogo className="h-5 w-5" />
+            Escribir por WhatsApp
+          </a>
+        </div>
+        <ContactRequestForm compact />
       </div>
     </section>
   )
@@ -649,37 +686,13 @@ export default function DanielaLandingPage() {
       <SiteHeader whatsappUrl={whatsappUrl} doctoraliaUrl={doctoraliaUrl} instagramUrl={instagramUrl} />
       <main className="min-h-screen pb-20 sm:pb-0">
         <HeroSection />
+        <ContactSection />
         <section className={`${sectionWarm} relative z-20 overflow-visible py-16 pb-32 lg:py-24 lg:pb-40`}>
           <div className="mx-auto max-w-7xl overflow-visible px-4 sm:px-6 lg:px-8">
             <h2 className="mb-12 text-center font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl text-balance">
               Áreas que podemos trabajar en terapia
             </h2>
             <SpecialtyCards />
-          </div>
-        </section>
-        <section id="contacto" className={`${sectionSage} scroll-mt-24 py-16 lg:py-24`}>
-          <div className="mx-auto grid max-w-7xl items-start gap-8 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
-            <div className="flex flex-col items-center justify-center">
-              <h2 className="mb-4 font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl">WhatsApp es la vía más directa</h2>
-              <p className="mb-6 text-lg leading-relaxed text-[#5D6680]">
-                Si quieres pedir información sobre una primera sesión, el canal principal es WhatsApp. El formulario queda como alternativa secundaria.
-              </p>
-              <div className="mt-8 overflow-hidden rounded-[30px] border border-white/70 bg-white/30 shadow-[0_24px_60px_rgba(38,56,91,0.14)]">
-                <Image
-                  src="/consulta-psicologia-chamartin-daniela-lopez.webp"
-                  alt="Daniela López Meléndez en su despacho de psicología en Chamartín"
-                  width={1600}
-                  height={2000}
-                  sizes="(min-width: 1024px) 40vw, 100vw"
-                  className="aspect-[4/3] w-full object-cover object-center"
-                />
-              </div>
-              <a href={whatsappUrl} data-event="click_whatsapp" data-location="contact_block" data-page="landing" data-channel="whatsapp" className={`mt-6 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-4 font-bold transition-all hover:-translate-y-0.5 ${ctaGradient}`}>
-                <WhatsAppLogo className="h-5 w-5" />
-                Hablar por WhatsApp
-              </a>
-            </div>
-            <ContactRequestForm compact />
           </div>
         </section>
         <LocationSection />

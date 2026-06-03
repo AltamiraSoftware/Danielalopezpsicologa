@@ -3,12 +3,17 @@ import { Resend } from "resend"
 
 type ContactPayload = {
   name?: string
-  contact?: string
+  phone?: string
+  email?: string
   contactPreference?: string
   modality?: string
   reason?: string
   privacyAccepted?: boolean
   source?: string
+}
+
+function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 }
 
 export async function POST(request: Request) {
@@ -21,9 +26,10 @@ export async function POST(request: Request) {
   }
 
   const name = payload.name?.trim()
-  const contact = payload.contact?.trim()
+  const phone = payload.phone?.trim()
+  const email = payload.email?.trim()
 
-  if (!name || !contact || payload.privacyAccepted !== true) {
+  if (!name || !phone || !email || !isValidEmail(email) || payload.privacyAccepted !== true) {
     return NextResponse.json({ ok: false }, { status: 400 })
   }
 
@@ -55,7 +61,8 @@ export async function POST(request: Request) {
         "Nueva solicitud desde la landing de Daniela López Meléndez.",
         "",
         `Nombre: ${name}`,
-        `Contacto: ${contact}`,
+        `Teléfono: ${phone}`,
+        `Email: ${email}`,
         `Preferencia de contacto: ${payload.contactPreference ?? "whatsapp"}`,
         `Modalidad preferida: ${payload.modality ?? "me_da_igual"}`,
         `Motivo de consulta: ${payload.reason?.trim() || "No indicado"}`,
