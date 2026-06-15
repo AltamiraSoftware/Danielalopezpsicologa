@@ -14,7 +14,8 @@ const sections = [
     bullets: [
       "Nombre completo: María Daniela López Meléndez",
       "NIF: Y6542205F",
-      "Correo electrónico: [PENDIENTE: EMAIL LEGAL]",
+      "Correo electrónico: bivalentesalud@gmail.com",
+      "Teléfono de contacto: +34 614 412 183",
       "Colegiación profesional: M-41829",
       "Dirección profesional: C. de Marcenado, 14, Despacho 2, Chamartín, 28002 Madrid",
     ],
@@ -68,7 +69,7 @@ const sections = [
   {
     title: "8. Derechos de las personas interesadas",
     paragraphs: [
-      "La persona interesada podrá ejercer sus derechos mediante solicitud escrita dirigida a la profesional responsable a través del correo electrónico [PENDIENTE: EMAIL LEGAL].",
+      "La persona interesada podrá ejercer sus derechos mediante solicitud escrita dirigida a la profesional responsable a través del correo electrónico bivalentesalud@gmail.com.",
       "Asimismo, podrá presentar una reclamación ante la Agencia Española de Protección de Datos (www.aepd.es) si considera que el tratamiento no se ajusta a la normativa vigente.",
     ],
     bullets: ["Acceso", "Rectificación", "Supresión", "Limitación del tratamiento", "Oposición", "Portabilidad"],

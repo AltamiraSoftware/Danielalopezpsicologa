@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next"
+import { treatmentRoutes } from "./data/treatments"
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.danielalopezpsicologa.es"
 
@@ -14,10 +15,18 @@ const routes = [
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()
 
-  return routes.map((route) => ({
-    url: `${siteUrl}${route}`,
-    lastModified,
-    changeFrequency: route === "" ? "weekly" : "monthly",
-    priority: route === "" ? 1 : route === "/contacto" ? 0.8 : 0.6,
-  }))
+  return [
+    ...routes.map((route) => ({
+      url: `${siteUrl}${route}`,
+      lastModified,
+      changeFrequency: route === "" ? ("weekly" as const) : ("monthly" as const),
+      priority: route === "" ? 1 : route === "/contacto" ? 0.8 : 0.6,
+    })),
+    ...treatmentRoutes.map((route) => ({
+      url: `${siteUrl}${route}`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    })),
+  ]
 }

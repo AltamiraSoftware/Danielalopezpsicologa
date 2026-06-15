@@ -10,6 +10,14 @@ export const metadata: Metadata = {
 
 const sections = [
   {
+    title: "Responsable y contacto",
+    bullets: [
+      "Responsable: María Daniela López Meléndez.",
+      "Correo electrónico: bivalentesalud@gmail.com.",
+      "Teléfono de contacto: +34 614 412 183.",
+    ],
+  },
+  {
     title: "1. Qué son las cookies",
     paragraphs: [
       "Las cookies son pequeños archivos de texto que se almacenan en el dispositivo del usuario cuando visita una página web. Su finalidad puede ser técnica, analítica, publicitaria o de personalización, dependiendo de su función.",

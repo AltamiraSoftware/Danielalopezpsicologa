@@ -22,6 +22,8 @@ import { Header as SiteHeader } from "./components/Header"
 import { SpecialtyCards } from "./components/SpecialtyCards"
 import { CookieSettingsButton } from "./components/CookieSettingsButton"
 import { GoogleMapPreview } from "./components/GoogleMapPreview"
+import { LocationSection as SharedLocationSection } from "./components/LocationSection"
+import { ModalitySection } from "./components/ModalitySection"
 import { faqs } from "./data/faq"
 
 const whatsappMessage =
@@ -687,18 +689,18 @@ export default function DanielaLandingPage() {
       <main className="min-h-screen pb-20 sm:pb-0">
         <HeroSection />
         <ContactSection />
-        <section className={`${sectionWarm} relative z-20 overflow-visible py-16 pb-32 lg:py-24 lg:pb-40`}>
-          <div className="mx-auto max-w-7xl overflow-visible px-4 sm:px-6 lg:px-8">
+        <section className={`${sectionWarm} py-16 lg:py-24`}>
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <h2 className="mb-12 text-center font-serif text-2xl font-semibold text-[#26385B] sm:text-3xl lg:text-4xl text-balance">
               Áreas que podemos trabajar en terapia
             </h2>
             <SpecialtyCards />
           </div>
         </section>
-        <LocationSection />
+        <SharedLocationSection page="landing" whatsappHref={whatsappUrl} />
         <EmpathySection />
         <ProfessionalTrustSection />
-        <ModalitiesSection />
+        <ModalitySection />
         <PricingSection />
         <TrustSection />
         <HowToStartSection />

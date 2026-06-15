@@ -1,10 +1,11 @@
 "use client"
 
 import Image from "next/image"
-import { Menu, X } from "lucide-react"
+import { ChevronDown, Menu, X } from "lucide-react"
 import { useState } from "react"
 import { DoctoraliaLogo, InstagramLogo, WhatsAppLogo } from "./BrandIcons"
 import { HashLink } from "./HashLink"
+import { treatments } from "../data/treatments"
 
 type HeaderProps = {
   whatsappUrl: string
@@ -36,6 +37,25 @@ export function Header({ whatsappUrl, doctoraliaUrl, instagramUrl }: HeaderProps
 
         <nav className="hidden items-center gap-5 text-sm font-semibold text-white/72 md:flex">
           <a href="/quien-soy" className="transition hover:text-white">Quién soy</a>
+          <div className="group relative">
+            <button type="button" className="inline-flex items-center gap-1 transition hover:text-white">
+              Tratamientos
+              <ChevronDown className="h-4 w-4 transition group-hover:rotate-180" />
+            </button>
+            <div className="invisible absolute left-1/2 top-full z-50 mt-3 w-[320px] -translate-x-1/2 rounded-[24px] border border-white/18 bg-[#26385B]/96 p-3 opacity-0 shadow-[0_22px_54px_rgba(27,41,71,0.28)] backdrop-blur-xl transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+              <div className="grid gap-1">
+                {treatments.map((treatment) => (
+                  <a
+                    key={treatment.slug}
+                    href={treatment.path}
+                    className="rounded-2xl px-4 py-3 text-white/78 transition hover:bg-white/10 hover:text-white"
+                  >
+                    {treatment.cardTitle}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
           <HashLink targetId="reserva" data-event="click_prices" data-location="header_nav" data-page="landing" data-channel="internal_cta" className="transition hover:text-white">Precios</HashLink>
           <HashLink targetId="faq" className="transition hover:text-white">Dudas</HashLink>
           <a href="/contacto" className="transition hover:text-white">Contacto</a>
@@ -71,6 +91,21 @@ export function Header({ whatsappUrl, doctoraliaUrl, instagramUrl }: HeaderProps
       >
         <nav className="grid gap-2 text-base font-semibold">
           <a href="/quien-soy" onClick={closeMenu} className="rounded-2xl px-4 py-3 text-white/84 transition hover:bg-white/10 hover:text-white">Quién soy</a>
+          <div className="rounded-2xl bg-white/5 px-4 py-3">
+            <p className="mb-2 text-sm font-bold uppercase tracking-[0.14em] text-white/54">Tratamientos</p>
+            <div className="grid gap-1">
+              {treatments.map((treatment) => (
+                <a
+                  key={treatment.slug}
+                  href={treatment.path}
+                  onClick={closeMenu}
+                  className="rounded-xl py-2 text-sm text-white/84 transition hover:bg-white/10 hover:text-white"
+                >
+                  {treatment.cardTitle}
+                </a>
+              ))}
+            </div>
+          </div>
           <HashLink targetId="reserva" data-event="click_prices" data-location="header_mobile_nav" data-page="landing" data-channel="internal_cta" onClick={closeMenu} className="rounded-2xl px-4 py-3 text-left text-white/84 transition hover:bg-white/10 hover:text-white">Precios</HashLink>
           <HashLink targetId="faq" onClick={closeMenu} className="rounded-2xl px-4 py-3 text-left text-white/84 transition hover:bg-white/10 hover:text-white">Dudas</HashLink>
           <a href="/contacto" onClick={closeMenu} className="rounded-2xl px-4 py-3 text-white/84 transition hover:bg-white/10 hover:text-white">Contacto</a>
