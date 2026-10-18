@@ -3,6 +3,7 @@ node_modules/
 
 # next.js
 .next/
+.next*
 out/
 tsconfig.tsbuildinfo
 
@@ -36,3 +37,22 @@ pnpm-debug.log*
 Thumbs.db
 .idea/
 .vscode/
+
+# material de trabajo y herramientas de IA (no forma parte del sitio)
+design-system/
+.codex/
+.hermes/
+.claude/
+.cursor/
+.cursorrules
+.aider*
+.continue/
+AGENTS.md
+CLAUDE.md
+.copilot-instructions.md
+.github/copilot-instructions.md
+prompts/
+notes/
+scratch/
+*.prompt.md
+*.bak
