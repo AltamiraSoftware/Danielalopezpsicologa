@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { openGraphMetadata } from "../data/seo"
 
 export const metadata: Metadata = {
   title: "Aviso legal | Daniela López Psicóloga",
@@ -6,6 +7,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/aviso-legal",
   },
+  openGraph: openGraphMetadata({
+    title: "Aviso legal | Daniela López Psicóloga",
+    description: "Información legal de la web de Daniela López Psicóloga.",
+    path: "/aviso-legal",
+  }),
 }
 
 const sections = [

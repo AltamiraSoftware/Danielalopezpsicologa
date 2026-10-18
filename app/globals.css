@@ -1,8 +1,63 @@
 @import 'tailwindcss';
 
+/* ------------------------------------------------------------------
+   Design tokens — paleta original (lavanda/salvia) tokenizada y
+   corregida en contraste. Estructura, tipografía y motion: design-system.
+   ------------------------------------------------------------------ */
+@theme {
+  /* Marca */
+  --color-marino: #26385b;
+  --color-marino-900: #1b2947;
+  --color-marino-800: #223252;
+  --color-lavanda: #b7a6e8;
+  --color-lavanda-600: #6f5eae;
+  --color-lavanda-100: #f4f0fb;
+  --color-salvia: #7f9256;
+  --color-salvia-600: #5f7340;
+  --color-salvia-100: #eef3e2;
+  --color-crema: #fffefa;
+  --color-crema-2: #fcfaf4;
+  --color-arena: #f1f5ea;
+  --color-tinta: #1e2a44;
+  --color-blanco: #ffffff;
+
+  /* Semánticos */
+  --color-texto-2: #4a5570;
+  --color-texto-3: #6b7490;
+  --color-texto-inv-2: #d7deeb;
+  --color-linea: #e7e3ee;
+  --color-linea-fuerte: #ddd8e8;
+  --color-exito: #5f7340;
+  --color-error: #8a2e2e;
+  --color-acento: #6f5eae;
+  --color-whatsapp: #25d366;
+  --color-whatsapp-strong: #1da851; /* icono blanco: 3,2:1 */
+  --color-whatsapp-600: #1ebe5b;
+
+  /* Radios */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-pill: 999px;
+  --radius-icon: 22%;
+
+  /* Sombras (mínimas, la marca es plana) */
+  --shadow-1: 0 1px 2px rgb(30 42 68 / 0.05), 0 6px 18px -12px rgb(30 42 68 / 0.18);
+  --shadow-2: 0 8px 24px -12px rgb(30 42 68 / 0.22);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+  --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+/* Fuentes autoalojadas vía next/font (Jost, Source Serif 4, Figtree) */
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback';
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --font-brand: var(--font-jost), 'Futura', system-ui, sans-serif;
+  --font-serif: var(--font-source-serif), Georgia, serif;
+  --font-sans: var(--font-figtree), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
 }
 
 @layer base {
@@ -10,43 +65,484 @@
     box-sizing: border-box;
   }
 
+  :root {
+    interpolate-size: allow-keywords;
+  }
+
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   body {
     margin: 0;
-    background: #fffefa;
-    color: #26385b;
+    background: var(--color-crema);
+    color: var(--color-tinta);
+    font-family: var(--font-figtree), system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  svg {
+    display: block;
+    flex: none;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-source-serif), Georgia, serif;
+    font-weight: 400;
+    color: var(--color-marino);
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 3px var(--color-crema),
+      0 0 0 5px var(--color-marino);
+    border-radius: var(--radius-sm);
+  }
+
+  ::selection {
+    background: var(--color-lavanda-100);
+    color: var(--color-marino);
   }
 }
 
 @layer utilities {
+  /* Fondos de sección: lavanda y salvia muy suaves, sobre crema */
+  .section-lavanda {
+    background:
+      radial-gradient(
+        70% 55% at 8% 0%,
+        color-mix(in oklab, var(--color-lavanda) 22%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(
+        55% 50% at 100% 100%,
+        color-mix(in oklab, var(--color-salvia) 20%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(
+        45% 40% at 50% 110%,
+        color-mix(in oklab, var(--color-lavanda) 10%, transparent),
+        transparent 70%
+      ),
+      var(--color-crema);
+  }
+
+  .section-salvia {
+    background:
+      radial-gradient(
+        60% 55% at 92% 0%,
+        color-mix(in oklab, var(--color-lavanda) 14%, transparent),
+        transparent 70%
+      ),
+      linear-gradient(180deg, var(--color-crema) 0%, var(--color-salvia-100) 100%);
+  }
+
+  .section-cta {
+    background:
+      radial-gradient(
+        60% 60% at 10% 0%,
+        color-mix(in oklab, var(--color-salvia) 32%, transparent),
+        transparent 65%
+      ),
+      linear-gradient(
+        135deg,
+        var(--color-marino-900) 0%,
+        var(--color-marino) 62%,
+        color-mix(in oklab, var(--color-marino) 80%, var(--color-salvia)) 100%
+      );
+  }
+
+  /* Logotipo: texto en Jost, minúsculas, punto de marca */
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.32em;
+    color: var(--color-marino);
+    text-decoration: none;
+    font-family: var(--font-jost), 'Futura', system-ui, sans-serif;
+    line-height: 1;
+  }
+
+  .logo__name {
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  .logo__dot {
+    width: 0.18em;
+    height: 0.18em;
+    margin-top: 0.28em;
+    flex: none;
+    border-radius: 999px;
+    background: var(--color-lavanda-600);
+  }
+
+  .logo__desc {
+    font-weight: 300;
+    font-size: 0.45em;
+    margin-top: 0.4em;
+  }
+
+  .logo--inverse {
+    color: var(--color-crema);
+  }
+
+  .logo--inverse .logo__dot {
+    background: var(--color-lavanda);
+  }
+
+  /* Superficies de cristal: dan cuerpo a tarjetas y bloques */
+  .glass {
+    background: color-mix(in oklab, #ffffff 76%, transparent);
+    backdrop-filter: blur(14px) saturate(1.12);
+    -webkit-backdrop-filter: blur(14px) saturate(1.12);
+    border: 1px solid color-mix(in oklab, var(--color-lavanda) 30%, #ffffff);
+    box-shadow: 0 22px 48px -32px rgb(30 42 68 / 0.45);
+  }
+
+  .glass-hover {
+    transition:
+      transform 320ms var(--ease-out),
+      border-color 200ms var(--ease-soft),
+      box-shadow 320ms var(--ease-out);
+  }
+
+  .glass-hover:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in oklab, var(--color-lavanda) 70%, white);
+    box-shadow: 0 30px 60px -32px rgb(30 42 68 / 0.52);
+  }
+
+  .dark-section {
+    background:
+      radial-gradient(90% 120% at 100% 0%, color-mix(in oklab, var(--color-salvia) 38%, transparent), transparent 62%),
+      radial-gradient(70% 90% at 0% 100%, color-mix(in oklab, var(--color-lavanda) 18%, transparent), transparent 60%),
+      linear-gradient(160deg, var(--color-marino-900) 0%, var(--color-marino) 58%, color-mix(in oklab, var(--color-marino) 84%, var(--color-lavanda)) 100%);
+  }
+
+  .icon-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: linear-gradient(150deg, #ffffff 0%, var(--color-lavanda-100) 58%, var(--color-salvia-100) 100%);
+    box-shadow:
+      inset 0 0 0 1px rgb(255 255 255 / 0.75),
+      0 12px 26px -18px rgb(38 56 91 / 0.55);
+  }
+
+  .contact-glow {
+    background:
+      radial-gradient(780px 440px at 8% 12%, color-mix(in oklab, var(--color-salvia) 24%, transparent), transparent 60%),
+      radial-gradient(640px 380px at 94% 88%, color-mix(in oklab, var(--color-lavanda) 18%, transparent), transparent 58%);
+  }
+
+  .pricing-glow {
+    background: radial-gradient(760px 380px at 88% 0%, color-mix(in oklab, var(--color-salvia) 24%, transparent), transparent 62%);
+  }
+
+  .featured-glow {
+    background: radial-gradient(circle, color-mix(in oklab, var(--color-lavanda) 38%, transparent), transparent 68%);
+  }
+
+  /* Insignia de marca: el icono original, recortado en círculo,
+     con anillo tenue para integrarlo sobre el marino */
+  .brand-badge {
+    display: block;
+    flex: none;
+    overflow: hidden;
+    border-radius: 20%;
+    line-height: 0;
+    box-shadow:
+      0 0 0 2px color-mix(in oklab, var(--color-lavanda) 70%, white),
+      0 0 0 6px rgb(255 255 255 / 0.10),
+      0 8px 18px -10px rgb(0 0 0 / 0.45);
+  }
+
+  .brand-badge svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Antetítulo */
+  .eyebrow {
+    font-family: var(--font-jost), 'Futura', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 0.8125rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-acento);
+  }
+
+  /* Botones */
+  .field-label {
+    display: grid;
+    gap: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-marino);
+  }
+
+  .field {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid var(--color-linea);
+    background: color-mix(in oklab, #ffffff 88%, transparent);
+    padding: 12px 16px;
+    font-family: var(--font-figtree), system-ui, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-tinta);
+    outline: none;
+    transition:
+      border-color 200ms var(--ease-soft),
+      box-shadow 200ms var(--ease-soft);
+  }
+
+  .field::placeholder {
+    color: color-mix(in oklab, var(--color-texto-3) 62%, white);
+  }
+
+  .field:focus {
+    border-color: var(--color-lavanda-600);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-lavanda) 30%, transparent);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 48px;
+    padding: 0 22px;
+    border: 1.5px solid transparent;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-jost), 'Futura', system-ui, sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      background-color 200ms var(--ease-soft),
+      color 200ms var(--ease-soft),
+      border-color 200ms var(--ease-soft),
+      transform 120ms var(--ease-soft);
+  }
+
+  .btn:active {
+    transform: scale(0.98);
+  }
+
+  .btn--primary {
+    border-color: color-mix(in oklab, var(--color-lavanda) 55%, var(--color-marino));
+    background: var(--color-marino);
+    color: #ffffff;
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-lavanda) 20%, transparent);
+  }
+
+  .btn--primary:hover {
+    border-color: var(--color-lavanda);
+    background: color-mix(in oklab, var(--color-marino) 88%, white);
+    color: #ffffff;
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-lavanda) 28%, transparent);
+  }
+
+  /* WhatsApp: verde de marca con texto marino (contraste 5,5:1; blanco no pasa AA) */
+  .btn--whatsapp {
+    border-color: color-mix(in oklab, #128c4b 55%, var(--color-whatsapp));
+    background: var(--color-whatsapp);
+    color: #ffffff;
+    box-shadow: 0 0 0 3px rgb(37 211 102 / 0.18);
+  }
+
+  .btn--whatsapp:hover {
+    border-color: #128c4b;
+    background: var(--color-whatsapp-600);
+    color: #ffffff;
+  }
+
+  /* Secundario: mismo tratamiento que el botón de enviar (marino + blanco) */
+  .btn--secondary {
+    border-color: color-mix(in oklab, var(--color-salvia) 55%, var(--color-marino));
+    background: var(--color-marino);
+    color: #ffffff;
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-salvia) 20%, transparent);
+  }
+
+  .btn--secondary:hover {
+    background: color-mix(in oklab, var(--color-marino) 88%, white);
+    border-color: var(--color-salvia);
+    color: #ffffff;
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-salvia) 28%, transparent);
+  }
+
+  .btn--inverse {
+    background: var(--color-crema);
+    color: var(--color-marino);
+  }
+
+  .btn--inverse:hover {
+    background: var(--color-lavanda-100);
+    color: var(--color-marino);
+  }
+
+  .btn--ghost-inverse {
+    border-color: var(--color-crema);
+    background: transparent;
+    color: var(--color-crema);
+  }
+
+  .btn--ghost-inverse:hover {
+    background: var(--color-crema);
+    color: var(--color-marino);
+  }
+
+  .btn--sm {
+    min-height: 40px;
+    padding: 0 16px;
+    font-size: 0.875rem;
+    gap: 6px;
+  }
+
+  .btn--link {
+    min-height: 44px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--color-marino);
+  }
+
+  .btn--link .arrow {
+    transition: transform 200ms var(--ease-soft);
+  }
+
+  .btn--link:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  /* Aviso de crisis: obligatorio, visible sin interacción y sin animar */
+  .crisis-note {
+    border-radius: var(--radius-lg);
+    background: var(--color-marino-900);
+    color: var(--color-crema);
+    padding: 20px 24px;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .crisis-note a {
+    color: var(--color-lavanda);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  /* Cabecera: azul marino con degradado suave de marca */
+  .site-header {
+    background: linear-gradient(
+      135deg,
+      var(--color-marino-900) 0%,
+      var(--color-marino) 58%,
+      color-mix(in oklab, var(--color-marino) 86%, var(--color-lavanda)) 100%
+    );
+    border-bottom: 1px solid transparent;
+    transition: border-color 200ms var(--ease-out);
+  }
+
+  .site-header[data-scrolled='true'] {
+    border-bottom-color: rgb(255 255 255 / 0.16);
+  }
+
+  /* Coreografía del hero (MOTION.md §4) */
+  @keyframes dl-rise {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes dl-mask {
+    from {
+      clip-path: inset(12% 0 0 0);
+      opacity: 0.92;
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+      opacity: 1;
+    }
+  }
+
+  .hero-in {
+    animation: dl-rise 560ms var(--ease-out) both;
+  }
+
+  .hero-mask {
+    animation: dl-mask 900ms var(--ease-out) both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-in,
+    .hero-mask {
+      animation: none;
+    }
+  }
+
+  /* Palabra a palabra en el H1 del hero */
+  .hero-word {
+    display: inline-block;
+    animation: dl-rise 560ms var(--ease-out) both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-word {
+      animation: none;
+    }
+  }
+
+  /* Acordeón nativo (MOTION.md §5.4) */
+  details.faq-item::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition:
+      block-size 320ms var(--ease-in-out),
+      content-visibility 320ms allow-discrete;
+  }
+
+  details.faq-item[open]::details-content {
+    block-size: auto;
+  }
+
+  /* Reveal al hacer scroll */
   [data-reveal='true'] {
     opacity: 0;
-    transform: translateY(22px) scale(0.985);
+    transform: translateY(16px);
     transition:
-      opacity 640ms ease,
-      transform 640ms cubic-bezier(0.2, 0.8, 0.2, 1),
-      border-color 220ms ease,
-      box-shadow 220ms ease,
-      background-color 220ms ease;
+      opacity 560ms var(--ease-out),
+      transform 560ms var(--ease-out);
     transition-delay: var(--reveal-delay, 0ms);
     will-change: opacity, transform;
   }
 
   [data-reveal='true'][data-reveal-visible='true'] {
     opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-
-  main > section[data-reveal='true'] {
-    transform: translateY(28px);
-  }
-
-  main article[data-reveal='true'],
-  main form[data-reveal='true'] {
-    transform: translateY(18px) scale(0.985);
+    transform: none;
   }
 
   @media (prefers-reduced-motion: reduce) {

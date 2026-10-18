@@ -1,30 +1,41 @@
 "use client"
 
-import { ButtonHTMLAttributes, ReactNode } from "react"
+import { usePathname } from "next/navigation"
+import { AnchorHTMLAttributes, MouseEvent, ReactNode } from "react"
 
 export function HashLink({
   targetId,
   className,
   onClick,
   children,
-  ...buttonProps
+  ...linkProps
 }: {
   targetId: string
   className?: string
   onClick?: () => void
   children: ReactNode
-} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onClick" | "type">) {
-  function handleClick() {
+} & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "onClick" | "href">) {
+  const pathname = usePathname()
+  const isHome = pathname === "/"
+
+  function handleClick(event: MouseEvent<HTMLAnchorElement>) {
+    event.preventDefault()
     onClick?.()
+
     const element = document.getElementById(targetId)
-    if (!element) return
+
+    if (!element) {
+      window.location.href = `/#${targetId}`
+      return
+    }
 
     element.scrollIntoView({ behavior: "smooth", block: "start" })
+    window.history.replaceState(null, "", `#${targetId}`)
   }
 
   return (
-    <button type="button" onClick={handleClick} className={className} {...buttonProps}>
+    <a href={isHome ? `#${targetId}` : `/#${targetId}`} onClick={handleClick} className={className} {...linkProps}>
       {children}
-    </button>
+    </a>
   )
 }

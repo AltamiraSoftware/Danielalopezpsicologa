@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { openGraphMetadata } from "../data/seo"
 
 export const metadata: Metadata = {
   title: "Política de cookies | Daniela López Psicóloga",
@@ -6,6 +7,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/politica-cookies",
   },
+  openGraph: openGraphMetadata({
+    title: "Política de cookies | Daniela López Psicóloga",
+    description: "Información sobre el uso de cookies y tecnologías similares en la web de Daniela López Psicóloga.",
+    path: "/politica-cookies",
+  }),
 }
 
 const sections = [

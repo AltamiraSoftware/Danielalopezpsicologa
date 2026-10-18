@@ -1,0 +1,56 @@
+/* Requiere tokens/tokens.css. Los estados ocultos solo aplican con html.js-motion. */
+.js-motion [data-reveal] {
+  opacity: 0;
+  translate: 0 var(--distance-md);
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    translate var(--dur-slow) var(--ease-out);
+  transition-delay: calc(var(--i, 0) * var(--stagger) + var(--delay, 0ms));
+}
+.js-motion [data-reveal="fade"] { translate: none; }
+.js-motion [data-reveal].is-in { opacity: 1; translate: 0 0; }
+
+/* Titulares por líneas */
+.js-motion [data-reveal="lines"] { opacity: 1; translate: none; }
+[data-reveal="lines"] .dl-w { display: inline-block; overflow: clip; overflow-clip-margin: 0.1em; vertical-align: top; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+[data-reveal="lines"] .dl-w > span { display: inline-block; }
+.js-motion [data-reveal="lines"] .dl-w > span {
+  translate: 0 105%;
+  transition: translate var(--dur-slower) var(--ease-out);
+  transition-delay: calc(var(--line, 0) * 80ms + var(--delay, 0ms));
+}
+.js-motion [data-reveal="lines"].is-in .dl-w > span { translate: 0 0; }
+
+/* Imágenes con máscara */
+.js-motion [data-reveal="mask"] { opacity: 1; translate: none; clip-path: inset(8% 0 0 0); transition: clip-path var(--dur-slower) var(--ease-out); transition-delay: var(--delay, 0ms); }
+.js-motion [data-reveal="mask"] img { scale: 1.04; transition: scale calc(var(--dur-slower) * 1.4) var(--ease-out); transition-delay: var(--delay, 0ms); }
+.js-motion [data-reveal="mask"].is-in { clip-path: inset(0 0 0 0); }
+.js-motion [data-reveal="mask"].is-in img { scale: 1; }
+
+/* Intro del punto del logo */
+.js-motion .logo[data-intro] .logo__dot { opacity: 0; translate: 0 -0.6em; transition: opacity var(--dur-slow) var(--ease-out), translate var(--dur-slow) var(--ease-out); transition-delay: var(--delay, 600ms); }
+.js-motion .logo[data-intro].is-in .logo__dot { opacity: 1; translate: 0 0; }
+
+/* Mejora progresiva: scroll-driven */
+@supports (animation-timeline: view()) {
+  .sd-fade { animation: dl-rise linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+  @media (min-width: 960px) and (prefers-reduced-motion: no-preference) {
+    .sd-parallax { animation: dl-parallax linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
+  }
+}
+@keyframes dl-rise { from { opacity: 0; translate: 0 var(--distance-md); } }
+@keyframes dl-parallax { to { translate: 0 24px; } }
+
+/* View transitions (MPA). Quitar si el proyecto no las quiere. */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: var(--dur-base) var(--ease-in) both dl-vt-out; }
+::view-transition-new(root) { animation: var(--dur-slow) var(--ease-out) both dl-vt-in; }
+@keyframes dl-vt-out { to { opacity: 0; } }
+@keyframes dl-vt-in { from { opacity: 0; translate: 0 var(--distance-sm); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .js-motion [data-reveal], .js-motion [data-reveal] img, .js-motion [data-reveal="lines"] .dl-w > span, .js-motion .logo[data-intro] .logo__dot {
+    opacity: 1 !important; translate: none !important; clip-path: none !important; scale: none !important; transition: none !important;
+  }
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+}

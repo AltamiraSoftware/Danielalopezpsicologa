@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
-import { Inter, Cormorant_Garamond } from 'next/font/google'
+import { Figtree, Jost, Source_Serif_4 } from 'next/font/google'
 import { AnalyticsEvents } from './components/AnalyticsEvents'
 import { CookieConsent } from './components/CookieConsent'
 import { ScrollReveal } from './components/ScrollReveal'
@@ -9,16 +9,22 @@ import './globals.css'
 const GTM_ID = 'GTM-KXRQXQ7D'
 const siteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.danielalopezpsicologa.es')
 
-const inter = Inter({
+const figtree = Figtree({
   subsets: ['latin'],
-  variable: '--font-sans',
+  variable: '--font-figtree',
   display: 'swap',
 })
 
-const cormorant = Cormorant_Garamond({
+const jost = Jost({
   subsets: ['latin'],
-  variable: '--font-serif',
-  weight: ['500', '600', '700'],
+  variable: '--font-jost',
+  display: 'swap',
+})
+
+const sourceSerif = Source_Serif_4({
+  subsets: ['latin'],
+  style: ['normal', 'italic'],
+  variable: '--font-source-serif',
   display: 'swap',
 })
 
@@ -31,8 +37,9 @@ export const metadata: Metadata = {
     'psicóloga sanitaria Madrid, psicóloga Chamartín, psicóloga ansiedad Madrid, psicóloga adolescentes Madrid, psicología infanto-juvenil Madrid, terapia online Madrid, terapia autoestima Madrid',
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
       { url: '/icon.png', type: 'image/png', sizes: '512x512' },
+      { url: '/favicon.ico', sizes: '16x16 32x32' },
     ],
     shortcut: '/favicon.ico',
     apple: [{ url: '/apple-touch-icon.png', type: 'image/png', sizes: '180x180' }],
@@ -51,7 +58,6 @@ export const metadata: Metadata = {
     ],
     locale: 'es_ES',
     type: 'website',
-    url: '/',
   },
   twitter: {
     card: 'summary_large_image',
@@ -63,7 +69,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#26385B',
+  themeColor: '#1F2E4D',
   width: 'device-width',
   initialScale: 1,
 }
@@ -74,7 +80,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" className="bg-[#fffefa] scroll-smooth">
+    <html lang="es" className="bg-crema scroll-smooth">
       <head>
         <Script id="google-consent-mode-default" strategy="beforeInteractive">
           {`window.dataLayer = window.dataLayer || [];
@@ -97,7 +103,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','${GTM_ID}');`}
         </Script>
       </head>
-      <body className={`${inter.variable} ${cormorant.variable} font-sans antialiased`}>
+      <body className={`${figtree.variable} ${jost.variable} ${sourceSerif.variable} font-sans antialiased`}>
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
