@@ -1,4 +1,5 @@
 import { Phone } from "lucide-react"
+import { BrandMark } from "./BrandMark"
 import { CookieSettingsButton } from "./CookieSettingsButton"
 import { DoctoraliaLogo, InstagramLogo } from "./BrandIcons"
 import { HashLink } from "./HashLink"
@@ -21,7 +22,7 @@ export function SiteFooter({ page = "landing" }: SiteFooterProps) {
       </div>
       <div className="mx-auto grid max-w-[1120px] gap-8 px-4 text-sm sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
         <div>
-          <h2 className="mb-4 font-serif text-lg font-medium text-crema">Daniela López Meléndez</h2>
+          <div className="mb-4 flex items-center gap-3"><BrandMark className="h-12 w-12 shrink-0" /><h2 className="font-serif text-lg font-medium leading-tight text-crema">Daniela López Meléndez</h2></div>
           <p>Psicóloga General Sanitaria</p>
           <p>Colegiada M-41829</p>
           {/* TODO: nº registro sanitario */}
