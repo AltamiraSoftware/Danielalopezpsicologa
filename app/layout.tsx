@@ -30,11 +30,19 @@ const sourceSerif = Source_Serif_4({
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
-  title: 'Daniela López Meléndez | Psicóloga sanitaria en Madrid y online',
+  applicationName: 'Daniela López Psicología',
+  title: 'Daniela López Meléndez | Psicóloga General Sanitaria en Madrid y online',
   description:
-    'Psicóloga General Sanitaria colegiada M-41829 en Madrid. Consulta presencial en Chamartín y terapia online para ansiedad, autoestima, duelo, adolescentes, pareja y familia. Primera sesión desde 40 €.',
-  keywords:
-    'psicóloga sanitaria Madrid, psicóloga Chamartín, psicóloga ansiedad Madrid, psicóloga adolescentes Madrid, psicología infanto-juvenil Madrid, terapia online Madrid, terapia autoestima Madrid',
+    'Daniela López Meléndez, Psicóloga General Sanitaria colegiada M-41829. Terapia presencial en Madrid (Chamartín) y online para ansiedad, autoestima, duelo, infancia, adolescencia y pareja.',
+  keywords: [
+    'Daniela López Meléndez', 'psicóloga general sanitaria Madrid',
+    'psicóloga Chamartín', 'psicóloga online', 'terapia ansiedad Madrid',
+    'psicología infanto-juvenil', 'terapia autoestima', 'terapia de pareja Madrid',
+  ],
+  creator: 'Daniela López Meléndez',
+  publisher: 'Daniela López Psicología',
+  authors: [{ name: 'Daniela López Meléndez', url: siteUrl.toString() }],
+  alternates: { canonical: '/' },
   icons: {
     icon: [
       { url: '/icon.svg', type: 'image/svg+xml' },
@@ -45,26 +53,25 @@ export const metadata: Metadata = {
     apple: [{ url: '/apple-touch-icon.png', type: 'image/png', sizes: '180x180' }],
   },
   openGraph: {
-    title: 'Daniela López | Psicóloga en Madrid',
-    description:
-      'Terapia presencial en Chamartín y online para ansiedad, duelo y terapia infantojuvenil. Primera sesión desde 40 €.',
-    images: [
-      {
-        url: '/opengraph-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Daniela López, psicóloga sanitaria en Madrid',
-      },
-    ],
+    title: 'Daniela López Meléndez | Psicóloga General Sanitaria en Madrid',
+    description: 'Consulta presencial en Madrid y terapia online. Ansiedad, autoestima, duelo, terapia infantojuvenil y pareja. Colegiada M-41829.',
+    url: siteUrl.toString(),
+    siteName: 'Daniela López Psicología',
+    images: [{
+      url: '/opengraph-image',
+      width: 1200,
+      height: 630,
+      type: 'image/png',
+      alt: 'Daniela López, psicóloga general sanitaria en Madrid y online. Isotipo botánico verde.',
+    }],
     locale: 'es_ES',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Daniela López | Psicóloga en Madrid',
-    description:
-      'Terapia presencial en Chamartín y online. Primera sesión desde 40 €.',
-    images: ['/opengraph-image.png'],
+    title: 'Daniela López Meléndez | Psicóloga General Sanitaria',
+    description: 'Terapia presencial en Madrid y online. Atención a adultos, adolescentes, infancia y parejas.',
+    images: ['/opengraph-image'],
   },
 }
 
