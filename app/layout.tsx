@@ -60,7 +60,7 @@ export const metadata: Metadata = {
       width: 1200,
       height: 630,
       type: 'image/png',
-      alt: 'Daniela López, psicóloga general sanitaria en Madrid y online. Isotipo botánico verde.',
+      alt: 'Daniela López, psicóloga general sanitaria en Madrid y online. Isotipo botánico morado.',
     }],
     locale: 'es_ES',
     type: 'website',
