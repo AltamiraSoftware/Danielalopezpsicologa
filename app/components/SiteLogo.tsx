@@ -18,8 +18,8 @@ export function SiteLogo({ name = "Daniela López", onClick }: SiteLogoProps) {
         <span className="block truncate font-serif text-[22px] font-normal leading-none text-crema sm:text-[26px]">
           {name}
         </span>
-        <span className="block truncate font-brand text-[10.5px] font-medium uppercase leading-none tracking-[0.12em] text-crema/65 sm:text-[11px]">
-          Psicóloga General Sanitaria · Madrid
+        <span className="block truncate font-brand text-[10.5px] font-medium uppercase leading-none tracking-[0.28em] text-crema/75 sm:text-[11px]">
+          PSICOLOGÍA
         </span>
       </span>
     </a>
