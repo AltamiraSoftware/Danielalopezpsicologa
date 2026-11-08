@@ -42,7 +42,6 @@ export const metadata: Metadata = {
   creator: 'Daniela López Meléndez',
   publisher: 'Daniela López Psicología',
   authors: [{ name: 'Daniela López Meléndez', url: siteUrl.toString() }],
-  alternates: { canonical: '/' },
   icons: {
     icon: [
       { url: '/icon.svg', type: 'image/svg+xml' },
@@ -55,7 +54,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Daniela López Meléndez | Psicóloga General Sanitaria en Madrid',
     description: 'Consulta presencial en Madrid y terapia online. Ansiedad, autoestima, duelo, terapia infantojuvenil y pareja. Colegiada M-41829.',
-    url: siteUrl.toString(),
     siteName: 'Daniela López Psicología',
     images: [{
       url: '/opengraph-image',
