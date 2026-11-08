@@ -16,8 +16,9 @@ export default function OpenGraphImage() {
       <div style={{ display: "flex", position: "absolute", left: 74, top: 73, width: 328, height: 51, borderRadius: 30, backgroundColor: "#EBEEE5", alignItems: "center", paddingLeft: 25, fontSize: 20, fontWeight: 600, letterSpacing: 0.6 }}>
         PSICOLOGÍA · MADRID
       </div>
-      <svg viewBox="-10 -10 1055 123" width="708" height="92" style={{ position: "absolute", left: 72, top: 151 }} aria-label="Daniela López">
+      <svg viewBox="-10 -22 1055 135" width="708" height="92" style={{ position: "absolute", left: 72, top: 151 }} aria-label="Daniela López">
         <path d={WORDMARK} fill="#344C3A" fillRule="evenodd" />
+        <path d="M746 -3 L761 -17 L768 -17 L754 -3 Z" fill="#344C3A" />
       </svg>
       <div style={{ display: "flex", position: "absolute", left: 77, top: 297, fontSize: 35, fontWeight: 500 }}>Psicóloga General Sanitaria</div>
       <div style={{ position: "absolute", left: 77, top: 365, width: 543, height: 3, backgroundColor: "#9EB09B" }} />
