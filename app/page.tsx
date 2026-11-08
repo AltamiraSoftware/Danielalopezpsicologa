@@ -33,6 +33,7 @@ const whatsappMessage =
 const whatsappUrl = `https://wa.me/34614412183?text=${encodeURIComponent(whatsappMessage)}`
 const doctoraliaUrl = "https://www.doctoralia.es/daniela-lopez-melendez/psicologo/madrid"
 const instagramUrl = "https://www.instagram.com/psico.danilopez/"
+const linkedinUrl = "https://es.linkedin.com/in/daniela-l%C3%B3pez-mel%C3%A9ndez-ab0400316"
 const address = "C. de Marcenado, 14, Despacho 2, Chamartín, 28002 Madrid"
 const mapQuery = encodeURIComponent("C. de Marcenado, 14, Despacho 2, Chamartín, 28002 Madrid")
 const googleReviewsUrl = "https://share.google/G6F7RNyVtOPYNJKh6"
@@ -590,9 +591,9 @@ function JsonLd() {
     name: "Daniela López Meléndez",
     jobTitle: "Psicóloga General Sanitaria",
     identifier: "Colegiada M-41829",
-    telephone: "+346****2183",
-    url: "https://danielalopezpsicologia.es",
-    sameAs: [instagramUrl, doctoraliaUrl],
+    telephone: "+34614412183",
+    url: "https://www.danielalopezpsicologa.es",
+    sameAs: [instagramUrl, doctoraliaUrl, linkedinUrl],
   }
   const business = {
     "@context": "https://schema.org",
@@ -600,7 +601,7 @@ function JsonLd() {
     name: "Daniela López Meléndez Psicología",
     medicalSpecialty: "Psychology",
     priceRange: "40€-75€",
-    telephone: "+346****2183",
+    telephone: "+34614412183",
     address: {
       "@type": "PostalAddress",
       streetAddress: "C. de Marcenado, 14, Despacho 2",
@@ -609,7 +610,7 @@ function JsonLd() {
       addressCountry: "ES",
     },
     areaServed: "Madrid",
-    sameAs: [instagramUrl, doctoraliaUrl],
+    sameAs: [instagramUrl, doctoraliaUrl, linkedinUrl],
   }
   const service = {
     "@context": "https://schema.org",
@@ -636,7 +637,7 @@ function JsonLd() {
         "@type": "ListItem",
         position: 1,
         name: "Inicio",
-        item: "https://danielalopezpsicologia.es/",
+        item: "https://www.danielalopezpsicologa.es/",
       },
     ],
   }

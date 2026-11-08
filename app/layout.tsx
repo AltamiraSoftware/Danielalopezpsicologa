@@ -9,6 +9,9 @@ import './globals.css'
 const GTM_ID = 'GTM-KXRQXQ7D'
 const siteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.danielalopezpsicologa.es')
 
+// Descripción profesional consistente con Doctoralia, LinkedIn y la web.
+const socialDescription = 'Terapia presencial en Madrid y online para adultos, niños, adolescentes y parejas. Enfoque integrador para ansiedad, autoestima y duelo. Colegiada M-41829.'
+
 const figtree = Figtree({
   subsets: ['latin'],
   variable: '--font-figtree',
@@ -31,9 +34,8 @@ const sourceSerif = Source_Serif_4({
 export const metadata: Metadata = {
   metadataBase: siteUrl,
   applicationName: 'Daniela López Psicología',
-  title: 'Daniela López Meléndez | Psicóloga General Sanitaria en Madrid y online',
-  description:
-    'Daniela López Meléndez, Psicóloga General Sanitaria colegiada M-41829. Terapia presencial en Madrid (Chamartín) y online para ansiedad, autoestima, duelo, infancia, adolescencia y pareja.',
+  title: 'Daniela López Meléndez | Psicóloga General Sanitaria en Madrid',
+  description: socialDescription,
   keywords: [
     'Daniela López Meléndez', 'psicóloga general sanitaria Madrid',
     'psicóloga Chamartín', 'psicóloga online', 'terapia ansiedad Madrid',
@@ -53,7 +55,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Daniela López Meléndez | Psicóloga General Sanitaria en Madrid',
-    description: 'Consulta presencial en Madrid y terapia online. Ansiedad, autoestima, duelo, terapia infantojuvenil y pareja. Colegiada M-41829.',
+    description: socialDescription,
     siteName: 'Daniela López Psicología',
     images: [{
       url: 'https://www.danielalopezpsicologa.es/opengraph-image.png',
@@ -67,8 +69,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Daniela López Meléndez | Psicóloga General Sanitaria',
-    description: 'Terapia presencial en Madrid y online. Atención a adultos, adolescentes, infancia y parejas.',
+    title: 'Daniela López Meléndez | Psicóloga General Sanitaria en Madrid',
+    description: socialDescription,
     images: ['https://www.danielalopezpsicologa.es/opengraph-image.png'],
   },
 }

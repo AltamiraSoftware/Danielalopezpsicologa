@@ -5,6 +5,7 @@ export const whatsappMessage =
 export const whatsappUrl = `https://wa.me/34614412183?text=${encodeURIComponent(whatsappMessage)}`
 export const doctoraliaUrl = "https://www.doctoralia.es/daniela-lopez-melendez/psicologo/madrid"
 export const instagramUrl = "https://www.instagram.com/psico.danilopez/"
+export const linkedinUrl = "https://es.linkedin.com/in/daniela-l%C3%B3pez-mel%C3%A9ndez-ab0400316"
 
 export const address = "C. de Marcenado, 14, Despacho 2, Chamartín, 28002 Madrid"
 export const mapQuery = encodeURIComponent(address)

@@ -20,8 +20,8 @@ const background = `
   <path d="M0,0 H420 C310,110 205,110 0,215 Z" fill="#E6D8F0" />
   <path d="M1200,410 C1060,420 1020,480 900,510 C820,533 775,536 665,550 H1200 Z" fill="#F1EAF6" />
   <g fill="#56337C" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">
-    <text x="94" y="404" font-size="31" font-weight="500">Terapia presencial en Chamartín y online</text>
-    <text x="94" y="452" font-size="31" font-weight="700">Adultos · Parejas · Infanto-juvenil</text>
+    <text x="94" y="404" font-size="31" font-weight="500">Terapia presencial en Madrid y online</text>
+    <text x="94" y="452" font-size="31" font-weight="700">Adultos · Niños y adolescentes · Parejas</text>
     <text x="94" y="513" font-size="34" font-weight="700">+34 614 412 183</text>
   </g>
   <path d="M94,366 H612" fill="none" stroke="#8263A7" stroke-width="3" />
