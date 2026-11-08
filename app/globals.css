@@ -258,12 +258,13 @@
      con anillo tenue para integrarlo sobre el marino */
   .brand-badge {
     display: block;
+    background: var(--color-crema);
     flex: none;
     overflow: hidden;
     border-radius: 20%;
     line-height: 0;
     box-shadow:
-      0 0 0 2px color-mix(in oklab, var(--color-lavanda) 70%, white),
+      0 0 0 1px color-mix(in oklab, #5B735B 35%, white),
       0 0 0 6px rgb(255 255 255 / 0.10),
       0 8px 18px -10px rgb(0 0 0 / 0.45);
   }
