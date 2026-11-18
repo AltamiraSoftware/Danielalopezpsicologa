@@ -8,8 +8,11 @@ type ContactPayload = {
   contactPreference?: string
   modality?: string
   reason?: string
+  preferredTime?: string
   privacyAccepted?: boolean
+  requestType?: string
   source?: string
+  website?: string
 }
 
 function isValidEmail(email: string) {
@@ -28,6 +31,10 @@ export async function POST(request: Request) {
   const name = payload.name?.trim()
   const phone = payload.phone?.trim()
   const email = payload.email?.trim()
+
+  if (payload.website?.trim()) {
+    return NextResponse.json({ ok: true })
+  }
 
   if (!name || !phone || !email || !isValidEmail(email) || payload.privacyAccepted !== true) {
     return NextResponse.json({ ok: false }, { status: 400 })
@@ -56,15 +63,21 @@ export async function POST(request: Request) {
     const result = await resend.emails.send({
       from: from ?? "Daniela López Psicología <onboarding@resend.dev>",
       to,
-      subject: `Nueva solicitud de información - ${name}`,
+      subject:
+        payload.requestType === "free_call"
+          ? `Solicitud de llamada gratuita de 15 minutos - ${name}`
+          : `Nueva solicitud de información - ${name}`,
       text: [
-        "Nueva solicitud desde la landing de Daniela López Meléndez.",
+        payload.requestType === "free_call"
+          ? "Nueva solicitud de llamada gratuita de 15 minutos desde la landing de Daniela López Meléndez."
+          : "Nueva solicitud desde la landing de Daniela López Meléndez.",
         "",
         `Nombre: ${name}`,
         `Teléfono: ${phone}`,
         `Email: ${email}`,
         `Preferencia de contacto: ${payload.contactPreference ?? "whatsapp"}`,
         `Modalidad preferida: ${payload.modality ?? "me_da_igual"}`,
+        ...(payload.requestType === "free_call" ? [`Preferencia horaria: ${payload.preferredTime ?? "No indicada"}`] : []),
         `Motivo de consulta: ${payload.reason?.trim() || "No indicado"}`,
         `Fuente: ${payload.source ?? "daniela_landing"}`,
       ].join("\n"),

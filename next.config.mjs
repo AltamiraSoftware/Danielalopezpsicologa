@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  allowedDevOrigins: ['192.168.1.130', '100.119.126.66'],
   turbopack: {
     root: process.cwd(),
   },

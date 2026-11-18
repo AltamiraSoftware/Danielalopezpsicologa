@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
 import Image from "next/image"
-import { MapPin, Phone } from "lucide-react"
+import { CalendarClock, MapPin, Phone } from "lucide-react"
 import { ContactRequestForm } from "../components/ContactRequestForm"
+import { FreeCallTrigger } from "../components/FreeCallTrigger"
 import { DoctoraliaLogo, InstagramLogo, WhatsAppLogo } from "../components/BrandIcons"
 import { DoctoraliaWidget } from "../components/DoctoraliaWidget"
 import { Header as SiteHeader } from "../components/Header"
@@ -57,6 +58,16 @@ export default function ContactPage() {
  <p className="mb-8 text-lg leading-relaxed text-texto-2">
  Puedes escribir por WhatsApp o dejar tus datos en el formulario. Daniela te contactará para resolver dudas, revisar disponibilidad y valorar el mejor formato para empezar.
  </p>
+
+ <FreeCallTrigger data-event="click_free_call" data-location="contact_page_banner" data-page="contact" data-channel="form" className="mb-5 flex w-full items-center gap-4 rounded-[20px] border border-lavanda-600/20 bg-white/70 p-5 text-left shadow-1 transition-colors hover:bg-white">
+ <span className="icon-box flex h-12 w-12 shrink-0 items-center justify-center">
+ <CalendarClock className="h-6 w-6 text-marino" aria-hidden="true" />
+ </span>
+ <span>
+ <span className="block font-medium text-marino">¿Prefieres hablar antes?</span>
+ <span className="mt-1 block text-sm leading-relaxed text-texto-2">Reserva una llamada de orientación gratuita de 15 minutos.</span>
+ </span>
+ </FreeCallTrigger>
 
  <div className="grid gap-4">
  <a href={whatsappUrl} data-event="click_whatsapp" data-location="contact_page_top" data-page="contact" data-channel="whatsapp" className="flex items-center gap-4 rounded-lg border border-linea bg-[#25D366] p-5 font-bold text-white shadow-1">

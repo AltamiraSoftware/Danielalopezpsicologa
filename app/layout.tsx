@@ -3,6 +3,8 @@ import Script from 'next/script'
 import { Figtree, Jost, Source_Serif_4 } from 'next/font/google'
 import { AnalyticsEvents } from './components/AnalyticsEvents'
 import { CookieConsent } from './components/CookieConsent'
+import { FloatingWhatsApp } from './components/FloatingWhatsApp'
+import { FreeCallModalProvider } from './components/FreeCallModalProvider'
 import { ScrollReveal } from './components/ScrollReveal'
 import './globals.css'
 
@@ -120,7 +122,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           />
         </noscript>
         <AnalyticsEvents />
-        {children}
+        <FreeCallModalProvider>
+          {children}
+        </FreeCallModalProvider>
+        <FloatingWhatsApp />
         <ScrollReveal />
         <CookieConsent />
       </body>

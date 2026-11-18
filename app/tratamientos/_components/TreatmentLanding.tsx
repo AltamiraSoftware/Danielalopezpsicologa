@@ -505,22 +505,6 @@ function Footer() {
  )
 }
 
-function FloatingWhatsApp({ treatment }: { treatment: Treatment }) {
- return (
- <a
- href={treatmentWhatsappUrl(treatment)}
- data-event="click_whatsapp"
- data-location="treatment_floating"
- data-page={`tratamiento_${treatment.slug}`}
- data-channel="whatsapp"
- className="fixed bottom-6 right-6 z-50 hidden h-16 w-16 items-center justify-center rounded-full bg-whatsapp text-white shadow-2 transition-colors hover:bg-whatsapp-600 sm:flex"
- aria-label="Contactar por WhatsApp"
- >
- <WhatsAppLogo className="h-10 w-10" />
- </a>
- )
-}
-
 function MobileStickyBar({ treatment }: { treatment: Treatment }) {
  return (
  <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-linea bg-crema/95 p-3 sm:hidden">
@@ -567,7 +551,6 @@ export function TreatmentLanding({ treatment }: { treatment: Treatment }) {
  <FinalCTASection treatment={treatment} />
  </main>
  <Footer />
- <FloatingWhatsApp treatment={treatment} />
  <MobileStickyBar treatment={treatment} />
  </>
  )

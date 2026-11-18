@@ -4,6 +4,7 @@ import {
   ArrowRight,
   ArrowUpRight,
   Brain,
+  CalendarClock,
   CheckCircle2,
   Heart,
   Home,
@@ -15,6 +16,7 @@ import {
   Video,
 } from "lucide-react"
 import { ContactRequestForm } from "./components/ContactRequestForm"
+import { FreeCallPricingCard } from "./components/FreeCallPricingCard"
 import { ReviewsCarousel } from "./components/ReviewsCarousel"
 import { DoctoraliaLogo, GoogleLogo, WhatsAppLogo } from "./components/BrandIcons"
 import { FAQAccordion } from "./components/FAQAccordion"
@@ -79,6 +81,15 @@ function HeroSection() {
             <p className="hero-in max-w-[68ch] text-[1.0625rem] leading-[1.6] text-texto-2 sm:text-[1.25rem]" style={{ animationDelay: "320ms" }}>
               Soy Daniela López Meléndez, Psicóloga General Sanitaria colegiada M-41829. Te ayudo a ordenar lo que estás viviendo y valorar el mejor punto de partida, con una primera sesión desde 40 € en consulta presencial u online.
             </p>
+            <HashLink targetId="llamada-gratuita" data-event="click_free_call" data-location="hero_banner" data-page="landing" data-channel="form" className="hero-in flex max-w-[540px] items-center gap-3 rounded-2xl border border-lavanda-600/20 bg-white/65 p-4 text-left shadow-[0_14px_34px_rgba(38,56,91,0.08)] transition-colors hover:bg-white" style={{ animationDelay: "360ms" }}>
+              <span className={`h-11 w-11 shrink-0 ${iconBox}`}>
+                <CalendarClock className="h-5 w-5 text-marino" aria-hidden="true" />
+              </span>
+              <span>
+                <span className="block font-medium text-marino">¿Tienes dudas antes de empezar?</span>
+                <span className="mt-0.5 block text-sm leading-relaxed text-texto-2">Reserva una llamada de orientación gratuita de 15 minutos.</span>
+              </span>
+            </HashLink>
             <div className="hero-in flex flex-col gap-3 sm:flex-row sm:gap-4" style={{ animationDelay: "400ms" }}>
               <a href={whatsappUrl} data-event="click_whatsapp" data-location="hero" data-page="landing" data-channel="whatsapp" className="btn btn--whatsapp">
                 <WhatsAppLogo className="h-4 w-4" />
@@ -134,6 +145,16 @@ function ContactSection() {
           <p className="mt-5 max-w-lg text-base leading-relaxed text-texto-2">
             Puedes escribir por WhatsApp o dejar tus datos en el formulario. Te responderé para resolver dudas, revisar disponibilidad y valorar si una primera sesión encaja contigo.
           </p>
+
+          <HashLink targetId="llamada-gratuita" data-event="click_free_call" data-location="contact_banner" data-page="landing" data-channel="form" className="mt-6 flex max-w-lg items-center gap-3 rounded-2xl border border-lavanda-600/20 bg-white/65 p-4 shadow-[0_14px_34px_rgba(38,56,91,0.08)] transition-colors hover:bg-white">
+            <span className={`h-11 w-11 shrink-0 ${iconBox}`}>
+              <CalendarClock className="h-5 w-5 text-marino" aria-hidden="true" />
+            </span>
+            <span>
+              <span className="block font-medium text-marino">¿Prefieres hablar antes?</span>
+              <span className="mt-0.5 block text-sm leading-relaxed text-texto-2">Reserva una llamada de orientación gratuita de 15 minutos.</span>
+            </span>
+          </HashLink>
 
           <div className="group relative mt-8 overflow-hidden rounded-[26px] border border-white/80 bg-white/40 shadow-[0_26px_60px_-34px_rgba(20,36,63,0.4)]">
             <Image
@@ -378,6 +399,8 @@ function PricingSection() {
           })}
         </div>
 
+        <FreeCallPricingCard />
+
         <div className="glass mt-6 rounded-[24px] p-6 sm:p-8">
           <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:gap-10">
             <div className="lg:w-[34%]">
@@ -520,6 +543,65 @@ function ObjectionsSection() {
   )
 }
 
+function CollaboratorSection() {
+  return (
+    <section className={`${sectionWarm} py-[clamp(64px,6vw+32px,120px)]`}>
+      <div className="mx-auto grid max-w-[1120px] gap-10 px-4 sm:px-6 lg:grid-cols-[0.82fr_1.18fr] lg:items-stretch lg:gap-16 lg:px-8">
+        <div className="min-h-[440px] overflow-hidden rounded-[26px] border border-white/80 bg-white/40 shadow-[0_26px_60px_-34px_rgba(20,36,63,0.4)] lg:min-h-0">
+          <Image
+            src="/irene-serrano-perez-psicologa-colaboradora.jpeg"
+            alt="Irene Serrano Pérez, psicóloga general sanitaria"
+            width={2048}
+            height={1914}
+            sizes="(min-width: 1024px) 34vw, 100vw"
+            className="h-full min-h-[440px] w-full object-cover object-center"
+          />
+        </div>
+
+        <div>
+          <span className="eyebrow">Psicóloga colaboradora</span>
+          <h2 className="mt-5 font-serif text-3xl font-normal leading-[1.1] tracking-[-0.02em] text-marino text-balance sm:text-4xl">
+            Irene Serrano Pérez
+          </h2>
+          <p className="mt-3 font-brand text-sm font-medium uppercase tracking-[0.1em] text-texto-3">
+            Psicóloga General Sanitaria · Colegiada M-38140
+          </p>
+          <div className="mt-6 space-y-4 text-lg leading-relaxed text-texto-2">
+            <p>
+              Soy psicóloga general sanitaria y tengo la suerte que vivo enamorada de mi profesión.
+            </p>
+            <p>
+              En consulta, creo un lugar cercano y seguro para acompañarte en el proceso y que te puedas conocer cada día un poco más.
+            </p>
+            <p>
+              Me gusta ir construyendo junto a mis pacientes una “caja de herramientas psicólogicas” para vivir el día a día con la mayor paz que se pueda.
+            </p>
+          </div>
+          <div className="mt-7 grid gap-4 sm:grid-cols-2">
+            <div className={`${cardGlass} flex min-h-[172px] flex-col items-center p-5 text-center`}>
+              <div className={`mb-4 h-11 w-11 ${iconBox}`}>
+                <Users className="h-5 w-5 text-marino" aria-hidden="true" />
+              </div>
+              <h3 className="text-lg font-medium text-marino">Experiencia</h3>
+              <p className="mt-2 text-sm leading-relaxed text-texto-2">Tengo experiencia en la atención a adultos y adolescentes.</p>
+            </div>
+            <div className={`${cardGlass} flex min-h-[172px] flex-col items-center p-5 text-center`}>
+              <div className={`mb-4 h-11 w-11 ${iconBox}`}>
+                <Brain className="h-5 w-5 text-marino" aria-hidden="true" />
+              </div>
+              <h3 className="text-lg font-medium text-marino">Formación continua</h3>
+              <p className="mt-2 text-sm leading-relaxed text-texto-2">Actualmente me estoy formando en trauma.</p>
+            </div>
+          </div>
+          <p className="mt-5 text-sm leading-relaxed text-texto-3">
+            He estudiando en la Universidad Pontificia de Comillas y en la Francisco de Vitoria.
+          </p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function FinalCTASection() {
   return (
     <section className={`${sectionCta} py-[clamp(64px,6vw+32px,120px)]`}>
@@ -545,14 +627,6 @@ function FinalCTASection() {
   )
 }
 
-
-function FloatingWhatsApp() {
-  return (
-    <a href={whatsappUrl} data-event="click_whatsapp" data-location="floating" data-page="landing" data-channel="whatsapp" className="fixed bottom-6 right-6 z-50 hidden h-16 w-16 items-center justify-center rounded-full bg-whatsapp text-white shadow-2 transition-colors hover:bg-whatsapp-600 sm:flex" aria-label="Contactar por WhatsApp">
-      <WhatsAppLogo className="h-10 w-10" />
-    </a>
-  )
-}
 
 function MobileStickyBar() {
   return (
@@ -675,6 +749,7 @@ export default function DanielaLandingPage() {
         <TrustSection />
         <HowToStartSection />
         <ObjectionsSection />
+        <CollaboratorSection />
         <section id="faq" className={`${sectionSage} py-[clamp(64px,6vw+32px,120px)]`}>
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
             <h2 className="mb-12 text-center font-serif text-2xl font-normal text-marino sm:text-3xl lg:text-4xl">Preguntas frecuentes</h2>
@@ -684,7 +759,6 @@ export default function DanielaLandingPage() {
         <FinalCTASection />
       </main>
       <SiteFooter page="landing" />
-      <FloatingWhatsApp />
       <MobileStickyBar />
     </>
   )
