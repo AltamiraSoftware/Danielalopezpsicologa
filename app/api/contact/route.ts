@@ -36,7 +36,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true })
   }
 
-  if (!name || !phone || !email || !isValidEmail(email) || payload.privacyAccepted !== true) {
+  const isFreeCall = payload.requestType === "free_call"
+  const hasInvalidEmail = email ? !isValidEmail(email) : false
+
+  if (!name || !phone || (isFreeCall && !email) || hasInvalidEmail || payload.privacyAccepted !== true) {
     return NextResponse.json({ ok: false }, { status: 400 })
   }
 
@@ -74,7 +77,7 @@ export async function POST(request: Request) {
         "",
         `Nombre: ${name}`,
         `Teléfono: ${phone}`,
-        `Email: ${email}`,
+        `Email: ${email || "No indicado"}`,
         `Preferencia de contacto: ${payload.contactPreference ?? "whatsapp"}`,
         `Modalidad preferida: ${payload.modality ?? "me_da_igual"}`,
         ...(payload.requestType === "free_call" ? [`Preferencia horaria: ${payload.preferredTime ?? "No indicada"}`] : []),

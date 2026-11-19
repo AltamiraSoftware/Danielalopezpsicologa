@@ -1,6 +1,6 @@
 "use client"
 
-import { FormEvent, useState } from "react"
+import { FormEvent, useRef, useState } from "react"
 import { Clock3, Loader2, Send, ShieldCheck } from "lucide-react"
 
 type FormStatus = "idle" | "loading" | "success" | "error"
@@ -43,9 +43,12 @@ export function FreeCallRequestForm({
 }: FreeCallRequestFormProps) {
   const [status, setStatus] = useState<FormStatus>("idle")
   const [error, setError] = useState("")
+  const isSubmittingRef = useRef(false)
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    if (isSubmittingRef.current) return
+
     const formElement = event.currentTarget
     setError("")
 
@@ -65,6 +68,7 @@ export function FreeCallRequestForm({
       return
     }
 
+    isSubmittingRef.current = true
     setStatus("loading")
     pushDataLayer("free_call_form_submit_attempt", page)
 
@@ -94,6 +98,8 @@ export function FreeCallRequestForm({
       setStatus("error")
       setError("No se ha podido enviar la solicitud. Puedes escribir directamente por WhatsApp.")
       pushDataLayer("free_call_form_submit_error", page, { error_type: "server" })
+    } finally {
+      isSubmittingRef.current = false
     }
   }
 
