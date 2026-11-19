@@ -17,6 +17,7 @@ import {
 } from "lucide-react"
 import { ContactRequestForm } from "./components/ContactRequestForm"
 import { FreeCallPricingCard } from "./components/FreeCallPricingCard"
+import { FreeCallTrigger } from "./components/FreeCallTrigger"
 import { ReviewsCarousel } from "./components/ReviewsCarousel"
 import { DoctoraliaLogo, GoogleLogo, WhatsAppLogo } from "./components/BrandIcons"
 import { FAQAccordion } from "./components/FAQAccordion"
@@ -339,8 +340,8 @@ function ModalitiesSection() {
 function PricingSection() {
   const prices = [
     { title: "Primera sesión individual", price: "40 €", description: "Online o presencial para valorar tu caso y orientarte con calma.", footer: "Presencial u online" },
-    { title: "Sesión online", price: "55 €", description: "Continuidad del proceso terapéutico por videollamada.", footer: "Sesiones individuales online" },
-    { title: "Sesión presencial", price: "60 €", description: "Sesiones individuales en consulta presencial en Chamartín.", footer: "Consulta en Despacho 2" },
+    { title: "Sesión online", price: "60 €", description: "Continuidad del proceso terapéutico por videollamada.", footer: "Sesiones individuales online" },
+    { title: "Sesión presencial", price: "65 €", description: "Sesiones individuales en consulta presencial en Chamartín.", footer: "Consulta en Despacho 2" },
     { title: "Terapia de pareja o familia", price: "75 €", description: "Sesiones online o presenciales para trabajar dinámicas relacionales.", footer: "Mismo precio desde la primera sesión" },
     { title: "Bono online", price: "200 €", description: "Pack de 4 sesiones online para dar continuidad al proceso terapéutico.", footer: "4 sesiones online" },
     { title: "Bono presencial", price: "220 €", description: "Pack de 4 sesiones presenciales en consulta de Chamartín.", footer: "4 sesiones presenciales" },
@@ -643,16 +644,16 @@ function MobileStickyBar() {
           <WhatsAppLogo className="h-5 w-5" />
           Pedir primera sesión
         </a>
-        <HashLink
-          targetId="reserva"
-          data-event="click_prices"
+        <FreeCallTrigger
+          data-event="click_free_call"
           data-location="sticky_mobile"
           data-page="landing"
-          data-channel="internal_cta"
-          className="btn btn--primary flex-1"
+          data-channel="form"
+          className="btn btn--primary flex-1 px-3 text-sm"
+          aria-label="Reserva tu llamada gratuita"
         >
-          Ver precios
-        </HashLink>
+          Llamada gratuita
+        </FreeCallTrigger>
       </div>
     </div>
   )

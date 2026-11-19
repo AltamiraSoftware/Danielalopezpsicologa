@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { CalendarClock, ChevronDown } from "lucide-react"
+import { CalendarClock, ChevronDown, ChevronUp } from "lucide-react"
 import { FreeCallRequestForm } from "./FreeCallRequestForm"
 
 export function FreeCallPricingCard() {
@@ -10,6 +10,22 @@ export function FreeCallPricingCard() {
   if (isFormOpen) {
     return (
       <div id="llamada-gratuita" className="mt-6 scroll-mt-24">
+        <div className="mb-3 flex justify-end">
+          <button
+            type="button"
+            onClick={() => setIsFormOpen(false)}
+            data-event="close_free_call_form"
+            data-location="pricing"
+            data-page="landing"
+            data-channel="form"
+            className="btn btn--link btn--sm"
+            aria-expanded="true"
+            aria-controls="free-call-pricing-form"
+          >
+            Ocultar formulario
+            <ChevronUp className="h-4 w-4" aria-hidden="true" />
+          </button>
+        </div>
         <div id="free-call-pricing-form">
           <FreeCallRequestForm page="landing" source="free_call_pricing" />
         </div>

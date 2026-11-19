@@ -26,7 +26,7 @@ export function FreeCallWidget({ isOpen, onOpen, onClose }: { isOpen: boolean; o
         data-location="floating"
         data-page="landing"
         data-channel="form"
-        className="fixed bottom-20 right-4 z-50 inline-flex items-center gap-2 rounded-full border border-marino bg-marino px-5 py-3 font-brand text-sm font-medium text-white shadow-[0_18px_42px_-20px_rgba(38,56,91,0.6)] transition-all hover:-translate-y-0.5 hover:bg-marino-900 sm:bottom-6 sm:right-6"
+        className="fixed bottom-20 right-4 z-50 hidden items-center gap-2 rounded-full border border-marino bg-marino px-5 py-3 font-brand text-sm font-medium text-white shadow-[0_18px_42px_-20px_rgba(38,56,91,0.6)] transition-all hover:-translate-y-0.5 hover:bg-marino-900 sm:bottom-6 sm:right-6 sm:inline-flex"
         aria-haspopup="dialog"
       >
         <CalendarClock className="h-5 w-5 text-lavanda" aria-hidden="true" />
