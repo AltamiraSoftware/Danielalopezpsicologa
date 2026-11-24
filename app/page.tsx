@@ -343,8 +343,8 @@ function PricingSection() {
     { title: "Sesión online", price: "60 €", description: "Continuidad del proceso terapéutico por videollamada.", footer: "Sesiones individuales online" },
     { title: "Sesión presencial", price: "65 €", description: "Sesiones individuales en consulta presencial en Chamartín.", footer: "Consulta en Despacho 2" },
     { title: "Terapia de pareja o familia", price: "75 €", description: "Sesiones online o presenciales para trabajar dinámicas relacionales.", footer: "Mismo precio desde la primera sesión" },
-    { title: "Bono online", price: "200 €", description: "Pack de 4 sesiones online para dar continuidad al proceso terapéutico.", footer: "4 sesiones online" },
-    { title: "Bono presencial", price: "220 €", description: "Pack de 4 sesiones presenciales en consulta de Chamartín.", footer: "4 sesiones presenciales" },
+    { title: "Bono online", price: "220 €", description: "Pack de 4 sesiones online para dar continuidad al proceso terapéutico.", footer: "4 sesiones online" },
+    { title: "Bono presencial", price: "240 €", description: "Pack de 4 sesiones presenciales en consulta de Chamartín.", footer: "4 sesiones presenciales" },
   ]
 
   return (
