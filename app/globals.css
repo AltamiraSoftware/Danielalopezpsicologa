@@ -30,9 +30,9 @@
   --color-exito: #5f7340;
   --color-error: #8a2e2e;
   --color-acento: #6f5eae;
-  --color-whatsapp: #25d366;
-  --color-whatsapp-strong: #1da851; /* icono blanco: 3,2:1 */
-  --color-whatsapp-600: #1ebe5b;
+  --color-whatsapp: #16803f;
+  --color-whatsapp-strong: #16803f;
+  --color-whatsapp-600: #106b34;
 
   /* Radios */
   --radius-sm: 4px;
@@ -361,7 +361,7 @@
     box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-lavanda) 28%, transparent);
   }
 
-  /* WhatsApp: verde de marca con texto marino (contraste 5,5:1; blanco no pasa AA) */
+  /* WhatsApp: verde de marca oscurecido para texto blanco AA (5,01:1). */
   .btn--whatsapp {
     border-color: color-mix(in oklab, #128c4b 55%, var(--color-whatsapp));
     background: var(--color-whatsapp);

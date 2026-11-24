@@ -73,7 +73,11 @@ export function ReviewsCarousel() {
                 )}
                 {sourceLabel[review.source]}
               </span>
-              <span className="flex items-center gap-0.5" aria-label={`${review.rating} de 5 estrellas`}>
+              <span
+                className="flex items-center gap-0.5"
+                role="img"
+                aria-label={`${review.rating} de 5 estrellas`}
+              >
                 {Array.from({ length: 5 }).map((_, starIndex) => (
                   <Star
                     key={starIndex}
